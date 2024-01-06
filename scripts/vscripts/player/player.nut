@@ -1,4 +1,7 @@
 IncludeScript("player/inputs");
+IncludeScript("player/physics");
+
+const GRAVITY = 15;
 
 ::PlayerController <- function () {
 
@@ -6,11 +9,14 @@ IncludeScript("player/inputs");
 
         pplayer = null,
         player = null,
+        onGround = false,
 
         inputs = Inputs(),
+        physics = Physics(),
 
         // methods
-        init = null
+        init = null,
+        tick = null
 
     }
 
@@ -24,6 +30,14 @@ IncludeScript("player/inputs");
         inst.pplayer.gravity(0);
 
         inst.inputs.init(inst);
+        inst.physics.init(inst);
+    }
+
+    inst.tick = function ():(inst) {
+        local zSpeed = inst .player.GetVelocity().z;
+        if (zSpeed > GRAVITY || zSpeed < -GRAVITY) {
+            inst.onGround = false;
+        }
     }
 
     return inst;
