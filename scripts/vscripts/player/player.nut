@@ -1,6 +1,7 @@
 IncludeScript("player/inputs");
 IncludeScript("player/physics");
 
+const JUMP_FORCE = 300;
 const MAX_SPEED = 275;
 
 const GRAVITY = 15;
@@ -16,13 +17,15 @@ const AIR_ACCEL = 75;
         onGround = false,
 
         baseVelocity = Vector(0, 0, 0),
+        airVelocity = Vector(0, 0, 0),
 
         inputs = Inputs(),
         physics = Physics(),
 
         // methods
         init = null,
-        tick = null
+        tick = null,
+        jump = null
 
     }
 
@@ -37,6 +40,8 @@ const AIR_ACCEL = 75;
 
         inst.inputs.init(inst);
         inst.physics.init(inst);
+
+        SendToConsole("alias +jump \"script ::playerController.jump();\"");
     }
 
     inst.tick = function ():(inst) {
@@ -53,11 +58,25 @@ const AIR_ACCEL = 75;
         inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
         local velocity = inst.physics.clampVector(baseVelocity, MAX_SPEED);
 
+        // update ground movement for jumps
+        if (inst.onGround) {
+            inst.airVelocity = (forward * movement.x * GROUND_ACCEL * 0.85) + (left * movement.y * GROUND_ACCEL * 0.85);
+        } else {
+            velocity += inst.airVelocity;
+        }
+
         // gravity
         velocity.z = zSpeed - GRAVITY;
 
         // set velocity
         inst.player.SetVelocity(velocity);
+    }
+
+    inst.jump = function():(inst) {
+        if (inst.onGround) {
+            local player = GetPlayer();
+            player.SetVelocity(player.GetVelocity() + Vector(0, 0, JUMP_FORCE));
+        }
     }
 
     return inst;
