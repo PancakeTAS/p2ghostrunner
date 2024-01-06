@@ -16,4 +16,10 @@ class Inputs {
         }
     }
 
+    function getMovementVector() {
+        local movement = Vector(::forward ? 1 : (::back ? -1 : 0), ::moveleft ? -1 : (::moveright ? 1 : 0));
+        movement.Norm();
+        return movement;
+    }
+
 }

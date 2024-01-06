@@ -25,4 +25,25 @@ class Physics {
         });
     }
 
+    function getForwardVector() {
+        local forward = _player.pplayer.eyes.GetForwardVector() * Vector(1, 1, 0);
+        forward.Norm();
+        return forward;
+    }
+
+    function getLeftVector() {
+        local left = _player.pplayer.eyes.GetLeftVector() * Vector(1, 1, 0);
+        left.Norm();
+        return left;
+    }
+
+    function clampVector(vector, max) {
+        local v = Vector(vector.x, vector.y, vector.z);
+        if (v.Length() > MAX_SPEED) {
+            v.Norm();
+            v *= MAX_SPEED;
+        }
+        return v;
+    }
+
 }

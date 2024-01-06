@@ -1,7 +1,11 @@
 IncludeScript("player/inputs");
 IncludeScript("player/physics");
 
+const MAX_SPEED = 275;
+
 const GRAVITY = 15;
+const GROUND_ACCEL = 100;
+const AIR_ACCEL = 75;
 
 ::PlayerController <- function () {
 
@@ -10,6 +14,8 @@ const GRAVITY = 15;
         pplayer = null,
         player = null,
         onGround = false,
+
+        baseVelocity = Vector(0, 0, 0),
 
         inputs = Inputs(),
         physics = Physics(),
@@ -38,6 +44,20 @@ const GRAVITY = 15;
         if (zSpeed > GRAVITY || zSpeed < -GRAVITY) {
             inst.onGround = false;
         }
+
+        local forward = inst.physics.getForwardVector();
+        local left = inst.physics.getLeftVector();
+        local movement = inst.inputs.getMovementVector();
+
+        // calculate movement velocity
+        inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
+        local velocity = inst.physics.clampVector(baseVelocity, MAX_SPEED);
+
+        // gravity
+        velocity.z = zSpeed - GRAVITY;
+
+        // set velocity
+        inst.player.SetVelocity(velocity);
     }
 
     return inst;
