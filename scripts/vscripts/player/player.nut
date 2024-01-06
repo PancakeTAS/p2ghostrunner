@@ -22,6 +22,8 @@ const AIR_ACCEL = 75;
         inputs = Inputs(),
         physics = Physics(),
 
+        isCrouched = false,
+
         // methods
         init = null,
         tick = null,
@@ -42,6 +44,9 @@ const AIR_ACCEL = 75;
         inst.physics.init(inst);
 
         SendToConsole("alias +jump \"script ::playerController.jump();\"");
+        SendToConsole("alias +alt2 \"script ::playerController.isCrouched = true;\"");
+        SendToConsole("alias -alt2 \"script ::playerController.isCrouched = false;\"");
+        SendToConsole("bind ctrl +alt2");
     }
 
     inst.tick = function ():(inst) {
@@ -55,7 +60,12 @@ const AIR_ACCEL = 75;
         local movement = inst.inputs.getMovementVector();
 
         // calculate movement velocity
-        inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
+        if (inst.onGround && inst.isCrouched) {
+            inst.baseVelocity = (inst.baseVelocity + forward * movement.x * GROUND_ACCEL + left * movement.y * GROUND_ACCEL) * 0.97;
+        } else {
+            inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
+        }
+
         local velocity = inst.physics.clampVector(baseVelocity, MAX_SPEED);
 
         // update ground movement for jumps

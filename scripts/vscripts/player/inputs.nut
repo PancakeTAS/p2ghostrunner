@@ -17,7 +17,7 @@ class Inputs {
     }
 
     function getMovementVector() {
-        local movement = Vector(::forward ? 1 : (::back ? -1 : 0), ::moveleft ? -1 : (::moveright ? 1 : 0));
+        local movement = this._player.isCrouched ? Vector(0, 0) : Vector(::forward ? 1 : (::back ? -1 : 0), ::moveleft ? -1 : (::moveright ? 1 : 0));
         movement.Norm();
         return movement;
     }
