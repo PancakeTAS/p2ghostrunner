@@ -1,3 +1,4 @@
+IncludeScript("player/inputs");
 
 ::PlayerController <- function () {
 
@@ -5,6 +6,8 @@
 
         pplayer = null,
         player = null,
+
+        inputs = Inputs(),
 
         // methods
         init = null
@@ -19,6 +22,8 @@
         SendToConsole("cl_sidespeed 0");
         SendToConsole("cl_backspeed 0");
         inst.pplayer.gravity(0);
+
+        inst.inputs.init(inst);
     }
 
     return inst;
