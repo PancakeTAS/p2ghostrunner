@@ -1,13 +1,16 @@
 IncludeScript("player/stamina");
+IncludeScript("player/dash");
 IncludeScript("player/inputs");
 IncludeScript("player/physics");
 
 const JUMP_FORCE = 300;
 const MAX_SPEED = 275;
+const SLOWDOWN_FACTOR = 0.01;
 
 const GRAVITY = 15;
 const GROUND_ACCEL = 100;
 const AIR_ACCEL = 75;
+const SLOWDOWN_ACCEL = 175;
 
 ::PlayerController <- function () {
 
@@ -22,6 +25,7 @@ const AIR_ACCEL = 75;
 
         stamina = Stamina(),
         inputs = Inputs(),
+        dash = DashController(),
         physics = Physics(),
 
         isCrouched = false,
@@ -42,6 +46,7 @@ const AIR_ACCEL = 75;
         SendToConsole("cl_backspeed 0");
         inst.pplayer.gravity(0);
 
+        inst.dash.init(inst);
         inst.inputs.init(inst);
         inst.stamina.init();
         inst.physics.init(inst);
@@ -63,7 +68,9 @@ const AIR_ACCEL = 75;
         local movement = inst.inputs.getMovementVector();
 
         // calculate movement velocity
-        if (inst.onGround && inst.isCrouched) {
+        if (inst.dash.isSlowdown) {
+            inst.baseVelocity = left * movement.y * SLOWDOWN_ACCEL;
+        } else if (inst.onGround && inst.isCrouched) {
             inst.baseVelocity = (inst.baseVelocity + forward * movement.x * GROUND_ACCEL + left * movement.y * GROUND_ACCEL) * 0.97;
         } else {
             inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
@@ -73,23 +80,28 @@ const AIR_ACCEL = 75;
 
         // update ground movement for jumps
         if (inst.onGround) {
-            inst.airVelocity = (forward * movement.x * GROUND_ACCEL * 0.85) + (left * movement.y * GROUND_ACCEL * 0.85);
+            inst.airVelocity = (forward * movement.x * GROUND_ACCEL * 0.85) + (left * movement.y * GROUND_ACCEL * 0.85) + (inst.isCrouched ? dash.dashVelocity * 0.5 : Vector(0, 0, 0));
         } else {
             velocity += inst.airVelocity;
         }
 
         // gravity
-        velocity.z = zSpeed - GRAVITY;
+        if (inst.dash.isSlowdown) {
+            velocity.z = zSpeed - (GRAVITY * SLOWDOWN_FACTOR);
+        } else {
+            velocity.z = zSpeed - GRAVITY;
+        }
 
         // tick modules
         inst.stamina.tick();
+        velocity = inst.dash.tick(velocity);
 
         // set velocity
         inst.player.SetVelocity(velocity);
     }
 
     inst.jump = function():(inst) {
-        if (inst.onGround) {
+        if (inst.onGround && !inst.dash.isSlowdown) {
             local player = GetPlayer();
             player.SetVelocity(player.GetVelocity() + Vector(0, 0, JUMP_FORCE));
         }
