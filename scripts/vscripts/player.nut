@@ -3,32 +3,34 @@ IncludeScript("player/dash");
 IncludeScript("player/inputs");
 IncludeScript("player/physics");
 
-const JUMP_FORCE = 300;
-const MAX_SPEED = 275;
-const SLOWDOWN_FACTOR = 0.01;
+const JUMP_FORCE = 300; // force applied to the player on jump
+const MAX_SPEED = 275; // max speed for raw movement not including special modifiers such as dashing
+const SLOWDOWN_FACTOR = 0.01; // factor to slow down the game by when dashing
+const GRAVITY = 15; // gravity applied to the player
+const GROUND_ACCEL = 100; // acceleration applied to the player when on the ground
+const AIR_ACCEL = 75; // ... in the air
+const SLOWDOWN_ACCEL = 175; // ... when dashing
 
-const GRAVITY = 15;
-const GROUND_ACCEL = 100;
-const AIR_ACCEL = 75;
-const SLOWDOWN_ACCEL = 175;
-
+/**
+ * Main player controller class
+ */
 ::PlayerController <- function () {
 
     local inst = {
 
         pplayer = null,
         player = null,
-        onGround = false,
 
-        baseVelocity = Vector(0, 0, 0),
-        airVelocity = Vector(0, 0, 0),
+        baseVelocity = Vector(0, 0, 0), // base velocity for movement
+        airVelocity = Vector(0, 0, 0), // velocity applied throughout the air
+
+        onGround = false,
+        isCrouched = false,
 
         stamina = Stamina(),
         inputs = Inputs(),
         dash = DashController(),
         physics = Physics(),
-
-        isCrouched = false,
 
         // methods
         init = null,
@@ -37,37 +39,47 @@ const SLOWDOWN_ACCEL = 175;
 
     }
 
+    /**
+     * Initialize the player controller after ppmod.player is ready
+     */
     inst.init = function (pplayer, player):(inst) {
         inst.pplayer = pplayer;
         inst.player = player;
 
+        // disable built-in movement
         SendToConsole("cl_forwardspeed 0");
         SendToConsole("cl_sidespeed 0");
         SendToConsole("cl_backspeed 0");
         inst.pplayer.gravity(0);
 
+        // initialize modules
         inst.dash.init(inst);
         inst.inputs.init(inst);
         inst.stamina.init();
         inst.physics.init(inst);
 
+        // bind jump and crouch
         SendToConsole("alias +jump \"script ::playerController.jump();\"");
         SendToConsole("alias +alt2 \"script ::playerController.isCrouched = true;\"");
         SendToConsole("alias -alt2 \"script ::playerController.isCrouched = false;\"");
         SendToConsole("bind ctrl +alt2");
     }
 
+    /**
+     * Tick the player controller
+     */
     inst.tick = function ():(inst) {
+        // check if player left the ground
         local zSpeed = inst .player.GetVelocity().z;
         if (zSpeed > GRAVITY || zSpeed < -GRAVITY) {
             inst.onGround = false;
         }
 
+        // calculate movement velocity
         local forward = inst.physics.getForwardVector();
         local left = inst.physics.getLeftVector();
         local movement = inst.inputs.getMovementVector();
 
-        // calculate movement velocity
         if (inst.dash.isSlowdown) {
             inst.baseVelocity = left * movement.y * SLOWDOWN_ACCEL;
         } else if (inst.onGround && inst.isCrouched) {
@@ -78,14 +90,14 @@ const SLOWDOWN_ACCEL = 175;
 
         local velocity = inst.physics.clampVector(baseVelocity, MAX_SPEED);
 
-        // update ground movement for jumps
+        // calculate air velocity
         if (inst.onGround) {
             inst.airVelocity = (forward * movement.x * GROUND_ACCEL * 0.85) + (left * movement.y * GROUND_ACCEL * 0.85) + (inst.isCrouched ? dash.dashVelocity * 0.5 : Vector(0, 0, 0));
         } else {
             velocity += inst.airVelocity;
         }
 
-        // gravity
+        // apply gravity
         if (inst.dash.isSlowdown) {
             velocity.z = zSpeed - (GRAVITY * SLOWDOWN_FACTOR);
         } else {
@@ -100,8 +112,11 @@ const SLOWDOWN_ACCEL = 175;
         inst.player.SetVelocity(velocity);
     }
 
+    /**
+     * Jump the player (called from +jump alias)
+     */
     inst.jump = function():(inst) {
-        if (inst.onGround && !inst.dash.isSlowdown) {
+        if (inst.onGround && !inst.dash.isSlowdown) { // FIXME: jumping multiple times in a tick is possible
             local player = GetPlayer();
             player.SetVelocity(player.GetVelocity() + Vector(0, 0, JUMP_FORCE));
         }
