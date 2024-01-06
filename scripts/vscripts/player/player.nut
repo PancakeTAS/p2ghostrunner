@@ -1,3 +1,4 @@
+IncludeScript("player/stamina");
 IncludeScript("player/inputs");
 IncludeScript("player/physics");
 
@@ -19,6 +20,7 @@ const AIR_ACCEL = 75;
         baseVelocity = Vector(0, 0, 0),
         airVelocity = Vector(0, 0, 0),
 
+        stamina = Stamina(),
         inputs = Inputs(),
         physics = Physics(),
 
@@ -41,6 +43,7 @@ const AIR_ACCEL = 75;
         inst.pplayer.gravity(0);
 
         inst.inputs.init(inst);
+        inst.stamina.init();
         inst.physics.init(inst);
 
         SendToConsole("alias +jump \"script ::playerController.jump();\"");
@@ -77,6 +80,9 @@ const AIR_ACCEL = 75;
 
         // gravity
         velocity.z = zSpeed - GRAVITY;
+
+        // tick modules
+        inst.stamina.tick();
 
         // set velocity
         inst.player.SetVelocity(velocity);
