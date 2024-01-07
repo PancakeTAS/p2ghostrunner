@@ -91,6 +91,10 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
             inst.airVelocity = (forward * movement.x * GROUND_ACCEL * 0.85) + (left * movement.y * GROUND_ACCEL * 0.85) + (inst.isCrouched ? dash.dashVelocity * 0.5 : Vector(0, 0, 0));
         } else {
             velocity += inst.airVelocity;
+
+            if (this.physics.checkCollision(this.player.GetOrigin(), velocity)) {
+                inst.airVelocity = Vector(0, 0, 0);
+            }
         }
 
         // apply gravity

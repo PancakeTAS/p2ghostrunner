@@ -66,6 +66,10 @@ class DashController {
         if (dashVelocity.Length() > 1) {
             velocity += dashVelocity;
             dashVelocity *= _player.isCrouched ? 0.95 : 0.9;
+
+            if (this._player.physics.checkCollision(this._player.player.GetOrigin(), velocity + dashVelocity)) {
+                dashVelocity = Vector(0, 0, 0);
+            }
         }
 
         // update cooldown
