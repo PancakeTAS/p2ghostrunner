@@ -35,9 +35,9 @@ function movementVec() {
  */
 ::clamp_len <- function(vector, max) {
     local v = Vector(vector.x, vector.y, vector.z);
-    if (v.Length() > MAX_SPEED) {
+    if (v.Length() > max) {
         v.Norm();
-        v *= MAX_SPEED;
+        v *= max;
     }
     return v;
 }

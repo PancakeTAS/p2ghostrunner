@@ -1,4 +1,4 @@
-const DASH_SPEED = 1400; // speed applied to player when dashing
+const DASH_SPEED = 1000; // speed applied to player when dashing
 const DASH_COOLDOWN = 30.0; // 0.5 * 60; cooldown between dashes in ticks
 
 /**

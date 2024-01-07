@@ -1,6 +1,6 @@
 if (!("Entities" in this)) return;
 IncludeScript("ppmod4");
-IncludeScript("player");
+IncludeScript("player/player");
 IncludeScript("util");
 
 function removePortalGun() {
