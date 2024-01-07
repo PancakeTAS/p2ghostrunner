@@ -1,6 +1,5 @@
 IncludeScript("player/stamina");
 IncludeScript("player/dash");
-IncludeScript("player/inputs");
 
 const JUMP_FORCE = 300; // force applied to the player on jump
 const MAX_SPEED = 275; // max speed for raw movement not including special modifiers such as dashing
@@ -24,28 +23,15 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         isCrouched = false,
 
         stamina = Stamina(),
-        inputs = Inputs(),
-        dash = DashController()
+        dash = DashController(),
 
         // methods
         init = null,
         tick = null,
         jump = null
 
-    }
-
-    /**
-     * Initialize the player controller after ppmod.player is ready
-     */
-    inst.init = function ():(inst) {
-        // disable built-in movement
-        ::pplayer.gravity(0);
-
-        // initialize modules
-        inst.inputs.init();
-        inst.stamina.init();
-    }
-
+    };
+    
     /**
      * Tick the player controller
      */
@@ -56,7 +42,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         // calculate movement velocity
         local forward = ::forwardVec();
         local left = ::leftVec();
-        local movement = inst.inputs.getMovementVector();
+        local movement = ::movementVec();
 
         if (inst.dash.isSlowdown) {
             inst.baseVelocity = left * movement.y * SLOWDOWN_ACCEL;

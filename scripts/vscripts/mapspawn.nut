@@ -28,6 +28,7 @@ function removePortalGun() {
 
 ppmod.onauto(function() {
 
+    // remove portal gun
     removePortalGun();
 
     // fix binds
@@ -36,12 +37,23 @@ ppmod.onauto(function() {
     // initialize player controller with ppmod.player
     ppmod.player(player).then(function (pplayer) {
 
+        // set global player variables
         ::pplayer = pplayer;
         ::player = pplayer.ent;
         ::eyes = pplayer.eyes;
 
+        // register inputs
+        foreach(_, global in ["forward", "moveleft", "back", "moveright"]) {
+            getroottable()[global] <- false;
+            ::pplayer.input("+" + global, function():(global) {
+                getroottable()[global] = true
+            });
+            ::pplayer.input("-" + global, function():(global) {
+                getroottable()[global] = false
+            });
+        }
+
         ::contr = PlayerController();
-        ::contr.init();
         ppmod.interval(function () {
 
             // update player controller if player is not noclipping
@@ -55,4 +67,5 @@ ppmod.onauto(function() {
         });
 
     });
+
 });

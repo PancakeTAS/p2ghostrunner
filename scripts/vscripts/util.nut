@@ -22,6 +22,15 @@
 }
 
 /**
+ * Get the normalized movement vector based on the players controls
+ */
+function movementVec() {
+    local vec = ::contr.isCrouched ? Vector(0, 0) : Vector(::forward ? 1 : (::back ? -1 : 0), ::moveleft ? -1 : (::moveright ? 1 : 0));
+    vec.Norm();
+    return vec;
+}
+
+/**
  * Clamp vector to max length
  */
 ::clamp_len <- function(vector, max) {
@@ -60,4 +69,5 @@
     SendToConsole("cl_forwardspeed " + speed);
     SendToConsole("cl_sidespeed " + speed);
     SendToConsole("cl_backspeed " + speed);
+    ::pplayer.gravity(speed / 175);
 }

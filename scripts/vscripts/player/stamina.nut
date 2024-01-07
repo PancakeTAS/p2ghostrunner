@@ -15,13 +15,6 @@ class Stamina {
     _staminaText = null; // ppmod.text object
 
     /**
-     * Initialize the stamina management class
-     */
-    function init() {
-        this._staminaText = ppmod.text("STAMINA", 0, 0);
-    }
-
-    /**
      * Tick the stamina management class
      */
     function tick() {
@@ -32,6 +25,10 @@ class Stamina {
                 text += "x";
             }
         }
+
+        if (!this._staminaText)
+            this._staminaText = ppmod.text("STAMINA", 0, 0);
+
         this._staminaText.SetText(text);
         this._staminaText.Display();
 
