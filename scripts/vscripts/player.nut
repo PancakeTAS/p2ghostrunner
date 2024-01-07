@@ -39,21 +39,11 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      */
     inst.init = function ():(inst) {
         // disable built-in movement
-        SendToConsole("cl_forwardspeed 0");
-        SendToConsole("cl_sidespeed 0");
-        SendToConsole("cl_backspeed 0");
         ::pplayer.gravity(0);
 
         // initialize modules
-        inst.dash.init();
         inst.inputs.init();
         inst.stamina.init();
-
-        // bind jump and crouch
-        SendToConsole("alias +jump \"script ::contr.jump();\"");
-        SendToConsole("alias +alt2 \"script ::contr.isCrouched = true;\"");
-        SendToConsole("alias -alt2 \"script ::contr.isCrouched = false;\"");
-        SendToConsole("bind ctrl +alt2");
     }
 
     /**

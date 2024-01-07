@@ -11,15 +11,6 @@ class DashController {
     _cooldown = 0;
 
     /**
-     * Initialize the dash controller
-     */
-    function init() {
-        SendToConsole("alias +alt1 \"script ::contr.dash.onShiftPress();\"");
-        SendToConsole("alias -alt1 \"script ::contr.dash.onShiftRelease();\"");
-        SendToConsole("bind shift +alt1");
-    }
-
-    /**
      * Called when the player presses shift
      */
     function onShiftPress() {

@@ -5,13 +5,12 @@ IncludeScript("util");
 
 ppmod.onauto(function() {
 
-    // set a bunch of cvars while in development
-    SendToConsole("sv_cheats 1");
-    SendToConsole("developer 1");
+    // remove portal gun
     SendToConsole("ent_remove weapon_portalgun");
     SendToConsole("ent_remove viewmodel");
-    SendToConsole("crosshair 0");
-    SendToConsole("sv_alternateticks 0");
+
+    // fix binds
+    SendToConsole("bind shift +alt1");
 
     // initialize player controller with ppmod.player
     ppmod.player(player).then(function (pplayer) {
@@ -23,7 +22,15 @@ ppmod.onauto(function() {
         ::contr = PlayerController();
         ::contr.init();
         ppmod.interval(function () {
-            ::contr.tick();
+
+            // update player controller if player is not noclipping
+            if (::player.IsNoclipping()) {
+                ::set_speed(175);
+            } else {
+                ::set_speed(0);
+                ::contr.tick();
+            }
+
         });
 
     });
