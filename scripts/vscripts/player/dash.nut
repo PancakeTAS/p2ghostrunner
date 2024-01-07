@@ -15,9 +15,8 @@ class DashController {
      */
     function onShiftPress() {
         // check if dash can be used
-        if (this._cooldown > 0 || ::contr.stamina.stamina < DASH_COST) {
+        if (this._cooldown > 0 || ::contr.stamina.stamina < DASH_COST)
             return;
-        }
 
         // check if player should dash immediately
         if (::player.GetGroundEntity()) {
@@ -37,9 +36,8 @@ class DashController {
      */
     function onShiftRelease() {
         // check if player is dashing
-        if (!this.isSlowdown) {
+        if (!this.isSlowdown)
             return;
-        }
 
         // dash player
         this.dash();
@@ -55,23 +53,20 @@ class DashController {
             dashVelocity *= ::contr.isCrouched ? 0.95 : 0.9;
 
             // check if player hit a wall
-            if (::check(velocity)) {
+            if (::check(velocity))
                 dashVelocity = Vector(0, 0, 0);
-            }
         }
 
         // update cooldown
-        if (this._cooldown > 0) {
+        if (this._cooldown > 0)
             this._cooldown--;
-        }
 
         if (this.isSlowdown) {
             // consume stamina and check if player should dash
             ::contr.stamina.consume(SLOWDOWN_COST);
 
-            if (::contr.stamina.stamina <= 0) {
+            if (::contr.stamina.stamina <= 0)
                 this.dash();
-            }
         }
 
         return velocity;

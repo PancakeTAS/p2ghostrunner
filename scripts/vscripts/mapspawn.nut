@@ -17,9 +17,8 @@ function removePortalGun() {
 
     // remove portal gun on portal gun
     local portalgun_trigger = Entities.FindByClassnameNearest("trigger_once", Vector(25.230, 1958.720, -299.0), 1.0)
-    if (portalgun_trigger) {
+    if (portalgun_trigger)
         portalgun_trigger.Destroy();
-    }
 
     // remove portal gun on incinerator
     SendToConsole("ent_remove player_near_portalgun");

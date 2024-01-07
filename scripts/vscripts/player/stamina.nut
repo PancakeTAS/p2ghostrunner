@@ -21,9 +21,8 @@ class Stamina {
         // update the stamina text
         local text = "";
         if (stamina < MAX_STAMINA) {
-            for (local i = 0; i < (this.stamina / 5); i++) {
+            for (local i = 0; i < (this.stamina / 5); i++)
                 text += "x";
-            }
         }
 
         if (!this._staminaText)
@@ -33,15 +32,12 @@ class Stamina {
         this._staminaText.Display();
 
         // update the regen timeout
-        if (this._regenTimeout > 0) {
-            this._regenTimeout--;
+        if (this._regenTimeout-- > 0)
             return;
-        }
 
         // check if regeneration is disabled
-        if (!this.canRegen) {
+        if (!this.canRegen)
             return;
-        }
 
         // regen stamina
         this.stamina = min(MAX_STAMINA, this.stamina + REGEN_STAMINA);

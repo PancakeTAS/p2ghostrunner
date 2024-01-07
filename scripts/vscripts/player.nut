@@ -44,13 +44,12 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         local left = ::leftVec();
         local movement = ::movementVec();
 
-        if (inst.dash.isSlowdown) {
+        if (inst.dash.isSlowdown)
             inst.baseVelocity = left * movement.y * SLOWDOWN_ACCEL;
-        } else if (onGround && inst.isCrouched) {
+        else if (onGround && inst.isCrouched)
             inst.baseVelocity = (inst.baseVelocity + forward * movement.x * GROUND_ACCEL + left * movement.y * GROUND_ACCEL) * 0.97;
-        } else {
+        else
             inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
-        }
 
         local velocity = ::clamp_len(baseVelocity, MAX_SPEED);
 
@@ -61,21 +60,19 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
             velocity += inst.airVelocity;
 
             // check if player hit a wall
-            if (::check(velocity)) {
+            if (::check(velocity))
                 inst.airVelocity = Vector(0, 0, 0);
-            }
         }
 
         // apply gravity
         if (onGround) {
-            if (gravityVelocity < 0) {
+            if (gravityVelocity < 0)
                 gravityVelocity = 0;
-            }
-        } else if (inst.dash.isSlowdown) {
+        } else if (inst.dash.isSlowdown)
             gravityVelocity -= (GRAVITY * SLOWDOWN_FACTOR);
-        } else {
+        else
             gravityVelocity -= GRAVITY;
-        }
+
 
         velocity.z = gravityVelocity;
 
@@ -91,9 +88,8 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      * Jump the player (called from +jump alias)
      */
     inst.jump = function():(inst) {
-        if (::player.GetGroundEntity() && !inst.dash.isSlowdown) {
+        if (::player.GetGroundEntity() && !inst.dash.isSlowdown)
             gravityVelocity = JUMP_FORCE;
-        }
     }
 
     return inst;
