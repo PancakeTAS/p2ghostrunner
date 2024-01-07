@@ -40,7 +40,7 @@
     local squareVelocity = Vector((velocity.x > 0 ? 1 : (velocity.x < 0 ? -1 : 0)), (velocity.y > 0 ? 1 : (velocity.y < 0 ? -1 : 0)), 0);
     local origin = ::player.GetOrigin() + squareVelocity * 8;
     local newOrigin = origin + (velocity / 60.0);
-    local result = ppmod.ray(origin, newOrigin);
+    local result = ppmod.ray(origin + Vector(0, 0, 8), newOrigin + Vector(0, 0, 8));
     if (result.fraction < 1)
         return true;
     result = ppmod.ray(origin + Vector(0, 0, 36), newOrigin + Vector(0, 0, 36));
