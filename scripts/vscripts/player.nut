@@ -24,7 +24,6 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         baseVelocity = Vector(0, 0, 0), // base velocity for movement
         airVelocity = Vector(0, 0, 0), // velocity applied throughout the air
 
-        onGround = false,
         isCrouched = false,
 
         stamina = Stamina(),
@@ -56,7 +55,6 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         inst.dash.init(inst);
         inst.inputs.init(inst);
         inst.stamina.init();
-        inst.physics.init(inst);
 
         // bind jump and crouch
         SendToConsole("alias +jump \"script ::playerController.jump();\"");
@@ -70,28 +68,26 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      */
     inst.tick = function ():(inst) {
         // check if player left the ground
-        local zSpeed = inst .player.GetVelocity().z;
-        if (zSpeed > GRAVITY || zSpeed < -GRAVITY) {
-            inst.onGround = false;
-        }
+        local zSpeed = inst.player.GetVelocity().z;
+        local onGround = inst.player.GetGroundEntity();
 
         // calculate movement velocity
-        local forward = inst.physics.getForwardVector();
-        local left = inst.physics.getLeftVector();
+        local forward = inst.physics.normForwardVector(this.pplayer.eyes);
+        local left = inst.physics.normLeftVector(this.pplayer.eyes);
         local movement = inst.inputs.getMovementVector();
 
         if (inst.dash.isSlowdown) {
             inst.baseVelocity = left * movement.y * SLOWDOWN_ACCEL;
-        } else if (inst.onGround && inst.isCrouched) {
+        } else if (onGround && inst.isCrouched) {
             inst.baseVelocity = (inst.baseVelocity + forward * movement.x * GROUND_ACCEL + left * movement.y * GROUND_ACCEL) * 0.97;
         } else {
-            inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (inst.onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
+            inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
         }
 
         local velocity = inst.physics.clampVector(baseVelocity, MAX_SPEED);
 
         // calculate air velocity
-        if (inst.onGround) {
+        if (onGround) {
             inst.airVelocity = (forward * movement.x * GROUND_ACCEL * 0.85) + (left * movement.y * GROUND_ACCEL * 0.85) + (inst.isCrouched ? dash.dashVelocity * 0.5 : Vector(0, 0, 0));
         } else {
             velocity += inst.airVelocity;
@@ -116,8 +112,8 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      * Jump the player (called from +jump alias)
      */
     inst.jump = function():(inst) {
-        if (inst.onGround && !inst.dash.isSlowdown) { // FIXME: jumping multiple times in a tick is possible
-            local player = GetPlayer();
+        local player = GetPlayer();
+        if (player.GetGroundEntity() && !inst.dash.isSlowdown) { // FIXME: jumping multiple times in a tick is possible <- is this still possible?
             player.SetVelocity(player.GetVelocity() + Vector(0, 0, JUMP_FORCE));
         }
     }

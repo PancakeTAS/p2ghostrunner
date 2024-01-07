@@ -33,7 +33,7 @@ class DashController {
         }
 
         // check if player should dash immediately
-        if (this._player.onGround) {
+        if (this._player.player.GetGroundEntity()) {
             this.dash();
             return;
         }
