@@ -1,7 +1,6 @@
 IncludeScript("player/stamina");
 IncludeScript("player/dash");
 IncludeScript("player/inputs");
-IncludeScript("player/physics");
 
 const JUMP_FORCE = 300; // force applied to the player on jump
 const MAX_SPEED = 275; // max speed for raw movement not including special modifiers such as dashing
@@ -18,9 +17,6 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
 
     local inst = {
 
-        pplayer = null,
-        player = null,
-
         baseVelocity = Vector(0, 0, 0), // base velocity for movement
         airVelocity = Vector(0, 0, 0), // velocity applied throughout the air
         gravityVelocity = 0, // gravity velocity for z coordinate
@@ -29,8 +25,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
 
         stamina = Stamina(),
         inputs = Inputs(),
-        dash = DashController(),
-        physics = Physics(),
+        dash = DashController()
 
         // methods
         init = null,
@@ -42,25 +37,22 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
     /**
      * Initialize the player controller after ppmod.player is ready
      */
-    inst.init = function (pplayer, player):(inst) {
-        inst.pplayer = pplayer;
-        inst.player = player;
-
+    inst.init = function ():(inst) {
         // disable built-in movement
         SendToConsole("cl_forwardspeed 0");
         SendToConsole("cl_sidespeed 0");
         SendToConsole("cl_backspeed 0");
-        inst.pplayer.gravity(0);
+        ::pplayer.gravity(0);
 
         // initialize modules
-        inst.dash.init(inst);
-        inst.inputs.init(inst);
+        inst.dash.init();
+        inst.inputs.init();
         inst.stamina.init();
 
         // bind jump and crouch
-        SendToConsole("alias +jump \"script ::playerController.jump();\"");
-        SendToConsole("alias +alt2 \"script ::playerController.isCrouched = true;\"");
-        SendToConsole("alias -alt2 \"script ::playerController.isCrouched = false;\"");
+        SendToConsole("alias +jump \"script ::contr.jump();\"");
+        SendToConsole("alias +alt2 \"script ::contr.isCrouched = true;\"");
+        SendToConsole("alias -alt2 \"script ::contr.isCrouched = false;\"");
         SendToConsole("bind ctrl +alt2");
     }
 
@@ -69,11 +61,11 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      */
     inst.tick = function ():(inst) {
         // check if player left the ground
-        local onGround = inst.player.GetGroundEntity();
+        local onGround = ::player.GetGroundEntity();
 
         // calculate movement velocity
-        local forward = inst.physics.normForwardVector(this.pplayer.eyes);
-        local left = inst.physics.normLeftVector(this.pplayer.eyes);
+        local forward = ::forwardVec();
+        local left = ::leftVec();
         local movement = inst.inputs.getMovementVector();
 
         if (inst.dash.isSlowdown) {
@@ -84,7 +76,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
             inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
         }
 
-        local velocity = inst.physics.clampVector(baseVelocity, MAX_SPEED);
+        local velocity = ::clamp_len(baseVelocity, MAX_SPEED);
 
         // calculate air velocity
         if (onGround) {
@@ -92,7 +84,8 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         } else {
             velocity += inst.airVelocity;
 
-            if (this.physics.checkCollision(this.player.GetOrigin(), velocity)) {
+            // check if player hit a wall
+            if (::check(velocity)) {
                 inst.airVelocity = Vector(0, 0, 0);
             }
         }
@@ -122,8 +115,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      * Jump the player (called from +jump alias)
      */
     inst.jump = function():(inst) {
-        local player = GetPlayer();
-        if (player.GetGroundEntity() && !inst.dash.isSlowdown) {
+        if (::player.GetGroundEntity() && !inst.dash.isSlowdown) {
             gravityVelocity = JUMP_FORCE;
         }
     }

@@ -5,7 +5,6 @@ const DASH_COOLDOWN = 30.0; // 0.5 * 60; cooldown between dashes in ticks
  * Dash controller class
  */
 class DashController {
-    _player = null;
 
     dashVelocity = Vector(0, 0, 0); // velocity applied to player after dashing
     isSlowdown = false;
@@ -14,12 +13,9 @@ class DashController {
     /**
      * Initialize the dash controller
      */
-    function init(player) {
-        _player = player;
-
-        // bind shift to dash
-        SendToConsole("alias +alt1 \"script ::playerController.dash.onShiftPress();\"");
-        SendToConsole("alias -alt1 \"script ::playerController.dash.onShiftRelease();\"");
+    function init() {
+        SendToConsole("alias +alt1 \"script ::contr.dash.onShiftPress();\"");
+        SendToConsole("alias -alt1 \"script ::contr.dash.onShiftRelease();\"");
         SendToConsole("bind shift +alt1");
     }
 
@@ -28,21 +24,21 @@ class DashController {
      */
     function onShiftPress() {
         // check if dash can be used
-        if (this._cooldown > 0 || this._player.stamina.stamina < DASH_COST) {
+        if (this._cooldown > 0 || ::contr.stamina.stamina < DASH_COST) {
             return;
         }
 
         // check if player should dash immediately
-        if (this._player.player.GetGroundEntity()) {
+        if (::player.GetGroundEntity()) {
             this.dash();
             return;
         }
 
         // slow down player
-        this._player.airVelocity *= SLOWDOWN_FACTOR;
-        this._player.gravityVelocity *= SLOWDOWN_FACTOR;
+        ::contr.airVelocity *= SLOWDOWN_FACTOR;
+        ::contr.gravityVelocity *= SLOWDOWN_FACTOR;
         this.isSlowdown = true;
-        this._player.stamina.canRegen = false;
+        ::contr.stamina.canRegen = false;
     }
 
     /**
@@ -65,9 +61,10 @@ class DashController {
         // apply dash velocity
         if (dashVelocity.Length() > 1) {
             velocity += dashVelocity;
-            dashVelocity *= _player.isCrouched ? 0.95 : 0.9;
+            dashVelocity *= ::contr.isCrouched ? 0.95 : 0.9;
 
-            if (this._player.physics.checkCollision(this._player.player.GetOrigin(), velocity + dashVelocity)) {
+            // check if player hit a wall
+            if (::check(velocity)) {
                 dashVelocity = Vector(0, 0, 0);
             }
         }
@@ -79,9 +76,9 @@ class DashController {
 
         if (this.isSlowdown) {
             // consume stamina and check if player should dash
-            this._player.stamina.consume(SLOWDOWN_COST);
+            ::contr.stamina.consume(SLOWDOWN_COST);
 
-            if (this._player.stamina.stamina <= 0) {
+            if (::contr.stamina.stamina <= 0) {
                 this.dash();
             }
         }
@@ -93,19 +90,16 @@ class DashController {
      * Dash the player
      */
     function dash() {
-        // update dash velocity
-        dashVelocity = this._player.pplayer.eyes.GetForwardVector() * Vector(1, 1, 0);
-        dashVelocity.Norm();
-        dashVelocity *= DASH_SPEED;
+        dashVelocity = ::forwardVec() * DASH_SPEED;
 
         // reset dash variables
         this.isSlowdown = false;
         this._cooldown = DASH_COOLDOWN;
-        this._player.stamina.consume(DASH_COST);
-        this._player.stamina.canRegen = true;
+        ::contr.stamina.consume(DASH_COST);
+        ::contr.stamina.canRegen = true;
 
         // reset air velocity to prevent player from flying off
-        this._player.airVelocity = Vector(0, 0, 0);
+        ::contr.airVelocity = Vector(0, 0, 0);
     }
 
 }

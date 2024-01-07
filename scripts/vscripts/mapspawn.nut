@@ -1,8 +1,7 @@
 if (!("Entities" in this)) return;
 IncludeScript("ppmod4");
 IncludeScript("player");
-
-::playerController <- null;
+IncludeScript("util");
 
 ppmod.onauto(function() {
 
@@ -17,10 +16,14 @@ ppmod.onauto(function() {
     // initialize player controller with ppmod.player
     ppmod.player(player).then(function (pplayer) {
 
-        ::playerController = PlayerController();
-        ::playerController.init(pplayer, pplayer.ent);
+        ::pplayer = pplayer;
+        ::player = pplayer.ent;
+        ::eyes = pplayer.eyes;
+
+        ::contr = PlayerController();
+        ::contr.init();
         ppmod.interval(function () {
-            ::playerController.tick();
+            ::contr.tick();
         });
 
     });
