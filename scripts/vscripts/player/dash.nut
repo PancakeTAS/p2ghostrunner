@@ -39,7 +39,8 @@ class DashController {
         }
 
         // slow down player
-        this._player.player.SetVelocity(this._player.player.GetVelocity() * SLOWDOWN_FACTOR);
+        this._player.airVelocity *= SLOWDOWN_FACTOR;
+        this._player.gravityVelocity *= SLOWDOWN_FACTOR;
         this.isSlowdown = true;
         this._player.stamina.canRegen = false;
     }

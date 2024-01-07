@@ -23,6 +23,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
 
         baseVelocity = Vector(0, 0, 0), // base velocity for movement
         airVelocity = Vector(0, 0, 0), // velocity applied throughout the air
+        gravityVelocity = 0, // gravity velocity for z coordinate
 
         isCrouched = false,
 
@@ -68,7 +69,6 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      */
     inst.tick = function ():(inst) {
         // check if player left the ground
-        local zSpeed = inst.player.GetVelocity().z;
         local onGround = inst.player.GetGroundEntity();
 
         // calculate movement velocity
@@ -94,11 +94,17 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         }
 
         // apply gravity
-        if (inst.dash.isSlowdown) {
-            velocity.z = zSpeed - (GRAVITY * SLOWDOWN_FACTOR);
+        if (onGround) {
+            if (gravityVelocity < 0) {
+                gravityVelocity = 0;
+            }
+        } else if (inst.dash.isSlowdown) {
+            gravityVelocity -= (GRAVITY * SLOWDOWN_FACTOR);
         } else {
-            velocity.z = zSpeed - GRAVITY;
+            gravityVelocity -= GRAVITY;
         }
+
+        velocity.z = gravityVelocity;
 
         // tick modules
         inst.stamina.tick();
@@ -113,8 +119,8 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      */
     inst.jump = function():(inst) {
         local player = GetPlayer();
-        if (player.GetGroundEntity() && !inst.dash.isSlowdown) { // FIXME: jumping multiple times in a tick is possible <- is this still possible?
-            player.SetVelocity(player.GetVelocity() + Vector(0, 0, JUMP_FORCE));
+        if (player.GetGroundEntity() && !inst.dash.isSlowdown) {
+            gravityVelocity = JUMP_FORCE;
         }
     }
 
