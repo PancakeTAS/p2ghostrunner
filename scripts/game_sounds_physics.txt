@@ -6638,3 +6638,14 @@
 		"wave"		"player/crouch_down/FOL_crouch_down_03.wav"
 	}
 }
+
+"Ghostrunner.SensoryBoost"
+{
+	"channel"		"CHAN_AUTO"
+	"soundlevel"		"SNDLVL_NORM"
+	"volume"		"1.0"
+	"rndwave"
+	{
+		"wave"		"player/misc/FOL_sensory_boost_loop.wav"
+	}
+}

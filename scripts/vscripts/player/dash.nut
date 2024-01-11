@@ -33,6 +33,7 @@ class DashController {
 
         // add player effects
         SendToConsole("mat_vignette_enable 1");
+        ::player.EmitSound("Ghostrunner.SensoryBoost");
     }
 
     /**
@@ -97,6 +98,7 @@ class DashController {
         SendToConsole("mat_vignette_enable 0");
         SendToConsole("mat_motion_blur_enabled 1");
         SendToConsole("mat_motion_blur_strength 5");
+        ::player.StopSound("Ghostrunner.SensoryBoost");
 
         // reset air velocity to prevent player from flying off
         ::contr.airVelocity = Vector(0, 0, 0);

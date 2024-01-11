@@ -350,6 +350,7 @@
 		"wave"		"player/dash/FOL_dash_03.wav"
 		"wave"		"player/dash_air_charge/FOL_dash_air_charge_01.wav"
 		"wave"		"player/dash_air_charge/FOL_dash_air_charge_02.wav"
+		"wave"		"player/misc/FOL_sensory_boost_loop.wav"
 	}
 
 	"soundentry_version" "2"
