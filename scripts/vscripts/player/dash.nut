@@ -30,6 +30,9 @@ class DashController {
         ::contr.gravityVelocity *= SLOWDOWN_FACTOR;
         this.isSlowdown = true;
         ::contr.stamina.canRegen = false;
+
+        // add player effects
+        SendToConsole("mat_vignette_enable 1");
     }
 
     /**
@@ -57,6 +60,8 @@ class DashController {
             // check if player hit a wall
             if (::check(velocity))
                 dashVelocity = Vector(0, 0, 0);
+        } else {
+            SendToConsole("mat_motion_blur_strength 1");
         }
 
         // update cooldown
@@ -87,6 +92,11 @@ class DashController {
         this._cooldown = DASH_COOLDOWN;
         ::contr.stamina.consume(DASH_COST);
         ::contr.stamina.canRegen = true;
+
+        // apply player effects
+        SendToConsole("mat_vignette_enable 0");
+        SendToConsole("mat_motion_blur_enabled 1");
+        SendToConsole("mat_motion_blur_strength 5");
 
         // reset air velocity to prevent player from flying off
         ::contr.airVelocity = Vector(0, 0, 0);

@@ -28,11 +28,13 @@ function removePortalGun() {
 ppmod.onauto(function() {
 
     // remove portal gun
+    SendToConsole("sv_cheats 1");
     removePortalGun();
 
     // fix stuff
     SendToConsole("bind shift +alt1");
     SendToConsole("snd_setmixer Player VOL 2");
+    SendToConsole("hud_saytext_time 0");
 
     // initialize player controller with ppmod.player
     ppmod.player(player).then(function (pplayer) {

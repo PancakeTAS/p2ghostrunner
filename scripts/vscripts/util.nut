@@ -66,7 +66,6 @@ function movementVec() {
  * Change the player speed values
  */
 ::set_speed <- function (speed) {
-    SendToConsole("sv_cheats 1");
     SendToConsole("cl_forwardspeed " + speed);
     SendToConsole("cl_sidespeed " + speed);
     SendToConsole("cl_backspeed " + speed);
