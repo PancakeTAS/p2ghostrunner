@@ -1,4 +1,4 @@
 [submodule "vpp"]
 	path = vpp
-	url = git@github.com:/PancakeTAS/vpp
+	url = https://github.com/PancakeTAS/vpp.git
 	branch = unstable
