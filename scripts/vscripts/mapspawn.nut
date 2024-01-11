@@ -30,8 +30,9 @@ ppmod.onauto(function() {
     // remove portal gun
     removePortalGun();
 
-    // fix binds
+    // fix stuff
     SendToConsole("bind shift +alt1");
+    SendToConsole("snd_setmixer Player VOL 2");
 
     // initialize player controller with ppmod.player
     ppmod.player(player).then(function (pplayer) {

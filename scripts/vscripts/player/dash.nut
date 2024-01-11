@@ -21,6 +21,7 @@ class DashController {
         // check if player should dash immediately
         if (::player.GetGroundEntity()) {
             this.dash();
+            ::player.EmitSound("Ghostrunner.Dash");
             return;
         }
 
@@ -41,6 +42,7 @@ class DashController {
 
         // dash player
         this.dash();
+        ::player.EmitSound("Ghostrunner.Dash_Air_Charge");
     }
 
     /**
@@ -65,8 +67,10 @@ class DashController {
             // consume stamina and check if player should dash
             ::contr.stamina.consume(SLOWDOWN_COST);
 
-            if (::contr.stamina.stamina <= 0)
+            if (::contr.stamina.stamina <= 0) {
                 this.dash();
+                ::player.EmitSound("Ghostrunner.Dash_Air_Charge");
+            }
         }
 
         return velocity;

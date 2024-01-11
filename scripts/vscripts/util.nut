@@ -61,6 +61,7 @@ function movementVec() {
     return false;
 }
 
+
 /**
  * Change the player speed values
  */
