@@ -1,5 +1,6 @@
 IncludeScript("player/stamina");
 IncludeScript("player/dash");
+IncludeScript("player/wallrun");
 
 const JUMP_FORCE = 300; // force applied to the player on jump
 const MAX_SPEED = 275; // max speed for raw movement not including special modifiers such as dashing
@@ -26,6 +27,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
 
         stamina = Stamina(),
         dash = DashController(),
+        wallrun = WallrunController(),
 
         // methods
         init = null,
@@ -91,6 +93,11 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         // tick modules
         inst.stamina.tick();
         velocity = inst.dash.tick(velocity);
+        local wall = inst.wallrun.tick(movement, gravityVelocity, onGround);
+        if (wall) {
+            velocity = wall;
+            gravityVelocity = 0;
+        }
 
         // set velocity
         ::player.SetVelocity(velocity);
@@ -102,6 +109,14 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
     inst.jump = function():(inst) {
         if (::player.GetGroundEntity() && !inst.dash.isSlowdown) {
             gravityVelocity = JUMP_FORCE;
+            ::player.EmitSound("Ghostrunner.Jump");
+        }
+
+        if (inst.wallrun.wall) {
+            gravityVelocity = JUMP_FORCE;
+            inst.wallrun.timeoutWall = inst.wallrun.wall;
+            inst.wallrun.timeout = 90;
+            inst.wallrun.wall = null;
             ::player.EmitSound("Ghostrunner.Jump");
         }
     }

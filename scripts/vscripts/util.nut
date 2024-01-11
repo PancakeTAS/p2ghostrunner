@@ -61,6 +61,40 @@ function movementVec() {
     return false;
 }
 
+/**
+ * Check for collisions with a wall
+ */
+::wall <- function () {
+    local origin = ::player.GetOrigin() + Vector(0, 0, 16);
+    local forward = ::forwardVec() * 8;
+    local left = ::leftVec() * 32;
+
+    // check right wall
+    local r1 = ppmod.ray(origin - forward, origin - forward + left);
+    local r2 = ppmod.ray(origin + forward, origin + forward + left);
+    if (r1.fraction < 1 && r2.fraction < 1) {
+        local delta = r2.point - r1.point;
+        delta.Norm();
+        return {
+            up = delta,
+            side = 1
+        };
+    }
+
+    // check left wall
+    r1 = ppmod.ray(origin - forward, origin - forward - left);
+    r2 = ppmod.ray(origin + forward, origin + forward - left);
+    if (r1.fraction < 1 && r2.fraction < 1) {
+        local delta = r2.point - r1.point;
+        delta.Norm();
+        return {
+            up = delta,
+            side = -1
+        };
+    }
+
+    return null;
+}
 
 /**
  * Change the player speed values
