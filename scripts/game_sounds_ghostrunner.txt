@@ -1,13 +1,8 @@
-"CoopBot.CoopBotArmMotor" // precache
+// PRECACHE
+"CoopBot.CoopBotArmMotor"
 {
 	"rndwave"
 	{
-		"wave"		"player/jump/FOL_jump_01.wav"
-		"wave"		"player/jump/FOL_jump_02.wav"
-		"wave"		"player/jump/FOL_jump_03.wav"
-		"wave"		"player/land/FOL_land_01.wav"
-		"wave"		"player/land/FOL_land_02.wav"
-		"wave"		"player/land/FOL_land_03.wav"
 		"wave"		"player/crouch_down/FOL_crouch_down_01.wav"
 		"wave"		"player/crouch_down/FOL_crouch_down_02.wav"
 		"wave"		"player/crouch_down/FOL_crouch_down_03.wav"
@@ -19,805 +14,90 @@
 		"wave"		"player/dash/FOL_dash_03.wav"
 		"wave"		"player/dash_air_charge/FOL_dash_air_charge_01.wav"
 		"wave"		"player/dash_air_charge/FOL_dash_air_charge_02.wav"
+		"wave"		"player/footsteps/FOL_step_default_01.wav"
+		"wave"		"player/footsteps/FOL_step_default_02.wav"
+		"wave"		"player/footsteps/FOL_step_default_03.wav"
+		"wave"		"player/footsteps/FOL_step_default_04.wav"
+		"wave"		"player/footsteps/FOL_step_metal_01.wav"
+		"wave"		"player/footsteps/FOL_step_metal_02.wav"
+		"wave"		"player/footsteps/FOL_step_metal_03.wav"
+		"wave"		"player/footsteps/FOL_step_metal_04.wav"
+		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
+		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
+		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
+		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
+		"wave"		"player/jump/FOL_jump_01.wav"
+		"wave"		"player/jump/FOL_jump_02.wav"
+		"wave"		"player/jump/FOL_jump_03.wav"
+		"wave"		"player/land/FOL_land_01.wav"
+		"wave"		"player/land/FOL_land_02.wav"
+		"wave"		"player/land/FOL_land_03.wav"
 		"wave"		"player/misc/FOL_sensory_boost_loop.wav"
 	}
 }
 
-"Default.StepLeft"
+// MUTE EXISTING SOUNDS
+"PortalPlayer.Woosh" { "volume" "0.0" }
+"PortalPlayer.WooshWooshyWoosh" { "volume" "0.0" }
+"Player.SlowTime_Stop" { "volume" "0.0" }
+"JumpLand.Tile" { "volume" "0.0" }
+"JumpLand.MetalGrate" { "volume" "0.0" }
+"JumpLand.HighVelocityImpact" { "volume" "0.0" }
+"JumpLand.HighVelocityImpactCeiling" { "volume" "0.0" }
+"MetalGrate.JumplandLg" { "volume" "0.0" }
+"BaseEntity.EnterWater" { "volume" "0.0" }
+"BaseEntity.ExitWater" { "volume" "0.0" }
+"Lightbridge.ElectricStep" { "volume" "0.0" }
+"Tile.StepLeft" { "volume" "0.0" }
+"Tile.StepRight" { "volume" "0.0" }
+"Water.StepLeft" { "volume" "0.0" }
+"Water.StepRight" { "volume" "0.0" }
+"Wade.StepLeft" { "volume" "0.0" }
+"Wade.StepRight" { "volume" "0.0" }
+"BrokenGlass.StepLeft" { "volume" "0.0" }
+"BrokenGlass.StepRight" { "volume" "0.0" }
+"Concrete.StepLeft" { "volume" "0.0" }
+"Concrete.StepRight" { "volume" "0.0" }
+"Paint.StepLeft" { "volume" "0.0" }
+"Paint.StepRight" { "volume" "0.0" }
+"Wood.StepLeft" { "volume" "0.0" }
+"Wood.StepRight" { "volume" "0.0" }
+"Default.StepLeft" { "volume" "0.0" }
+"Default.StepRight" { "volume" "0.0" }
+"SolidMetal.StepLeft" { "volume" "0.0" }
+"SolidMetal.StepRight" { "volume" "0.0" }
+"MetalGrate.StepLeft" { "volume" "0.0" }
+"MetalGrate.StepRight" { "volume" "0.0" }
+"GlassFragments.StepLeft" { "volume" "0.0" }
+"GlassFragments.StepRight" { "volume" "0.0" }
+"Lightbridge.StepLeft" { "volume" "0.0" }
+"Lightbridge.StepRight" { "volume" "0.0" }
+
+// NEW SOUNDS
+"Ghostrunner.Crouch_Down"
 {
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Default.StepRight"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"SolidMetal.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.9,0.95"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"SolidMetal.StepRight"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.9,0.95"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"MetalGrate.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_metal_01.wav"
-		"wave"		"player/footsteps/FOL_step_metal_02.wav"
-		"wave"		"player/footsteps/FOL_step_metal_03.wav"
-		"wave"		"player/footsteps/FOL_step_metal_04.wav"
-	}
-}
-
-"MetalGrate.StepRight"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_metal_01.wav"
-		"wave"		"player/footsteps/FOL_step_metal_02.wav"
-		"wave"		"player/footsteps/FOL_step_metal_03.wav"
-		"wave"		"player/footsteps/FOL_step_metal_04.wav"
-	}
-}
-
-"GlassFragments.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-
-	}
-}
-
-"GlassFragments.StepRight"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-
-	}
-}
-
-"MetalGrate.JumplandLg"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"	"SNDLVL_NORM"
-	"volume"		"0.0"
-	"pitch"			"95,100"
-	"rndwave"
-	{
-		"wave"		"player/jump/FOL_jump_01.wav"
-		"wave"		"player/jump/FOL_jump_02.wav"
-		"wave"		"player/jump/FOL_jump_03.wav"
-	}
-}
-
-"Tile.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.20,0.25"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Tile.StepRight"
-{
-
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.20,0.25"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-
-"Water.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"			"0.7, 0.75"
-	"pitch"				"95, 105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_metal_01.wav"
-		"wave"		"player/footsteps/FOL_step_metal_02.wav"
-		"wave"		"player/footsteps/FOL_step_metal_03.wav"
-		"wave"		"player/footsteps/FOL_step_metal_04.wav"
-	}
-}
-
-"Water.StepRight"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"			"0.7, 0.75"
-	"pitch"				"95, 105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
-	}
-}
-
-"Water.BulletImpact"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.70"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
-
-	}
-	"soundentry_version" "2"
-
-	"operator_stacks"
-	{
-		"start_stack"
-		{
-			"import_stack" 	"P2_exclusion_time_and_poly_limiting_start"
-
-			"limit_sound"
-			{
-				"match_entry" "Water.BulletImpact"
-				"input_max_entries" "2.000000"
-				"match_substring" "false"
-			}
-
-			"get_random"
-			{
-				"input_execute" "1.0"
-				"input_min" "0.2"
-				"input_max" "0.75"
-			}
-
-			"block_entries"
-			{
-				"input_duration" "@get_random.output" //in seconds
-				"match_entry" "Water.BulletImpact" //The sound entry to use
-				"match_entity" "false"
-			}
-		}
-	}
-}
-
-"BaseEntity.EnterWater"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_70dB"
-	"volume"		"0.05, 0.15"
-	"pitch"		"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
-	}
-}
-
-"BaseEntity.ExitWater"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_70dB"
-	"volume"		"0.05, 0.15"
-	"pitch"		"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
-	}
-}
-
-"Wade.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"			"0.6, 0.65"
-	"pitch"				"95, 105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
-	}
-}
-
-"Wade.StepRight"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"			"0.6, 0.65"
-	"pitch"				"95, 105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
-	}
-}
-
-"BrokenGlass.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"BrokenGlass.StepRight"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Concrete.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.20,0.25"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Concrete.StepRight"
-{
-
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.20,0.25"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Paint.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Paint.StepRight"
-{
-
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}"Concrete.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.20,0.25"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Concrete.StepRight"
-{
-
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.20,0.25"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Paint.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Paint.StepRight"
-{
-
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.95,1.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-
-"Wood.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_70dB"
-	"volume"		"0.15, 0.55"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-
-	"soundentry_version" "2"
-
-	"operator_stacks"
-	{
-		"update_stack"
-		{
-			"import_stack" "p2_update_default"
-
-			"source_info"
-			{
-				//"source"   "entity"
-				"source"   "emitter"
-			}
-
-			"volume_get_random" //use for random volume if needed
-			{
-				"execute_once" "true"
-				"input_execute" "1.0"
-				"input_min" "0.15" //low value here
-				"input_max" "0.95"	//high value here.
-			}
-
-			"volume_mult"
-			{
-				"input1" "@volume_get_random.output"
-			}
-		}
-	}
-}
-
-"Wood.StepRight"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_70dB"
-	"volume"		"0.15, 0.55"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-
-	"soundentry_version" "2"
-
-	"operator_stacks"
-	{
-		"update_stack"
-		{
-			"import_stack" "p2_update_default"
-
-			"source_info"
-			{
-				//"source"   "entity"
-				"source"   "emitter"
-			}
-
-			"volume_get_random" //use for random volume if needed
-			{
-				"execute_once" "true"
-				"input_execute" "1.0"
-				"input_min" "0.15" //low value here
-				"input_max" "0.95"	//high value here.
-			}
-
-			"volume_mult"
-			{
-				"input1" "@volume_get_random.output"
-			}
-		}
-	}
-}
-
-"Lightbridge.StepLeft"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.25"
-	"pitch"			"85,95"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-
-	"soundentry_version" "2"
-
-	"operator_stacks"
-	{
-		"start_stack"
-		{
-			"import_stack"	"P2_poly_limiting_start"
-
-			"limit_sound"
-			{
-				"match_entry" "Lightbridge.StepLeft"
-				"input_max_entries" "0.000000"
-			}
-		}
-		"update_stack"
-		{
-			"import_stack"	"p2_offset_start_update"
-
-			"time_elapsed_trigger"
-			{
-				"input2" "0.05" //Elapsed time in seconds goes here.
-			}
-
-			"play_entry"
-			{
-				"entry_name" "Lightbridge.ElectricStep"
-			}
-
- 			"speakers_multi_origin"
- 			{
- 				"input_max_iterations" "0"
-			}
-
-			"source_info"
-			{
-				// "source"   "entity"
-				"source"   "emitter"
-			}
-
-			"volume_mult"
-			{
-				"input1" "1.0"
-			}
-		}
-	}
-}
-
-"Lightbridge.StepRight"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.25"
-	"pitch"			"85,95"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-
-	"soundentry_version" "2"
-
-	"operator_stacks"
-	{
-		"start_stack"
-		{
-			"import_stack"	"P2_poly_limiting_start"
-
-			"limit_sound"
-			{
-				"match_entry" "Lightbridge.Stepright"
-				"input_max_entries" "0.000000"
-			}
-		}
-		"update_stack"
-		{
-			"import_stack"	"p2_offset_start_update"
-
-			"time_elapsed_trigger"
-			{
-				"input2" "0.05" //Elapsed time in seconds goes here.
-			}
-
-			"play_entry"
-			{
-				"entry_name" "Lightbridge.ElectricStep"
-			}
-
- 			"speakers_multi_origin"
- 			{
- 				"input_max_iterations" "0"
- 			}
-
-			"source_info"
-			{
-				// "source"   "entity"
-				"source"   "emitter"
-			}
-
-			"volume_mult"
-			{
-				"input1" "1.0"
-			}
-		}
-	}
-}
-
-"Lightbridge.ElectricStep"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.08, 0.15"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-
-	"soundentry_version" "2"
-
-	"operator_stacks"
-	{
-		"start_stack"
-		{
-			"import_stack"	"P2_poly_limiting_start"
-
-			"limit_sound"
-			{
-				"match_entry" "Lightbridge.ElectricStep"
-				"input_max_entries" "1.000000"
-			}
-		}
-		"update_stack"
-		{
-			"import_stack" "p2_update_default"
-
- 			"speakers_multi_origin"
- 			{
- 				"input_max_iterations" "0"
- 			}
-		}
-	}
-}
-
-"JumpLand.Tile"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/p2_fs_jump_land_tile_01.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_tile_02.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_tile_03.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_tile_04.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_tile_05.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_tile_06.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_tile_07.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_tile_08.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_tile_09.wav"
-	}
-}
-
-"JumpLand.MetalGrate"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/p2_fs_jump_land_metal_grate_01.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_metal_grate_02.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_metal_grate_03.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_metal_grate_04.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_metal_grate_05.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_metal_grate_06.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_metal_grate_07.wav"
-		"wave"		"player/footsteps/p2_fs_jump_land_metal_grate_08.wav"
-	}
-}
-
-"JumpLand.HighVelocityImpact"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/high_velocity_impact_01.wav"
-		"wave"		"player/high_velocity_impact_02.wav"
-	}
-}
-
-"JumpLand.HighVelocityImpactCeiling"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.0"
-	"pitch"			"95,105"
-	"rndwave"
-	{
-		"wave"		"player/high_velocity_impact_03.wav"
-		"wave"		"player/high_velocity_impact_04.wav"
-	}
-}
-
-"Ghostrunner.Jump"
-{
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/jump/FOL_jump_01.wav"
-		"wave"		"player/jump/FOL_jump_02.wav"
-		"wave"		"player/jump/FOL_jump_03.wav"
+		"wave"		"player/crouch_down/FOL_crouch_down_01.wav"
+		"wave"		"player/crouch_down/FOL_crouch_down_02.wav"
+		"wave"		"player/crouch_down/FOL_crouch_down_03.wav"
 	}
 }
 
-"Ghostrunner.Land"
+"Ghostrunner.Crouch_Up"
 {
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/land/FOL_land_01.wav"
-		"wave"		"player/land/FOL_land_02.wav"
-		"wave"		"player/land/FOL_land_03.wav"
+		"wave"		"player/crouch_up/FOL_crouch_up_01.wav"
+		"wave"		"player/crouch_up/FOL_crouch_up_02.wav"
+		"wave"		"player/crouch_up/FOL_crouch_up_03.wav"
 	}
 }
 
 "Ghostrunner.Dash"
 {
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
 	"volume"		"1.0"
 	"rndwave"
 	{
@@ -829,8 +109,6 @@
 
 "Ghostrunner.Dash_Air_Charge"
 {
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
 	"volume"		"1.0"
 	"rndwave"
 	{
@@ -839,54 +117,69 @@
 	}
 }
 
-"Ghostrunner.Crouch_Up"
+"Ghostrunner.StepDefault"
 {
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/crouch_up/FOL_crouch_up_01.wav"
-		"wave"		"player/crouch_up/FOL_crouch_up_02.wav"
-		"wave"		"player/crouch_up/FOL_crouch_up_03.wav"
+		"wave"		"player/footsteps/FOL_step_default_01.wav"
+		"wave"		"player/footsteps/FOL_step_default_02.wav"
+		"wave"		"player/footsteps/FOL_step_default_03.wav"
+		"wave"		"player/footsteps/FOL_step_default_04.wav"
 	}
 }
 
-"Ghostrunner.Crouch_Down"
+"Ghostrunner.StepMetal"
 {
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/crouch_down/FOL_crouch_down_01.wav"
-		"wave"		"player/crouch_down/FOL_crouch_down_02.wav"
-		"wave"		"player/crouch_down/FOL_crouch_down_03.wav"
+		"wave"		"player/footsteps/FOL_step_metal_01.wav"
+		"wave"		"player/footsteps/FOL_step_metal_02.wav"
+		"wave"		"player/footsteps/FOL_step_metal_03.wav"
+		"wave"		"player/footsteps/FOL_step_metal_04.wav"
+	}
+}
+
+"Ghostrunner.StepPuddle"
+{
+	"volume"		"1.0"
+	"rndwave"
+	{
+		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
+		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
+		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
+		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
+	}
+}
+
+"Ghostrunner.Jump"
+{
+	"volume"		"1.0"
+	"rndwave"
+	{
+		"wave"		"player/jump/FOL_jump_01.wav"
+		"wave"		"player/jump/FOL_jump_02.wav"
+		"wave"		"player/jump/FOL_jump_03.wav"
+	}
+}
+
+"Ghostrunner.Land"
+{
+	"volume"		"1.0"
+	"rndwave"
+	{
+		"wave"		"player/land/FOL_land_01.wav"
+		"wave"		"player/land/FOL_land_02.wav"
+		"wave"		"player/land/FOL_land_03.wav"
 	}
 }
 
 "Ghostrunner.SensoryBoost"
 {
-	"channel"		"CHAN_AUTO"
-	"soundlevel"		"SNDLVL_NORM"
 	"volume"		"1.0"
 	"rndwave"
 	{
 		"wave"		"player/misc/FOL_sensory_boost_loop.wav"
 	}
-}
-
-"PortalPlayer.Woosh"
-{
-	"volume"		"0.00"
-}
-
-"PortalPlayer.WooshWooshyWoosh"
-{
-	"volume"		"0.00"
-}
-
-"Player.SlowTime_Stop"
-{
-	"volume"		"0.0"
 }

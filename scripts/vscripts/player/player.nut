@@ -1,6 +1,7 @@
 IncludeScript("player/stamina");
 IncludeScript("player/dash");
 IncludeScript("player/wallrun");
+IncludeScript("player/footsteps");
 
 const JUMP_FORCE = 300; // force applied to the player on jump
 const MAX_SPEED = 275; // max speed for raw movement not including special modifiers such as dashing
@@ -28,6 +29,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         stamina = Stamina(),
         dash = DashController(),
         wallrun = WallrunController(),
+        footsteps = Footsteps(),
 
         // methods
         init = null,
@@ -93,6 +95,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         // tick modules
         inst.stamina.tick();
         velocity = inst.dash.tick(velocity);
+        inst.footsteps.tick(movement, onGround);
         local wall = inst.wallrun.tick(movement, gravityVelocity, onGround);
         if (wall) {
             velocity = wall;
