@@ -18,14 +18,6 @@
 		"wave"		"player/footsteps/FOL_step_default_02.wav"
 		"wave"		"player/footsteps/FOL_step_default_03.wav"
 		"wave"		"player/footsteps/FOL_step_default_04.wav"
-		"wave"		"player/footsteps/FOL_step_metal_01.wav"
-		"wave"		"player/footsteps/FOL_step_metal_02.wav"
-		"wave"		"player/footsteps/FOL_step_metal_03.wav"
-		"wave"		"player/footsteps/FOL_step_metal_04.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
 		"wave"		"player/jump/FOL_jump_01.wav"
 		"wave"		"player/jump/FOL_jump_02.wav"
 		"wave"		"player/jump/FOL_jump_03.wav"
@@ -126,30 +118,6 @@
 		"wave"		"player/footsteps/FOL_step_default_02.wav"
 		"wave"		"player/footsteps/FOL_step_default_03.wav"
 		"wave"		"player/footsteps/FOL_step_default_04.wav"
-	}
-}
-
-"Ghostrunner.StepMetal"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_metal_01.wav"
-		"wave"		"player/footsteps/FOL_step_metal_02.wav"
-		"wave"		"player/footsteps/FOL_step_metal_03.wav"
-		"wave"		"player/footsteps/FOL_step_metal_04.wav"
-	}
-}
-
-"Ghostrunner.StepPuddle"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"player/footsteps/FOL_step_puddle_01.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_02.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_03.wav"
-		"wave"		"player/footsteps/FOL_step_puddle_04.wav"
 	}
 }
 
