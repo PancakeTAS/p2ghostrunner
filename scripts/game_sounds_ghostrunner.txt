@@ -29,41 +29,41 @@
 }
 
 // MUTE EXISTING SOUNDS
-"PortalPlayer.Woosh" { "volume" "0.0" }
-"PortalPlayer.WooshWooshyWoosh" { "volume" "0.0" }
-"Player.SlowTime_Stop" { "volume" "0.0" }
-"JumpLand.Tile" { "volume" "0.0" }
-"JumpLand.MetalGrate" { "volume" "0.0" }
-"JumpLand.HighVelocityImpact" { "volume" "0.0" }
-"JumpLand.HighVelocityImpactCeiling" { "volume" "0.0" }
-"MetalGrate.JumplandLg" { "volume" "0.0" }
-"BaseEntity.EnterWater" { "volume" "0.0" }
-"BaseEntity.ExitWater" { "volume" "0.0" }
-"Lightbridge.ElectricStep" { "volume" "0.0" }
-"Tile.StepLeft" { "volume" "0.0" }
-"Tile.StepRight" { "volume" "0.0" }
-"Water.StepLeft" { "volume" "0.0" }
-"Water.StepRight" { "volume" "0.0" }
-"Wade.StepLeft" { "volume" "0.0" }
-"Wade.StepRight" { "volume" "0.0" }
-"BrokenGlass.StepLeft" { "volume" "0.0" }
-"BrokenGlass.StepRight" { "volume" "0.0" }
-"Concrete.StepLeft" { "volume" "0.0" }
-"Concrete.StepRight" { "volume" "0.0" }
-"Paint.StepLeft" { "volume" "0.0" }
-"Paint.StepRight" { "volume" "0.0" }
-"Wood.StepLeft" { "volume" "0.0" }
-"Wood.StepRight" { "volume" "0.0" }
-"Default.StepLeft" { "volume" "0.0" }
-"Default.StepRight" { "volume" "0.0" }
-"SolidMetal.StepLeft" { "volume" "0.0" }
-"SolidMetal.StepRight" { "volume" "0.0" }
-"MetalGrate.StepLeft" { "volume" "0.0" }
-"MetalGrate.StepRight" { "volume" "0.0" }
-"GlassFragments.StepLeft" { "volume" "0.0" }
-"GlassFragments.StepRight" { "volume" "0.0" }
-"Lightbridge.StepLeft" { "volume" "0.0" }
-"Lightbridge.StepRight" { "volume" "0.0" }
+"PortalPlayer.Woosh" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"PortalPlayer.WooshWooshyWoosh" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Player.SlowTime_Stop" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"JumpLand.Tile" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"JumpLand.MetalGrate" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"JumpLand.HighVelocityImpact" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"JumpLand.HighVelocityImpactCeiling" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"MetalGrate.JumplandLg" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"BaseEntity.EnterWater" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"BaseEntity.ExitWater" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Lightbridge.ElectricStep" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Tile.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Tile.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Water.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Water.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Wade.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Wade.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"BrokenGlass.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"BrokenGlass.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Concrete.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Concrete.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Paint.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Paint.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Wood.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Wood.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Default.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Default.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"SolidMetal.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"SolidMetal.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"MetalGrate.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"MetalGrate.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"GlassFragments.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"GlassFragments.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Lightbridge.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Lightbridge.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 
 // NEW SOUNDS
 "Ghostrunner.Crouch_Down"
