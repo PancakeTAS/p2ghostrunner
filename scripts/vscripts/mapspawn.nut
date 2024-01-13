@@ -45,6 +45,12 @@ ppmod.onauto(function() {
         ::player = pplayer.ent;
         ::eyes = pplayer.eyes;
 
+        // initialize world controller
+        ::wcontr = WorldController();
+        ppmod.interval(function () {
+            ::wcontr.tick();
+        });
+
         // register inputs
         foreach(_, global in ["forward", "moveleft", "back", "moveright"]) {
             getroottable()[global] <- false;
@@ -69,13 +75,8 @@ ppmod.onauto(function() {
 
         });
 
-    });
+        ::wcontr.init();
 
-    // initialize world controller
-    ::wcontr = WorldController();
-    ::wcontr.init();
-    ppmod.interval(function () {
-        ::wcontr.tick();
     });
 
 });

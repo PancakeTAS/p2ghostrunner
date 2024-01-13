@@ -1,3 +1,5 @@
+IncludeScript("world/grapplepoint");
+
 /**
  * Main world controller class
  */
