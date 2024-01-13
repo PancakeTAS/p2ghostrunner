@@ -1,6 +1,7 @@
 if (!("Entities" in this)) return;
 IncludeScript("ppmod4");
 IncludeScript("player/player");
+IncludeScript("world/world");
 IncludeScript("util");
 
 function removePortalGun() {
@@ -68,6 +69,13 @@ ppmod.onauto(function() {
 
         });
 
+    });
+
+    // initialize world controller
+    ::wcontr = WorldController();
+    ::wcontr.init();
+    ppmod.interval(function () {
+        ::wcontr.tick();
     });
 
 });

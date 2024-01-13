@@ -32,7 +32,6 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         footsteps = Footsteps(),
 
         // methods
-        init = null,
         tick = null,
         jump = null
 

@@ -2,6 +2,7 @@
 ::player <- null;
 ::contr <- null;
 ::eyes <- null;
+::wcontr <- null;
 
 /**
  * Get the normalized x,y player forward vector
