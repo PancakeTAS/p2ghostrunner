@@ -26,20 +26,34 @@ class GrappleController {
     }
 
     /**
-     * Try to use a grapple
+     * Called when the player presses use
      */
-    function use() {
-        if (this.cooldown != 0)
-            return;
-
+    function onUsePress() {
         for (local i = 0; i < ::grapples.len(); i++) {
-            if (::grapples[i].canGrapple) {
-                this.velocity = ::grapples[i].use() * Vector(1, 1, 0.7) * 3;
+            if (::grapples[i].canGrapple && this.cooldown == 0) {
                 this.cooldown = GRAPPLE_COOLDOWN;
-                ::contr.gravityVelocity = 0;
-                break;
+
+                ppmod.wait(function ():(i) {
+                    ::player.EmitSound("Ghostrunner.Grapple");
+                    ::player.EmitSound("Ghostrunner.Hook");
+                }, 0.2);
+
+                ppmod.wait(function ():(i) {
+                    ::contr.grapple.velocity = ::grapples[i].use() * Vector(1, 1, 0.7) * 3;
+                    ::contr.gravityVelocity = 0;
+                }, 0.3);
+                return;
             }
         }
+
+        SendToConsole("+use");
+    }
+
+    /**
+     * Called when the player releases use
+     */
+    function onUseRelease() {
+        SendToConsole("-use");
     }
 
 }

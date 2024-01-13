@@ -25,6 +25,10 @@
 		"wave"		"player/land/FOL_land_02.wav"
 		"wave"		"player/land/FOL_land_03.wav"
 		"wave"		"player/misc/FOL_sensory_boost_loop.wav"
+		"wave"		"player/grapple/FOL_det_grapple_01.wav"
+		"wave"		"player/grapple/FOL_det_grapple_02.wav"
+		"wave"		"player/grapple/FOL_det_grapple_03.wav"
+		"wave"		"player/hook/FOL_hook_pull.wav"
 	}
 }
 
@@ -149,5 +153,25 @@
 	"rndwave"
 	{
 		"wave"		"player/misc/FOL_sensory_boost_loop.wav"
+	}
+}
+
+"Ghostrunner.Grapple"
+{
+	"volume"		"1.0"
+	"rndwave"
+	{
+		"wave"		"player/grapple/FOL_det_grapple_01.wav"
+		"wave"		"player/grapple/FOL_det_grapple_02.wav"
+		"wave"		"player/grapple/FOL_det_grapple_03.wav"
+	}
+}
+
+"Ghostrunner.Hook"
+{
+	"volume"		"1.0"
+	"rndwave"
+	{
+		"wave"		"player/hook/FOL_hook_pull.wav"
 	}
 }

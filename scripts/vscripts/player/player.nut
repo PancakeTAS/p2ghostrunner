@@ -35,8 +35,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
 
         // methods
         tick = null,
-        jump = null,
-        use = null,
+        jump = null
 
     };
 
@@ -127,13 +126,6 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
             inst.wallrun.wall = null;
             ::player.EmitSound("Ghostrunner.Jump");
         }
-    }
-
-    /**
-     * Interact from the player (called from +use alias)
-     */
-    inst.use = function():(inst) {
-        inst.grapple.use();
     }
 
     return inst;

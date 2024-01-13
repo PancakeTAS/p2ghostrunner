@@ -81,7 +81,7 @@ class Grapple {
      * Grapple to the point
      */
     function use() {
-        return (this.position - ::player.GetOrigin());
+        return this.position - ::player.GetOrigin();
     }
 
 

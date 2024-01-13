@@ -34,6 +34,7 @@ ppmod.onauto(function() {
 
     // fix stuff
     SendToConsole("bind shift +alt1");
+    SendToConsole("bind e +alt2");
     SendToConsole("snd_setmixer Player VOL 2");
     SendToConsole("hud_saytext_time 0");
 
