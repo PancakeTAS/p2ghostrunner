@@ -2,6 +2,7 @@ IncludeScript("player/stamina");
 IncludeScript("player/dash");
 IncludeScript("player/wallrun");
 IncludeScript("player/footsteps");
+IncludeScript("player/grapple");
 
 const JUMP_FORCE = 300; // force applied to the player on jump
 const MAX_SPEED = 275; // max speed for raw movement not including special modifiers such as dashing
@@ -21,7 +22,6 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         baseVelocity = Vector(0, 0, 0), // base velocity for movement
         airVelocity = Vector(0, 0, 0), // velocity applied throughout the air
         gravityVelocity = 0, // gravity velocity for z coordinate
-        flingVelocity = Vector(0, 0, 0), // velocity applied when flinging to a grapple
 
         isCrouched = false,
         wasCrouched = false,
@@ -29,9 +29,9 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
 
         stamina = Stamina(),
         dash = DashController(),
+        grapple = GrappleController(),
         wallrun = WallrunController(),
         footsteps = Footsteps(),
-        grappleCooldown = 0,
 
         // methods
         tick = null,
@@ -44,10 +44,6 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      * Tick the player controller
      */
     inst.tick = function ():(inst) {
-        // cooldown grapple
-        if (inst.grappleCooldown > 0)
-            inst.grappleCooldown -= 1;
-
         // check if player left the ground
         local onGround = ::player.GetGroundEntity();
         if (onGround && !wasOnGround)
@@ -102,17 +98,11 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         inst.stamina.tick();
         velocity = inst.dash.tick(velocity);
         inst.footsteps.tick(movement, onGround);
+        velocity = inst.grapple.tick(velocity);
         local wall = inst.wallrun.tick(movement, gravityVelocity, onGround);
         if (wall) {
             velocity = wall;
             gravityVelocity = 0;
-        }
-
-        // append fling velocity
-        if (flingVelocity.Length() > 50.0) {
-            velocity += flingVelocity;
-            flingVelocity *= 0.95;
-            gravityVelocity += GRAVITY / 2;
         }
 
         // set velocity
@@ -143,17 +133,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      * Interact from the player (called from +use alias)
      */
     inst.use = function():(inst) {
-        if (inst.grappleCooldown > 0)
-            return;
-
-        for (local i = 0; i < ::grapples.len(); i++) {
-            if (::grapples[i].canGrapple) {
-                flingVelocity = ::grapples[i].use() * Vector(1, 1, 0.7) * 3;
-                gravityVelocity = 0;
-                inst.grappleCooldown = 60;
-                break;
-            }
-        }
+        inst.grapple.use();
     }
 
     return inst;
