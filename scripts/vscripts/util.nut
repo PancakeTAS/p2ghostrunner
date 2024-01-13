@@ -76,8 +76,10 @@ function movementVec() {
         local delta = r2.point - r1.point;
         delta.Norm();
         return {
+            point = r1.point,
             up = delta,
-            side = 1
+            side = 1,
+            ground = ppmod.ray(r1.point, r1.point - Vector(0, 0, 50)).fraction < 1
         };
     }
 
@@ -88,8 +90,10 @@ function movementVec() {
         local delta = r2.point - r1.point;
         delta.Norm();
         return {
+            point = r1.point,
             up = delta,
-            side = -1
+            side = -1,
+            ground = ppmod.ray(r1.point, r1.point - Vector(0, 0, 50)).fraction < 1
         };
     }
 
