@@ -3,32 +3,32 @@
 {
 	"rndwave"
 	{
-		"wave"		"player/crouch_down/FOL_crouch_down_01.wav"
-		"wave"		"player/crouch_down/FOL_crouch_down_02.wav"
-		"wave"		"player/crouch_down/FOL_crouch_down_03.wav"
-		"wave"		"player/crouch_up/FOL_crouch_up_01.wav"
-		"wave"		"player/crouch_up/FOL_crouch_up_02.wav"
-		"wave"		"player/crouch_up/FOL_crouch_up_03.wav"
-		"wave"		"player/dash/FOL_dash_01.wav"
-		"wave"		"player/dash/FOL_dash_02.wav"
-		"wave"		"player/dash/FOL_dash_03.wav"
-		"wave"		"player/dash_air_charge/FOL_dash_air_charge_01.wav"
-		"wave"		"player/dash_air_charge/FOL_dash_air_charge_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
-		"wave"		"player/jump/FOL_jump_01.wav"
-		"wave"		"player/jump/FOL_jump_02.wav"
-		"wave"		"player/jump/FOL_jump_03.wav"
-		"wave"		"player/land/FOL_land_01.wav"
-		"wave"		"player/land/FOL_land_02.wav"
-		"wave"		"player/land/FOL_land_03.wav"
-		"wave"		"player/misc/FOL_sensory_boost_loop.wav"
-		"wave"		"player/grapple/FOL_det_grapple_01.wav"
-		"wave"		"player/grapple/FOL_det_grapple_02.wav"
-		"wave"		"player/grapple/FOL_det_grapple_03.wav"
-		"wave"		"player/hook/FOL_hook_pull.wav"
+		"wave"		"ghostrunner/crouch_down/crouch_down_01.wav"
+		"wave"		"ghostrunner/crouch_down/crouch_down_02.wav"
+		"wave"		"ghostrunner/crouch_down/crouch_down_03.wav"
+		"wave"		"ghostrunner/crouch_up/crouch_up_01.wav"
+		"wave"		"ghostrunner/crouch_up/crouch_up_02.wav"
+		"wave"		"ghostrunner/crouch_up/crouch_up_03.wav"
+		"wave"		"ghostrunner/dash/dash_01.wav"
+		"wave"		"ghostrunner/dash/dash_02.wav"
+		"wave"		"ghostrunner/dash/dash_03.wav"
+		"wave"		"ghostrunner/dash_air_charge/dash_air_charge_01.wav"
+		"wave"		"ghostrunner/dash_air_charge/dash_air_charge_02.wav"
+		"wave"		"ghostrunner/footsteps/footsteps_01.wav"
+		"wave"		"ghostrunner/footsteps/footsteps_02.wav"
+		"wave"		"ghostrunner/footsteps/footsteps_03.wav"
+		"wave"		"ghostrunner/footsteps/footsteps_04.wav"
+		"wave"		"ghostrunner/jump/jump_01.wav"
+		"wave"		"ghostrunner/jump/jump_02.wav"
+		"wave"		"ghostrunner/jump/jump_03.wav"
+		"wave"		"ghostrunner/land/land_01.wav"
+		"wave"		"ghostrunner/land/land_02.wav"
+		"wave"		"ghostrunner/land/land_03.wav"
+		"wave"		"ghostrunner/sensory_boost_loop/sensory_boost_loop.wav"
+		"wave"		"ghostrunner/grapple/grapple_01.wav"
+		"wave"		"ghostrunner/grapple/grapple_02.wav"
+		"wave"		"ghostrunner/grapple/grapple_03.wav"
+		"wave"		"ghostrunner/hook/hook_01.wav"
 	}
 }
 
@@ -75,9 +75,9 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/crouch_down/FOL_crouch_down_01.wav"
-		"wave"		"player/crouch_down/FOL_crouch_down_02.wav"
-		"wave"		"player/crouch_down/FOL_crouch_down_03.wav"
+		"wave"		"ghostrunner/crouch_down/crouch_down_01.wav"
+		"wave"		"ghostrunner/crouch_down/crouch_down_02.wav"
+		"wave"		"ghostrunner/crouch_down/crouch_down_03.wav"
 	}
 }
 
@@ -86,9 +86,9 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/crouch_up/FOL_crouch_up_01.wav"
-		"wave"		"player/crouch_up/FOL_crouch_up_02.wav"
-		"wave"		"player/crouch_up/FOL_crouch_up_03.wav"
+		"wave"		"ghostrunner/crouch_up/crouch_up_01.wav"
+		"wave"		"ghostrunner/crouch_up/crouch_up_02.wav"
+		"wave"		"ghostrunner/crouch_up/crouch_up_03.wav"
 	}
 }
 
@@ -97,9 +97,9 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/dash/FOL_dash_01.wav"
-		"wave"		"player/dash/FOL_dash_02.wav"
-		"wave"		"player/dash/FOL_dash_03.wav"
+		"wave"		"ghostrunner/dash/dash_01.wav"
+		"wave"		"ghostrunner/dash/dash_02.wav"
+		"wave"		"ghostrunner/dash/dash_03.wav"
 	}
 }
 
@@ -108,8 +108,8 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/dash_air_charge/FOL_dash_air_charge_01.wav"
-		"wave"		"player/dash_air_charge/FOL_dash_air_charge_02.wav"
+		"wave"		"ghostrunner/dash_air_charge/dash_air_charge_01.wav"
+		"wave"		"ghostrunner/dash_air_charge/dash_air_charge_02.wav"
 	}
 }
 
@@ -118,10 +118,10 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/footsteps/FOL_step_default_01.wav"
-		"wave"		"player/footsteps/FOL_step_default_02.wav"
-		"wave"		"player/footsteps/FOL_step_default_03.wav"
-		"wave"		"player/footsteps/FOL_step_default_04.wav"
+		"wave"		"ghostrunner/footsteps/footsteps_01.wav"
+		"wave"		"ghostrunner/footsteps/footsteps_02.wav"
+		"wave"		"ghostrunner/footsteps/footsteps_03.wav"
+		"wave"		"ghostrunner/footsteps/footsteps_04.wav"
 	}
 }
 
@@ -130,9 +130,9 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/jump/FOL_jump_01.wav"
-		"wave"		"player/jump/FOL_jump_02.wav"
-		"wave"		"player/jump/FOL_jump_03.wav"
+		"wave"		"ghostrunner/jump/jump_01.wav"
+		"wave"		"ghostrunner/jump/jump_02.wav"
+		"wave"		"ghostrunner/jump/jump_03.wav"
 	}
 }
 
@@ -141,9 +141,9 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/land/FOL_land_01.wav"
-		"wave"		"player/land/FOL_land_02.wav"
-		"wave"		"player/land/FOL_land_03.wav"
+		"wave"		"ghostrunner/land/land_01.wav"
+		"wave"		"ghostrunner/land/land_02.wav"
+		"wave"		"ghostrunner/land/land_03.wav"
 	}
 }
 
@@ -152,7 +152,7 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/misc/FOL_sensory_boost_loop.wav"
+		"wave"		"ghostrunner/sensory_boost_loop/sensory_boost_loop.wav"
 	}
 }
 
@@ -161,9 +161,9 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/grapple/FOL_det_grapple_01.wav"
-		"wave"		"player/grapple/FOL_det_grapple_02.wav"
-		"wave"		"player/grapple/FOL_det_grapple_03.wav"
+		"wave"		"ghostrunner/grapple/grapple_01.wav"
+		"wave"		"ghostrunner/grapple/grapple_02.wav"
+		"wave"		"ghostrunner/grapple/grapple_03.wav"
 	}
 }
 
@@ -172,6 +172,6 @@
 	"volume"		"1.0"
 	"rndwave"
 	{
-		"wave"		"player/hook/FOL_hook_pull.wav"
+		"wave"		"ghostrunner/hook/hook_01.wav"
 	}
 }
