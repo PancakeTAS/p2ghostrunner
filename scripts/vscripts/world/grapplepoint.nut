@@ -1,3 +1,5 @@
+::grapples <- array(0);
+
 /**
  * Grapple instance
  */
@@ -38,6 +40,8 @@ class Grapple {
             ent.SetOrigin(position);
             spheres.inactive = ent;
         });
+
+        ::grapples.append(this);
     }
 
     /**
@@ -55,7 +59,7 @@ class Grapple {
             local direction = this.position - ::player.GetOrigin();
             direction.Norm();
             local dot = forward.Dot(direction);
-            if (dot < 0.95)
+            if (dot < 0.9)
                 break;
 
             // check if any objects obstruct the grapple point
@@ -71,6 +75,13 @@ class Grapple {
         this.spheres.inactive.SetOrigin(this.position);
         this.spheres.active.SetOrigin(this.position + Vector(0, 0, 64));
         this.canGrapple = false;
+    }
+
+    /**
+     * Grapple to the point
+     */
+    function use() {
+        return (this.position - ::player.GetOrigin());
     }
 
 
