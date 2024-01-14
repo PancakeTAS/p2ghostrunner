@@ -1,34 +1,32 @@
 // PRECACHE
-"CoopBot.CoopBotArmMotor"
-{
-	"rndwave"
-	{
-		"wave"		"ghostrunner/crouch_down/crouch_down_01.wav"
-		"wave"		"ghostrunner/crouch_down/crouch_down_02.wav"
-		"wave"		"ghostrunner/crouch_down/crouch_down_03.wav"
-		"wave"		"ghostrunner/crouch_up/crouch_up_01.wav"
-		"wave"		"ghostrunner/crouch_up/crouch_up_02.wav"
-		"wave"		"ghostrunner/crouch_up/crouch_up_03.wav"
-		"wave"		"ghostrunner/dash/dash_01.wav"
-		"wave"		"ghostrunner/dash/dash_02.wav"
-		"wave"		"ghostrunner/dash/dash_03.wav"
-		"wave"		"ghostrunner/dash_air_charge/dash_air_charge_01.wav"
-		"wave"		"ghostrunner/dash_air_charge/dash_air_charge_02.wav"
-		"wave"		"ghostrunner/footsteps/footsteps_01.wav"
-		"wave"		"ghostrunner/footsteps/footsteps_02.wav"
-		"wave"		"ghostrunner/footsteps/footsteps_03.wav"
-		"wave"		"ghostrunner/footsteps/footsteps_04.wav"
-		"wave"		"ghostrunner/jump/jump_01.wav"
-		"wave"		"ghostrunner/jump/jump_02.wav"
-		"wave"		"ghostrunner/jump/jump_03.wav"
-		"wave"		"ghostrunner/land/land_01.wav"
-		"wave"		"ghostrunner/land/land_02.wav"
-		"wave"		"ghostrunner/land/land_03.wav"
-		"wave"		"ghostrunner/sensory_boost_loop/sensory_boost_loop.wav"
-		"wave"		"ghostrunner/grapple/grapple_01.wav"
-		"wave"		"ghostrunner/grapple/grapple_02.wav"
-		"wave"		"ghostrunner/grapple/grapple_03.wav"
-		"wave"		"ghostrunner/hook/hook_01.wav"
+"CoopBot.CoopBotArmMotor" {
+	"rndwave" {
+		"wave"	"ghostrunner/crouch_down/crouch_down_01.wav"
+		"wave"	"ghostrunner/crouch_down/crouch_down_02.wav"
+		"wave"	"ghostrunner/crouch_down/crouch_down_03.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_01.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_02.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_03.wav"
+		"wave"	"ghostrunner/dash/dash_01.wav"
+		"wave"	"ghostrunner/dash/dash_02.wav"
+		"wave"	"ghostrunner/dash/dash_03.wav"
+		"wave"	"ghostrunner/dash_air_charge/dash_air_charge_01.wav"
+		"wave"	"ghostrunner/dash_air_charge/dash_air_charge_02.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_01.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_02.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_03.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_04.wav"
+		"wave"	"ghostrunner/jump/jump_01.wav"
+		"wave"	"ghostrunner/jump/jump_02.wav"
+		"wave"	"ghostrunner/jump/jump_03.wav"
+		"wave"	"ghostrunner/land/land_01.wav"
+		"wave"	"ghostrunner/land/land_02.wav"
+		"wave"	"ghostrunner/land/land_03.wav"
+		"wave"	"ghostrunner/grapple/grapple_01.wav"
+		"wave"	"ghostrunner/grapple/grapple_02.wav"
+		"wave"	"ghostrunner/grapple/grapple_03.wav"
+		"wave"	"ghostrunner/hook/hook_01.wav"
+		"wave"	"ghostrunner/slowdown/slowdown.wav"
 	}
 }
 
@@ -70,108 +68,74 @@
 "Lightbridge.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 
 // NEW SOUNDS
-"Ghostrunner.Crouch_Down"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/crouch_down/crouch_down_01.wav"
-		"wave"		"ghostrunner/crouch_down/crouch_down_02.wav"
-		"wave"		"ghostrunner/crouch_down/crouch_down_03.wav"
+"Ghostrunner.Crouch_Down" {
+	"rndwave" {
+		"wave"	"ghostrunner/crouch_down/crouch_down_01.wav"
+		"wave"	"ghostrunner/crouch_down/crouch_down_02.wav"
+		"wave"	"ghostrunner/crouch_down/crouch_down_03.wav"
 	}
 }
 
-"Ghostrunner.Crouch_Up"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/crouch_up/crouch_up_01.wav"
-		"wave"		"ghostrunner/crouch_up/crouch_up_02.wav"
-		"wave"		"ghostrunner/crouch_up/crouch_up_03.wav"
+"Ghostrunner.Crouch_Up" {
+	"rndwave" {
+		"wave"	"ghostrunner/crouch_up/crouch_up_01.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_02.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_03.wav"
 	}
 }
 
-"Ghostrunner.Dash"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/dash/dash_01.wav"
-		"wave"		"ghostrunner/dash/dash_02.wav"
-		"wave"		"ghostrunner/dash/dash_03.wav"
+"Ghostrunner.Dash" {
+	"rndwave" {
+		"wave"	"ghostrunner/dash/dash_01.wav"
+		"wave"	"ghostrunner/dash/dash_02.wav"
+		"wave"	"ghostrunner/dash/dash_03.wav"
 	}
 }
 
-"Ghostrunner.Dash_Air_Charge"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/dash_air_charge/dash_air_charge_01.wav"
-		"wave"		"ghostrunner/dash_air_charge/dash_air_charge_02.wav"
+"Ghostrunner.Dash_Air_Charge" {
+	"rndwave" {
+		"wave"	"ghostrunner/dash_air_charge/dash_air_charge_01.wav"
+		"wave"	"ghostrunner/dash_air_charge/dash_air_charge_02.wav"
 	}
 }
 
-"Ghostrunner.StepDefault"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/footsteps/footsteps_01.wav"
-		"wave"		"ghostrunner/footsteps/footsteps_02.wav"
-		"wave"		"ghostrunner/footsteps/footsteps_03.wav"
-		"wave"		"ghostrunner/footsteps/footsteps_04.wav"
+"Ghostrunner.StepDefault" {
+	"rndwave" {
+		"wave"	"ghostrunner/footsteps/footsteps_01.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_02.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_03.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_04.wav"
 	}
 }
 
-"Ghostrunner.Jump"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/jump/jump_01.wav"
-		"wave"		"ghostrunner/jump/jump_02.wav"
-		"wave"		"ghostrunner/jump/jump_03.wav"
+"Ghostrunner.Jump" {
+	"rndwave" {
+		"wave"	"ghostrunner/jump/jump_01.wav"
+		"wave"	"ghostrunner/jump/jump_02.wav"
+		"wave"	"ghostrunner/jump/jump_03.wav"
 	}
 }
 
-"Ghostrunner.Land"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/land/land_01.wav"
-		"wave"		"ghostrunner/land/land_02.wav"
-		"wave"		"ghostrunner/land/land_03.wav"
+"Ghostrunner.Land" {
+	"rndwave" {
+		"wave"	"ghostrunner/land/land_01.wav"
+		"wave"	"ghostrunner/land/land_02.wav"
+		"wave"	"ghostrunner/land/land_03.wav"
 	}
 }
 
-"Ghostrunner.SensoryBoost"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/sensory_boost_loop/sensory_boost_loop.wav"
+"Ghostrunner.Grapple" {
+	"rndwave" {
+		"wave"	"ghostrunner/grapple/grapple_01.wav"
+		"wave"	"ghostrunner/grapple/grapple_02.wav"
+		"wave"	"ghostrunner/grapple/grapple_03.wav"
 	}
 }
 
-"Ghostrunner.Grapple"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/grapple/grapple_01.wav"
-		"wave"		"ghostrunner/grapple/grapple_02.wav"
-		"wave"		"ghostrunner/grapple/grapple_03.wav"
-	}
+"Ghostrunner.Hook" {
+	"wave"	"ghostrunner/hook/hook_01.wav"
 }
 
-"Ghostrunner.Hook"
-{
-	"volume"		"1.0"
-	"rndwave"
-	{
-		"wave"		"ghostrunner/hook/hook_01.wav"
-	}
+"Ghostrunner.Slowdown" {
+	"wave"	"ghostrunner/slowdown/slowdown.wav"
 }
