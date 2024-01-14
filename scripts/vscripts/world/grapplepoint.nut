@@ -7,10 +7,7 @@ class Grapple {
 
     position = null;
     range = null;
-    spheres = {
-        active = null,
-        inactive = null
-    };
+    sphere = null;
     canGrapple = false;
 
     /**
@@ -20,25 +17,12 @@ class Grapple {
         this.position = position;
         this.range = range;
 
-        // create an activate sphere
-        ppmod.create("prop_floor_button").then(function (ent):(position, spheres) {
-            ent.SetOrigin(position + Vector(0, 0, 64));
-            ppmod.addscript(ent, "OnPressed", function ():(position, spheres) {
-                ppmod.keyval(spheres.active, "MoveType", 0);
-                ppmod.keyval(spheres.active, "collisiongroup", 1);
-            });
-        });
-        ppmod.create("ent_create_portal_weighted_sphere").then(function (ent):(position, spheres) {
-            ent.SetOrigin(position + Vector(0, 0, 64));
-            spheres.active = ent;
-        });
-
-        // create an inactive sphere
-        ppmod.create("ent_create_portal_weighted_sphere").then(function (ent):(position, spheres) {
+        local inst = this;
+        ppmod.create("ent_create_portal_weighted_sphere").then(function (ent):(inst, position) {
+            inst.sphere = ent;
             ppmod.keyval(ent, "MoveType", 0);
             ppmod.keyval(ent, "collisiongroup", 1);
             ent.SetOrigin(position);
-            spheres.inactive = ent;
         });
 
         ::grapples.append(this);
@@ -67,13 +51,13 @@ class Grapple {
             if (trace.fraction < 0.9)
                 break;
 
-                this.spheres.active.SetOrigin(this.position);
-            this.spheres.inactive.SetOrigin(this.position + Vector(0, 0, 64));
+            if (!this.canGrapple)
+                ppmod.fire(this.sphere, "Skin", 1);
             this.canGrapple = true;
             return;
         }
-        this.spheres.inactive.SetOrigin(this.position);
-        this.spheres.active.SetOrigin(this.position + Vector(0, 0, 64));
+        if (this.canGrapple)
+            ppmod.fire(this.sphere, "Skin", 0);
         this.canGrapple = false;
     }
 
