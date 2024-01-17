@@ -99,7 +99,10 @@ class DashController {
         SendToConsole("mat_vignette_enable 0");
         SendToConsole("mat_motion_blur_enabled 1");
         SendToConsole("mat_motion_blur_strength 5");
-        ::player.StopSound("Ghostrunner.Slowdown");
+        SendToConsole("snd_setmixer SensoryBoost MUTE 1");
+        ppmod.wait(function() {
+            SendToConsole("snd_setmixer SensoryBoost MUTE 0");
+        }, (DASH_COOLDOWN - 1) / 60.0);
 
         // reset air velocity to prevent player from flying off
         ::contr.airVelocity = Vector(0, 0, 0);
