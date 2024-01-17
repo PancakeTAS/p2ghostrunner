@@ -32,14 +32,14 @@ class GrappleController {
         for (local i = 0; i < ::grapples.len(); i++) {
             if (::grapples[i].canGrapple && this.cooldown == 0) {
                 this.cooldown = GRAPPLE_COOLDOWN;
+                ::player.EmitSound("Ghostrunner.Grapple");
 
                 ppmod.wait(function ():(i) {
-                    ::player.EmitSound("Ghostrunner.Grapple");
                     ::player.EmitSound("Ghostrunner.Hook");
                 }, 0.2);
 
                 ppmod.wait(function ():(i) {
-                    ::contr.grapple.velocity = ::grapples[i].use() * Vector(1, 1, 0.7) * 3;
+                    ::contr.grapple.velocity = ::grapples[i].use() * Vector(1, 1, 0.7) * 3 * (::contr.dash.isSlowdown ? SLOWDOWN_FACTOR : 1);
                     ::contr.gravityVelocity = 0;
                 }, 0.3);
                 return;

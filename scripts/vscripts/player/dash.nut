@@ -28,6 +28,7 @@ class DashController {
         // slow down player
         ::contr.airVelocity *= SLOWDOWN_FACTOR;
         ::contr.gravityVelocity *= SLOWDOWN_FACTOR;
+        ::contr.grapple.velocity *= SLOWDOWN_FACTOR;
         this.isSlowdown = true;
         ::contr.stamina.canRegen = false;
 
