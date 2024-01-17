@@ -23,9 +23,12 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         airVelocity = Vector(0, 0, 0), // velocity applied throughout the air
         gravityVelocity = 0, // gravity velocity for z coordinate
 
+        onGround = false,
         isCrouched = false,
         wasCrouched = false,
         wasOnGround = false,
+        prevZ = 0,
+        prevVelZ = 0,
 
         stamina = Stamina(),
         dash = DashController(),
@@ -44,7 +47,8 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      */
     inst.tick = function ():(inst) {
         // check if player left the ground
-        local onGround = ::player.GetGroundEntity();
+        local onGround = ::player.GetVelocity().z == 0 && prevVelZ < 0 && prevZ - ::player.GetOrigin().z < 0.1;
+        inst.onGround = onGround;
         if (onGround && !wasOnGround)
             ::player.EmitSound("Ghostrunner.Land");
         inst.wasOnGround = onGround;
@@ -84,7 +88,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         // apply gravity
         if (onGround) {
             if (gravityVelocity < 0)
-                gravityVelocity = 0;
+                gravityVelocity = -1;
         } else if (inst.dash.isSlowdown)
             gravityVelocity -= (GRAVITY * SLOWDOWN_FACTOR);
         else
@@ -105,6 +109,8 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         }
 
         // set velocity
+        prevZ = ::player.GetOrigin().z;
+        prevVelZ = velocity.z;
         ::player.SetVelocity(velocity);
     }
 
@@ -112,7 +118,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      * Jump the player (called from +jump alias)
      */
     inst.jump = function():(inst) {
-        if (::player.GetGroundEntity() && !inst.dash.isSlowdown) {
+        if (inst.onGround && !inst.dash.isSlowdown) {
             inst.gravityVelocity = JUMP_FORCE;
             ::player.EmitSound("Ghostrunner.Jump");
         }

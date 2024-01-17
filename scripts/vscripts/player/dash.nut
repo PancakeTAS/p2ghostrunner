@@ -19,7 +19,7 @@ class DashController {
             return;
 
         // check if player should dash immediately
-        if (::player.GetGroundEntity()) {
+        if (::contr.onGround) {
             this.dash();
             ::player.EmitSound("Ghostrunner.Dash");
             return;
