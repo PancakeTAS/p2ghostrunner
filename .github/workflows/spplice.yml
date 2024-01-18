@@ -5,33 +5,22 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          submodules: true
-          path: p2ghostrunner
-      # extract vpp.dll
-      - name: Rename vpp to vppraw
-        run: mv p2ghostrunner/vpp vpp
-      - name: Create vpp new folder
-        run: mkdir p2ghostrunner/vpp
-      - name: Copy vpp.dll
-        run: cp vpp/vpp.dll p2ghostrunner/vpp/
+          path: repo
+      - name: Parse package name
+        id: parse
+        run: echo "name=$(jq -r '.name' repo/manifest.json)" >> "$GITHUB_OUTPUT"
       # create archives
       - name: Create inner archive
-        run: tar -cJf p2ghostrunner.tar.xz --exclude=.git --exclude=.github --exclude=manifest.json --exclude=.gitmodules --exclude=.gitignore --exclude=_master.cache -C p2ghostrunner .
-      - name: Leave directory
-        run: cd ..
-      - name: Prepare outer archive folder
-        run: mkdir package
-      - name: Move file into package
-        run: mv p2ghostrunner/manifest.json p2ghostrunner.tar.xz package
+        run: tar -cJf ${{ steps.parse.outputs.name }}.tar.xz --exclude='.[^/]*' --exclude=manifest.json -C repo .
       - name: Create outer archive
-        run: tar -cf p2ghostrunner.sppkg -C package . 
+        run: tar -cf ${{ steps.parse.outputs.name }}.sppkg ${{ steps.parse.outputs.name }}.tar.xz -C repo manifest.json
       # publish artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Spplice Package (unzip first)
-          path: p2ghostrunner.sppkg
-
-                
+          path: ${{ steps.parse.outputs.name }}.sppkg
