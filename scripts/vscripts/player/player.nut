@@ -6,7 +6,7 @@ IncludeScript("player/grapple");
 
 const JUMP_FORCE = 300; // force applied to the player on jump
 const MAX_SPEED = 275; // max speed for raw movement not including special modifiers such as dashing
-const SLOWDOWN_FACTOR = 0.01; // factor to slow down the game by when dashing
+const SLOWDOWN_FACTOR = 0.05; // factor to slow down the game by when dashing
 const GRAVITY = 15; // gravity applied to the player
 const GROUND_ACCEL = 100; // acceleration applied to the player when on the ground
 const AIR_ACCEL = 75; // ... in the air
@@ -90,10 +90,9 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
             if (gravityVelocity < 0)
                 gravityVelocity = -1;
         } else if (inst.dash.isSlowdown)
-            gravityVelocity -= (GRAVITY * SLOWDOWN_FACTOR);
+            gravityVelocity -= GRAVITY * SLOWDOWN_FACTOR / 60.0;
         else
             gravityVelocity -= GRAVITY;
-
 
         velocity.z = gravityVelocity;
 

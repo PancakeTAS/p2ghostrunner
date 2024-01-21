@@ -12,16 +12,6 @@ class WallrunController {
     prevPos = null; // previous position of the player
 
     /**
-     * Initialize the wallrun controller
-     */
-    constructor () {
-        ppmod.interval(function () {
-            if (::contr.wallrun.wall)
-                ::player.EmitSound("Default.StepLeft");
-        }, 0.25);
-    }
-
-    /**
      * Tick the wallrun controller
      */
     function tick(movement, grav, onGround) {

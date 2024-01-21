@@ -16,7 +16,11 @@ class GrappleController {
             this.cooldown--;
 
         // append fling velocity
-        if (this.velocity.Length() > 50.0) {
+        if (this.velocity.Length() / SLOWDOWN_FACTOR > 50.0 && ::contr.dash.isSlowdown) {
+            pVelocity += this.velocity;
+            this.velocity *= 0.95 + (0.95 * SLOWDOWN_FACTOR);
+            ::contr.gravityVelocity += (GRAVITY * SLOWDOWN_FACTOR / 60.0) / 2; // compensate for gravity
+        } else if (this.velocity.Length() > 50.0) {
             pVelocity += this.velocity;
             this.velocity *= 0.95;
             ::contr.gravityVelocity += GRAVITY / 2; // compensate for gravity
