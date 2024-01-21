@@ -15,7 +15,7 @@ jobs:
         run: echo "name=$(jq -r '.name' repo/manifest.json)" >> "$GITHUB_OUTPUT"
       # create archives
       - name: Create inner archive
-        run: tar -cJf ${{ steps.parse.outputs.name }}.tar.xz --exclude='.[^/]*' --exclude=manifest.json -C repo .
+        run: tar -cJf ${{ steps.parse.outputs.name }}.tar.xz --exclude='.[^/]*' --exclude=manifest.json --exclude=_master.cache -C repo .
       - name: Create outer archive
         run: tar -cf ${{ steps.parse.outputs.name }}.sppkg ${{ steps.parse.outputs.name }}.tar.xz -C repo manifest.json
       # publish artifacts
