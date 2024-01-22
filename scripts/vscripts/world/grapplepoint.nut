@@ -47,7 +47,7 @@ class Grapple {
                 break;
 
             // check if any objects obstruct the grapple point
-            local trace = ppmod.ray(::player.GetOrigin(), this.position);
+            local trace = ppmod.ray(::player.GetOrigin(), this.position - Vector(0, 0, 20.25));
             if (trace.fraction < 0.9)
                 break;
 
