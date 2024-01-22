@@ -29,6 +29,7 @@ class DashController {
         ::contr.airVelocity *= SLOWDOWN_FACTOR;
         ::contr.gravityVelocity *= SLOWDOWN_FACTOR;
         ::contr.grapple.velocity *= SLOWDOWN_FACTOR;
+        ::contr.slowdownMovement = Vector(0, 0, 0);
         this.isSlowdown = true;
         ::contr.stamina.canRegen = false;
 

@@ -22,6 +22,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         baseVelocity = Vector(0, 0, 0), // base velocity for movement
         airVelocity = Vector(0, 0, 0), // velocity applied throughout the air
         gravityVelocity = 0, // gravity velocity for z coordinate
+        slowdownMovement = Vector(0, 0, 0), // movement vector for slowdown
 
         onGround = false,
         isCrouched = false,
@@ -65,9 +66,11 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         local left = ::leftVec();
         local movement = ::movementVec();
 
-        if (inst.dash.isSlowdown)
-            inst.baseVelocity = left * movement.y * SLOWDOWN_ACCEL;
-        else if (onGround && inst.isCrouched)
+        if (inst.dash.isSlowdown) {
+            if (movement.Length() > 0)
+                inst.slowdownMovement = movement;
+            inst.baseVelocity = left * inst.slowdownMovement.y * SLOWDOWN_ACCEL;
+        } else if (onGround && inst.isCrouched)
             inst.baseVelocity = (inst.baseVelocity + forward * movement.x * GROUND_ACCEL + left * movement.y * GROUND_ACCEL) * 0.97;
         else
             inst.baseVelocity = (inst.baseVelocity + forward * movement.x * (onGround ? GROUND_ACCEL : AIR_ACCEL) + left * movement.y * (onGround ? GROUND_ACCEL : AIR_ACCEL)) * 0.85;
