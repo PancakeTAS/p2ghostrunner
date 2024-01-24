@@ -61,6 +61,8 @@ ppmod.onauto(function() {
             });
         }
 
+        ::init_fakecam();
+
         ::contr = PlayerController();
         ppmod.interval(function () {
 

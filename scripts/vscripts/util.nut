@@ -110,3 +110,34 @@ function movementVec() {
     SendToConsole("cl_backspeed " + speed);
     ::pplayer.gravity(speed / 175);
 }
+
+
+/**
+ * Initialize the angled camera
+ */
+::init_fakecam <- function () {
+    ::fakecam_roll <- 0.0;
+
+    ppmod.create("prop_dynamic").then(function (e) {
+        ::fakecam <- e;
+        e.SetOrigin(::player.GetOrigin() + Vector(0, 0, 64));
+        e.SetAngles(::eyes.GetAngles().x, ::eyes.GetAngles().y, 0);
+        ppmod.keyval(e, "rendermode", 10);
+    });
+
+    ppmod.interval(function () {
+        ::fakecam.SetAbsOrigin(::player.GetOrigin() + Vector(0, 0, 64));
+        ::fakecam.SetAngles(::eyes.GetAngles().x, ::eyes.GetAngles().y, ::fakecam_roll);
+    });
+}
+
+/**
+ * Set the player roll
+ */
+::set_roll <- function (roll) {
+    ::fakecam_roll = roll;
+    if (roll == 0)
+        SendToConsole("cl_view 1");
+    else
+        SendToConsole("cl_view " + ::fakecam.entindex());
+}

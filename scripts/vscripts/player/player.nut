@@ -131,6 +131,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
             inst.wallrun.timeoutPoint = ::player.GetOrigin();
             inst.wallrun.timeoutDirection = inst.wallrun.wall;
             inst.wallrun.timeout = 90;
+            ::set_roll(0.0);
             inst.wallrun.wall = null;
             ::player.EmitSound("Ghostrunner.Jump");
         }
