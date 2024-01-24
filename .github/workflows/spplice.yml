@@ -13,9 +13,6 @@ jobs:
       - name: Parse package name
         id: parse
         run: echo "name=$(jq -r '.name' repo/manifest.json)" >> "$GITHUB_OUTPUT"
-      # add snd_rebuildaudiocache to archive
-      - name: Add snd_rebuildaudiocache
-        run: echo snd_rebuildaudiocache >> repo/cfg/autoexec.cfg 
       # create archives
       - name: Create inner archive
         run: tar -cJf ${{ steps.parse.outputs.name }}.tar.xz --exclude='.[^/]*' --exclude=manifest.json --exclude=_master.cache -C repo .
