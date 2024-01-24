@@ -1,5 +1,6 @@
 // PRECACHE
-"CoopBot.CoopBotArmMotor" {
+"PortalPlayer.Woosh" {
+	"volume" "0.0"
 	"rndwave" {
 		"wave"	"ghostrunner/crouch_down/crouch_down_01.wav"
 		"wave"	"ghostrunner/crouch_down/crouch_down_02.wav"
@@ -31,7 +32,6 @@
 }
 
 // MUTE EXISTING SOUNDS
-"PortalPlayer.Woosh" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "PortalPlayer.WooshWooshyWoosh" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "Player.SlowTime_Stop" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "JumpLand.Tile" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
