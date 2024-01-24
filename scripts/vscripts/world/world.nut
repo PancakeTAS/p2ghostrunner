@@ -31,6 +31,21 @@ IncludeScript("world/grapplepoint");
 
         // initialize map specific controller
         inst.controller = MapController();
+
+        // create lazy prop collision updater
+        ppmod.interval(function () {
+            local collidables = [
+                "prop_weighted_cube",
+                "prop_physics",
+                "npc_security_camera",
+                "npc_portal_floor_turret"
+            ];
+            for (local i = 0; i < 4; i++) {
+                local ent = null;
+                while (ent = ppmod.get(collidables[i], ent))
+                    ppmod.keyval(ent, "collisiongroup", 2);
+            }
+        }, 1.0);
     }
 
     /**
@@ -39,19 +54,6 @@ IncludeScript("world/grapplepoint");
     inst.tick = function ():(inst) {
         // tick map specific controller
         inst.controller.tick();
-
-        // disable prop collision
-        local collidables = [
-            "prop_weighted_cube",
-            "prop_physics",
-            "npc_security_camera",
-            "npc_portal_floor_turret"
-        ];
-        for (local i = 0; i < 4; i++) {
-            local ent = null;
-            while (ent = ppmod.get(collidables[i], ent))
-                ppmod.keyval(ent, "collisiongroup", 2);
-        }
     }
 
     return inst;

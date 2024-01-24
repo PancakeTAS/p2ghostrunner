@@ -68,5 +68,4 @@ class Grapple {
         return this.position - ::player.GetOrigin();
     }
 
-
 }

@@ -27,7 +27,7 @@ function removePortalGun() {
 
 ppmod.onauto(function() {
 
-    // remove portal gun and adjust mixers
+    // remove portal gun
     SendToConsole("sv_cheats 1");
     removePortalGun();
 
@@ -46,9 +46,6 @@ ppmod.onauto(function() {
 
         // initialize world controller
         ::wcontr = WorldController();
-        ppmod.interval(function () {
-            ::wcontr.tick();
-        });
 
         // register inputs
         foreach(_, global in ["forward", "moveleft", "back", "moveright"]) {
@@ -61,18 +58,29 @@ ppmod.onauto(function() {
             });
         }
 
+        // initialize player controller
         ::init_fakecam();
-
         ::contr = PlayerController();
+
+        // create intervals for player and world controller
+        ::wasNoclipping <- true;
         ppmod.interval(function () {
 
-            // update player controller if player is not noclipping
-            if (::player.IsNoclipping()) {
+            // update world controller
+            ::wcontr.tick();
+
+            // check noclipping
+            local isNoclipping = ::player.IsNoclipping();
+            if (isNoclipping && !::wasNoclipping) {
                 ::set_speed(175);
-            } else {
+            } else if (!isNoclipping && ::wasNoclipping) {
                 ::set_speed(0);
-                ::contr.tick();
             }
+            ::wasNoclipping = isNoclipping;
+
+            // update player controller
+            if (!isNoclipping)
+                ::contr.tick();
 
         });
 
