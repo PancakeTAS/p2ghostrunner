@@ -19,16 +19,16 @@ class Stamina {
      */
     function tick() {
         // update the stamina text
-        local text = "";
-        if (stamina < MAX_STAMINA) {
-            for (local i = 0; i < (this.stamina / 5); i++)
-                text += "x";
-        }
+        local text = " ";
+        if (stamina < MAX_STAMINA)
+            for (local i = 0; i < this.stamina / 2.5; i++)
+                text += "_";
 
         if (!this._staminaText)
-            this._staminaText = ppmod.text("STAMINA", 0, 0);
+            this._staminaText = ppmod.text("STAMINA", -1, 0);
 
         this._staminaText.SetText(text);
+        this._staminaText.SetColor("64 255 255")
         this._staminaText.Display();
 
         // update the regen timeout
