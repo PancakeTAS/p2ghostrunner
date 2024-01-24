@@ -25,7 +25,7 @@ class Stamina {
                 text += "_";
 
         if (!this._staminaText)
-            this._staminaText = ppmod.text("STAMINA", -1, 0);
+            this._staminaText = ppmod.text("STAMINA", -1, 0.99);
 
         this._staminaText.SetText(text);
         this._staminaText.SetColor("64 255 255")
