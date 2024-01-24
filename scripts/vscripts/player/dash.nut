@@ -32,6 +32,7 @@ class DashController {
         ::contr.slowdownMovement = Vector(0, 0, 0);
         this.isSlowdown = true;
         ::contr.stamina.canRegen = false;
+        ::wcontr.freeze.freeze();
 
         // add player effects
         SendToConsole("mat_vignette_enable 1");
@@ -92,6 +93,7 @@ class DashController {
 
         // reset dash variables
         this.isSlowdown = false;
+        ::wcontr.freeze.unfreeze();
         this._cooldown = DASH_COOLDOWN;
         ::contr.stamina.consume(DASH_COST);
         ::contr.stamina.canRegen = true;

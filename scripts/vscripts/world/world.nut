@@ -1,4 +1,5 @@
 IncludeScript("world/grapplepoint");
+IncludeScript("world/freeze");
 
 /**
  * Main world controller class
@@ -8,6 +9,7 @@ IncludeScript("world/grapplepoint");
     local inst = {
 
         controller = null, // specific map controller
+        freeze = Freeze(), // freeze time
 
         // methods
         init = null,
