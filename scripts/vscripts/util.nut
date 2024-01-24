@@ -117,6 +117,7 @@ function movementVec() {
  */
 ::init_fakecam <- function () {
     ::fakecam_roll <- 0.0;
+    ::fakecam_offset <- 0.0;
 
     ppmod.create("prop_dynamic").then(function (e) {
         ::fakecam <- e;
@@ -126,8 +127,10 @@ function movementVec() {
     });
 
     ppmod.interval(function () {
-        ::fakecam.SetAbsOrigin(::player.GetOrigin() + Vector(0, 0, 64));
-        ::fakecam.SetAngles(::eyes.GetAngles().x, ::eyes.GetAngles().y, ::fakecam_roll);
+        ::fakecam.SetAbsOrigin(::player.GetOrigin() + Vector(0, 0, 64 + ::fakecam_offset));
+        local angles = ::eyes.GetAngles();
+        local anglesString = angles.x + " " + angles.y + " " + ::fakecam_roll;
+        ppmod.keyval(::fakecam, "angles", anglesString);
     });
 }
 
@@ -137,6 +140,17 @@ function movementVec() {
 ::set_roll <- function (roll) {
     ::fakecam_roll = roll;
     if (roll == 0)
+        SendToConsole("cl_view 1");
+    else
+        SendToConsole("cl_view " + ::fakecam.entindex());
+}
+
+/**
+ * Set the player camera offset
+ */
+::set_offset <- function (offset) {
+    ::fakecam_offset = offset;
+    if (offset == 0)
         SendToConsole("cl_view 1");
     else
         SendToConsole("cl_view " + ::fakecam.entindex());

@@ -55,10 +55,13 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         inst.wasOnGround = onGround;
 
         // check if player was crouching
-        if (!wasCrouched && isCrouched)
+        if (!wasCrouched && isCrouched) {
             ::player.EmitSound("Ghostrunner.Crouch_Down");
-        else if (wasCrouched && !isCrouched)
+            ::set_offset(-16.0);
+        } else if (wasCrouched && !isCrouched) {
             ::player.EmitSound("Ghostrunner.Crouch_Up");
+            ::set_offset(0.0);
+        }
         wasCrouched = isCrouched;
 
         // calculate movement velocity
