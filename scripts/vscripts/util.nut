@@ -118,15 +118,19 @@ function movementVec() {
 ::init_fakecam <- function () {
     ::fakecam_roll <- 0.0;
     ::fakecam_offset <- 0.0;
+    ::fakecam <- null;
 
     ppmod.create("prop_dynamic").then(function (e) {
-        ::fakecam <- e;
+        ::fakecam = e;
         e.SetOrigin(::player.GetOrigin() + Vector(0, 0, 64));
         e.SetAngles(::eyes.GetAngles().x, ::eyes.GetAngles().y, 0);
         ppmod.keyval(e, "rendermode", 10);
     });
 
     ppmod.interval(function () {
+        if (!::fakecam)
+            return;
+
         ::fakecam.SetAbsOrigin(::player.GetOrigin() + Vector(0, 0, 64 + ::fakecam_offset));
         local angles = ::eyes.GetAngles();
         local anglesString = angles.x + " " + angles.y + " " + ::fakecam_roll;
