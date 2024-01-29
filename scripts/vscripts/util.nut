@@ -71,8 +71,8 @@ function movementVec() {
     local left = ::leftVec() * 32;
 
     // check right wall
-    local r1 = ppmod.ray(origin - forward, origin - forward + left);
-    local r2 = ppmod.ray(origin + forward, origin + forward + left);
+    local r1 = ppmod.ray(origin - forward, origin - forward + left, ::cole);
+    local r2 = ppmod.ray(origin + forward, origin + forward + left, ::cole);
     if (r1.fraction < 1 && r2.fraction < 1) {
         local delta = r2.point - r1.point;
         delta.Norm();
@@ -85,8 +85,8 @@ function movementVec() {
     }
 
     // check left wall
-    r1 = ppmod.ray(origin - forward, origin - forward - left);
-    r2 = ppmod.ray(origin + forward, origin + forward - left);
+    r1 = ppmod.ray(origin - forward, origin - forward - left, ::cole);
+    r2 = ppmod.ray(origin + forward, origin + forward - left, ::cole);
     if (r1.fraction < 1 && r2.fraction < 1) {
         local delta = r2.point - r1.point;
         delta.Norm();

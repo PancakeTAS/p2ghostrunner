@@ -49,6 +49,19 @@ class MapController {
             ppmod.fire(e, "Open");
         });
 
+        // wall next to grapple
+        ppmod.create("a4_destruction/wallpanel_256_cdest.mdl").then(function (e) {
+            ::cole <- e; // there's no proper way to wallrun on entities yet
+            e.SetOrigin(Vector(440, 1900, 540));
+            e.SetAngles(0, -180, 0);
+        });
+        ppmod.create("a4_destruction/wallpanel_256_cdest.mdl").then(function (e) {
+            // apparently the collision decided not to rotate
+            e.SetOrigin(Vector(440 - 256, 1900, 540));
+            e.SetAngles(0, -180, 0);
+            ppmod.keyval(e, "RenderMode", 10);
+        });
+
         // move cube button
         local exitButton = ppmod.get("bt976-btn");
         exitButton.SetOrigin(Vector(1471.5, 391, 961));
