@@ -33,6 +33,9 @@ IncludeScript("world/freeze");
             case "workshop/2287332779813957889/1704848596":
                 IncludeScript("world/maps/tournament/week108");
                 break;
+            case "workshop/2280577380389249363/1704915328":
+                IncludeScript("world/maps/tournament/week109");
+                break;
             default:
                 IncludeScript("world/maps/default");
                 break;
