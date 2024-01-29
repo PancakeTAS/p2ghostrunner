@@ -1,0 +1,8 @@
+Patch
+	{
+	include "materials\week109\kill_c.vmt"
+	insert
+		{
+		$flowbounds "effects/fizzler_bounds_r"
+		}
+	}
