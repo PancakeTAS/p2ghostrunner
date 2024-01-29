@@ -29,6 +29,10 @@ IncludeScript("world/freeze");
             case "sp_a2_triple_laser":
                 IncludeScript("world/maps/sp_a2_triple_laser");
                 break;
+            // epochtal maps
+            case "workshop/2287332779813957889/1704848596":
+                IncludeScript("world/maps/epochtal/week108");
+                break;
             default:
                 IncludeScript("world/maps/default");
                 break;
