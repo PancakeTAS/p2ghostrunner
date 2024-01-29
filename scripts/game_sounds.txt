@@ -1,0 +1,430 @@
+// ========================
+//
+//
+// PRECACHE ALL SOUND FILES
+//
+//
+// ========================
+
+"PortalPlayer.Woosh" {
+	"volume" "0.0"
+	"rndwave" {
+		"wave"	"ghostrunner/crouch_down/crouch_down_01.wav"
+		"wave"	"ghostrunner/crouch_down/crouch_down_02.wav"
+		"wave"	"ghostrunner/crouch_down/crouch_down_03.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_01.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_02.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_03.wav"
+		"wave"	"ghostrunner/dash/dash_01.wav"
+		"wave"	"ghostrunner/dash/dash_02.wav"
+		"wave"	"ghostrunner/dash/dash_03.wav"
+		"wave"	"ghostrunner/dash_air_charge/dash_air_charge_01.wav"
+		"wave"	"ghostrunner/dash_air_charge/dash_air_charge_02.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_01.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_02.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_03.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_04.wav"
+		"wave"	"ghostrunner/jump/jump_01.wav"
+		"wave"	"ghostrunner/jump/jump_02.wav"
+		"wave"	"ghostrunner/jump/jump_03.wav"
+		"wave"	"ghostrunner/land/land_01.wav"
+		"wave"	"ghostrunner/land/land_02.wav"
+		"wave"	"ghostrunner/land/land_03.wav"
+		"wave"	"ghostrunner/grapple/grapple_01.wav"
+		"wave"	"ghostrunner/grapple/grapple_02.wav"
+		"wave"	"ghostrunner/grapple/grapple_03.wav"
+		"wave"	"ghostrunner/hook/hook_01.wav"
+		"wave"	"ghostrunner/slowdown/slowdown.wav"
+	}
+}
+
+// ========================
+//
+//
+//       MUTED SOUNDS
+//
+//
+// ========================
+
+"PortalPlayer.WooshWooshyWoosh" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Player.SlowTime_Stop" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"JumpLand.Tile" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"JumpLand.MetalGrate" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"JumpLand.HighVelocityImpact" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"JumpLand.HighVelocityImpactCeiling" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"MetalGrate.JumplandLg" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"BaseEntity.EnterWater" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"BaseEntity.ExitWater" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Lightbridge.ElectricStep" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Tile.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Tile.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Water.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Water.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Wade.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Wade.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"BrokenGlass.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"BrokenGlass.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Concrete.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Concrete.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Paint.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Paint.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Wood.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Wood.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Default.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Default.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"SolidMetal.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"SolidMetal.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"MetalGrate.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"MetalGrate.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"GlassFragments.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"GlassFragments.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Lightbridge.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Lightbridge.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+
+// ========================
+//
+//
+//  GHOSTRUNNER MOD SOUNDS
+//
+//
+// ========================
+
+"Ghostrunner.Crouch_Down" {
+	"rndwave" {
+		"wave"	"ghostrunner/crouch_down/crouch_down_01.wav"
+		"wave"	"ghostrunner/crouch_down/crouch_down_02.wav"
+		"wave"	"ghostrunner/crouch_down/crouch_down_03.wav"
+	}
+}
+
+"Ghostrunner.Crouch_Up" {
+	"rndwave" {
+		"wave"	"ghostrunner/crouch_up/crouch_up_01.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_02.wav"
+		"wave"	"ghostrunner/crouch_up/crouch_up_03.wav"
+	}
+}
+
+"Ghostrunner.Dash" {
+	"rndwave" {
+		"wave"	"ghostrunner/dash/dash_01.wav"
+		"wave"	"ghostrunner/dash/dash_02.wav"
+		"wave"	"ghostrunner/dash/dash_03.wav"
+	}
+}
+
+"Ghostrunner.Dash_Air_Charge" {
+	"rndwave" {
+		"wave"	"ghostrunner/dash_air_charge/dash_air_charge_01.wav"
+		"wave"	"ghostrunner/dash_air_charge/dash_air_charge_02.wav"
+	}
+}
+
+"Ghostrunner.StepDefault" {
+	"rndwave" {
+		"wave"	"ghostrunner/footsteps/footsteps_01.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_02.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_03.wav"
+		"wave"	"ghostrunner/footsteps/footsteps_04.wav"
+	}
+}
+
+"Ghostrunner.Jump" {
+	"rndwave" {
+		"wave"	"ghostrunner/jump/jump_01.wav"
+		"wave"	"ghostrunner/jump/jump_02.wav"
+		"wave"	"ghostrunner/jump/jump_03.wav"
+	}
+}
+
+"Ghostrunner.Land" {
+	"rndwave" {
+		"wave"	"ghostrunner/land/land_01.wav"
+		"wave"	"ghostrunner/land/land_02.wav"
+		"wave"	"ghostrunner/land/land_03.wav"
+	}
+}
+
+"Ghostrunner.Grapple" {
+	"rndwave" {
+		"wave"	"ghostrunner/grapple/grapple_01.wav"
+		"wave"	"ghostrunner/grapple/grapple_02.wav"
+		"wave"	"ghostrunner/grapple/grapple_03.wav"
+	}
+}
+
+"Ghostrunner.Hook" {
+	"wave"	"ghostrunner/hook/hook_01.wav"
+}
+
+"Ghostrunner.Slowdown" {
+	"wave"	"ghostrunner/slowdown/slowdown.wav"
+}
+
+// ========================
+//
+//
+// PREVIOUS PORTAL 2 SOUNDS
+//
+//
+// ========================
+
+"Error"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_NONE"
+	"wave"		"error.wav"
+}
+
+"General.BurningFlesh"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"volume"		"0.45"
+	"wave"		"npc/headcrab/headcrab_burning_loop2.wav"
+}
+
+"General.BurningObject"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"wave"		"ambient/fire/fire_small_loop2.wav"
+}
+
+"General.StopBurning"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"rndwave"
+	{
+		"wave"		"ambient/fire/fire_small_loop_edit_01.wav"
+		"wave"		"ambient/fire/fire_small_loop_edit_02.wav"
+		"wave"		"ambient/fire/fire_small_loop_edit_03.wav"
+	}
+}
+
+"Hud.Hint"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_NONE"
+	"wave"		"ui/hint.wav"
+}
+
+"AI_BaseNPC.BodyDrop_Heavy"
+{
+	"channel"		"CHAN_BODY"
+	"soundlevel"		"SNDLVL_NORM"
+	"pitch"		"90"
+	"rndwave"
+	{
+		"wave"		"physics/flesh/flesh_impact_hard1.wav"
+		"wave"		"physics/flesh/flesh_impact_hard2.wav"
+		"wave"		"physics/flesh/flesh_impact_hard3.wav"
+		"wave"		"physics/flesh/flesh_impact_hard4.wav"
+		"wave"		"physics/flesh/flesh_impact_hard5.wav"
+		"wave"		"physics/flesh/flesh_impact_hard6.wav"
+	}
+}
+
+"AI_BaseNPC.BodyDrop_Light"
+{
+	"channel"		"CHAN_BODY"
+	"soundlevel"		"SNDLVL_NORM"
+	"volume"		"0.90"
+	"pitch"		"105"
+	"rndwave"
+	{
+		"wave"		"physics/flesh/flesh_impact_hard1.wav"
+		"wave"		"physics/flesh/flesh_impact_hard2.wav"
+		"wave"		"physics/flesh/flesh_impact_hard3.wav"
+		"wave"		"physics/flesh/flesh_impact_hard4.wav"
+		"wave"		"physics/flesh/flesh_impact_hard5.wav"
+		"wave"		"physics/flesh/flesh_impact_hard6.wav"
+	}
+}
+
+"AI_BaseNPC.SwishSound"
+{
+	"channel"		"CHAN_BODY"
+	"soundlevel"		"SNDLVL_NORM"
+	"wave"		"npc/zombie/claw_miss2.wav"
+}
+
+"AI_BaseNPC.SentenceStop"
+{
+	"channel"		"CHAN_VOICE"
+	"soundlevel"		"SNDLVL_IDLE"
+	"wave"		"common/null.wav"
+}
+
+"BaseCombatCharacter.CorpseGib"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"wave"		"physics/flesh/flesh_squishy_impact_hard2.wav"
+}
+
+"BaseCombatCharacter.StopWeaponSounds"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"wave"		"common/null.wav"
+}
+
+"BaseCombatCharacter.AmmoPickup"
+{
+	"channel"		"CHAN_ITEM"
+	"soundlevel"		"SNDLVL_NORM"
+	"wave"		"items/ammo_pickup.wav"
+}
+
+"BaseCombatWeapon.WeaponDrop"
+{
+	"channel"		"CHAN_VOICE"
+	"soundlevel"		"SNDLVL_NORM"
+	"volume"		"0.80"
+	"pitch"		"95,110"
+	"rndwave"
+	{
+		"wave"		"physics/metal/weapon_impact_hard1.wav"
+		"wave"		"physics/metal/weapon_impact_hard2.wav"
+		"wave"		"physics/metal/weapon_impact_hard3.wav"
+	}
+}
+
+"BaseCombatWeapon.WeaponMaterialize"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"pitch"		"150"
+	"wave"		"items/suitchargeok1.wav"
+}
+
+"FX_RicochetSound.Ricochet"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.50,0.60"
+	"pitch"		"90,110"
+	"rndwave"
+	{
+		"wave"		"weapons/fx/rics/ric1.wav"
+		"wave"		"weapons/fx/rics/ric2.wav"
+		"wave"		"weapons/fx/rics/ric3.wav"
+		"wave"		"weapons/fx/rics/ric4.wav"
+		"wave"		"weapons/fx/rics/ric5.wav"
+	}
+}
+
+"BaseExplosionEffect.Sound"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_GUNFIRE"
+	"rndwave"
+	{
+		"wave"		"props/explosions/explo_generic_med_01.wav"
+		"wave"		"props/explosions/explo_generic_med_02.wav"
+		"wave"		"props/explosions/explo_generic_med_03.wav"
+		"wave"		"props/explosions/explo_generic_med_04.wav"
+		"wave"		"props/explosions/explo_generic_med_05.wav"
+		"wave"		"props/explosions/explo_generic_med_06.wav"
+	}
+}
+
+"Explo.Distant"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_GUNFIRE"
+	"rndwave"
+	{
+		"wave"		"props/explosions/explo_distant_med_01.wav"
+		"wave"		"props/explosions/explo_distant_med_02.wav"
+		"wave"		"props/explosions/explo_distant_med_03.wav"
+		"wave"		"props/explosions/explo_distant_med_04.wav"
+		"wave"		"props/explosions/explo_distant_med_05.wav"
+		"wave"		"props/explosions/explo_distant_med_06.wav"
+	}
+}
+
+"Explo.SemiDistant01"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_GUNFIRE"
+	"wave"		"props/explosions/a4_semi_distant_explosion_01.wav"
+	
+	"soundentry_version" "2"
+
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"import_stack" "p2_update_default"
+			
+			"mixer"
+			{
+				"mixgroup" "xLoud"
+			}
+		}
+	}
+}
+
+"Explo.SemiDistant02"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_GUNFIRE"
+	"wave"		"props/explosions/a4_semi_distant_explosion_02.wav"
+		
+	"soundentry_version" "2"
+
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"import_stack" "p2_update_default"
+			
+			"mixer"
+			{
+				"mixgroup" "xLoud"
+			}
+		}
+	}
+}
+
+"Splash.SplashSound"
+{
+	"channel"		"CHAN_AUTO"
+	"soundlevel"		"SNDLVL_NORM"
+	"volume"		"0.75"
+	"pitch"		"90,100"
+	"rndwave"
+	{
+		"wave"		"ambient/water/water_spray1.wav"
+		"wave"		"ambient/water/water_spray2.wav"
+		"wave"		"ambient/water/water_spray3.wav"
+	}
+}
+
+"PropaneTank.Burst"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_90dB"
+	"pitch"		"95,105"
+	"wave"		"ambient/fire/gascan_ignite1.wav"
+}
+
+"Default.Null"
+{
+	"channel"		"CHAN_BODY"
+	"soundlevel"		"SNDLVL_NORM"
+	"wave"		"common/null.wav"
+	"soundentry_version" "2"
+
+	"operator_stacks"
+	{
+		"start_stack"
+		{
+			"import_stack" 	"P2_null_start" //don't try to play wave			
+		}
+	}
+}
+
