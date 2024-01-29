@@ -9,15 +9,21 @@ class Freeze {
      * Unfreeze all entities
      */
     function unfreeze() {
-        for (local i = 0; i < this.frozen.len(); i++)
-            ppmod.keyval(this.frozen[i].entity, "MoveType", 6);
+        for (local i = 0; i < this.frozen.len(); i++) {
+            local ent = this.frozen[i].entity;
+            if (ent && typeof ent == "instance" && ent instanceof CBaseEntity && ent.IsValid())
+                ppmod.keyval(ent, "MoveType", 6);
+        }
         
         // love vphysics
         ppmod.wait(function ():(frozen) {
             for (local i = 0; i < frozen.len(); i++) {
-                frozen[i].entity.SetOrigin(frozen[i].position);
-                frozen[i].entity.SetAngles(frozen[i].rotation.x, frozen[i].rotation.y, frozen[i].rotation.z);
-                frozen[i].entity.SetVelocity(frozen[i].velocity);
+                local ent = frozen[i].entity;
+                if (ent && typeof ent == "instance" && ent instanceof CBaseEntity && ent.IsValid() && frozen[i].position && frozen[i].rotation && frozen[i].velocity) {
+                    ent.SetOrigin(frozen[i].position);
+                    ent.SetAngles(frozen[i].rotation.x, frozen[i].rotation.y, frozen[i].rotation.z);
+                    ent.SetVelocity(frozen[i].velocity);
+                }
             }
             ::wcontr.freeze.frozen.clear();
         }, 0.02);
@@ -41,9 +47,9 @@ class Freeze {
                 ppmod.keyval(ent, "MoveType", 4);
                 this.frozen.append({
                     entity = ent,
-                    velocity = ent.GetVelocity(),
-                    position = ent.GetOrigin(),
-                    rotation = ent.GetAngles()
+                    velocity = ent.GetVelocity() + Vector(0, 0, 0)
+                    position = ent.GetOrigin() + Vector(0, 0, 0),
+                    rotation = ent.GetAngles() + Vector(0, 0, 0)
                 });
                 ent.SetVelocity(ent.GetVelocity() * SLOWDOWN_FACTOR * 60);
             }
