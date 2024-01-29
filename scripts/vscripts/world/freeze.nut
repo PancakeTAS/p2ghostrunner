@@ -44,6 +44,9 @@ class Freeze {
         for (local i = 0; i < 4; i++) {
             local ent = null;
             while (ent = ppmod.get(freezables[i], ent)) {
+                if (ent.GetName() == "grapple")
+                    continue;
+
                 ppmod.keyval(ent, "MoveType", 4);
                 this.frozen.append({
                     entity = ent,
