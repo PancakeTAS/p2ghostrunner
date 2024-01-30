@@ -20,7 +20,16 @@ class DashController {
 
         // check if player should dash immediately
         if (::contr.onGround) {
-            this.dash();
+            local m = ::movementVec();
+            if (m.Length() < 0.1)
+                return;
+            
+            local f = ::forwardVec();
+            local angle = atan2(m.y * -1, m.x);
+            local cosAngle = cos(angle);
+            local sinAngle = sin(angle);
+            local dir = Vector(f.x * cosAngle - f.y * sinAngle, f.x * sinAngle + f.y * cosAngle, 0);
+            this.dash(dir);
             ::player.EmitSound("Ghostrunner.Dash");
             return;
         }
@@ -48,7 +57,7 @@ class DashController {
             return;
 
         // dash player
-        this.dash();
+        this.dash(::forwardVec());
         ::player.EmitSound("Ghostrunner.Dash_Air_Charge");
     }
 
@@ -77,7 +86,7 @@ class DashController {
             ::contr.stamina.consume(SLOWDOWN_COST);
 
             if (::contr.stamina.stamina <= 0) {
-                this.dash();
+                this.dash(::forwardVec());
                 ::player.EmitSound("Ghostrunner.Dash_Air_Charge");
             }
         }
@@ -88,8 +97,8 @@ class DashController {
     /**
      * Dash the player
      */
-    function dash() {
-        dashVelocity = ::forwardVec() * DASH_SPEED;
+    function dash(dir) {
+        dashVelocity = dir * DASH_SPEED;
 
         // reset dash variables
         this.isSlowdown = false;
