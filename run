@@ -1,0 +1,64 @@
+#!/bin/bash
+
+PORTAL2="$(eval echo ~$USER)/.local/share/Steam/steamapps/common/Portal 2"
+MOD="$PORTAL2/portal2_tempcontent"
+DIR="$(pwd)"
+
+# Build a package instead
+if [[ $1 == "package" ]]; then
+    echo Cleaning up previous package...
+    rm -rf _package
+
+    # Create the package structure
+    echo Creating package structure...
+    mkdir _package
+    mkdir -p _package/scripts/vscripts
+    cp -r src/* _package/scripts/vscripts/
+    cp -r configs _package/cfg
+    cp -r scripts/* _package/scripts/
+    vpk -cv 1 -c vpk/ _package/pak01_dir.vpk
+
+    # Create the packages
+    echo Creating packages...
+    tar -cJf p2ghostrunner.tar.xz -C _package .
+    tar -cf p2ghostrunner.sppkg p2ghostrunner.tar.xz manifest.json
+
+    # Cleanup
+    echo Cleaning up...
+    rm -rf _package
+    rm p2ghostrunner.tar.xz
+
+    echo Done!
+    exit 0
+fi
+
+# Cleanup previous environments
+echo "Cleaning up previous environment..."
+rm -rf "$MOD"
+rm -f "$DIR/scripts/vscripts"
+
+if [[ $1 == "clean" ]]; then
+    exit 0
+fi
+
+# Prepare the environment
+echo "Preparing the environment..."
+mkdir -p "$MOD/maps/soundcache/"
+ln -s "$PORTAL2/portal2_dlc2/maps/soundcache/_master.cache" "$MOD/maps/soundcache/_master.cache"
+
+# Link the resources
+echo "Linking the resources..."
+ln -s "$DIR/configs/" "$MOD/cfg"
+ln -s "$DIR/scripts/" "$MOD/scripts"
+
+# Link the sources
+echo "Linking the sources..."
+ln -s "$DIR/src" "$DIR/scripts/vscripts"
+
+# Create the package (pipx install vpk)
+echo "Creating the package..."
+vpk -cv 1 -c "$DIR/vpk/" "$MOD/pak01_dir.vpk"
+
+# Launch portal 2
+echo "Launching Portal 2..."
+steam -applaunch 620 -tempcontent -netconport 22333 +host_writeconfig _spplicetmp
