@@ -8,19 +8,21 @@ jobs:
       # checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
+      # install dependencies
+      - name: Setup python
+        uses: actions/setup-python@v5
         with:
-          path: repo
-      - name: Parse package name
-        id: parse
-        run: echo "name=$(jq -r '.name' repo/manifest.json)" >> "$GITHUB_OUTPUT"
-      # create archives
-      - name: Create inner archive
-        run: tar -cJf ${{ steps.parse.outputs.name }}.tar.xz --exclude='.[^/]*' --exclude=manifest.json --exclude=_master.cache --exclude=pak01_dir/ -C repo .
-      - name: Create outer archive
-        run: tar -cf ${{ steps.parse.outputs.name }}.sppkg ${{ steps.parse.outputs.name }}.tar.xz -C repo manifest.json
+          python-version: 3.12
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install vpk
+      # create package
+      - name: Build package
+        run: bash run package
       # publish artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Spplice Package (unzip first)
-          path: ${{ steps.parse.outputs.name }}.sppkg
+          path: p2ghostrunner.sppkg
