@@ -36,6 +36,7 @@ fi
 echo "Cleaning up previous environment..."
 rm -rf "$MOD"
 rm -f "$DIR/scripts/vscripts"
+pkill -9 -f "portal2_linux"
 
 if [[ $1 == "clean" ]]; then
     exit 0
@@ -59,6 +60,22 @@ ln -s "$DIR/src" "$DIR/scripts/vscripts"
 echo "Creating the package..."
 vpk -cv 1 -c "$DIR/vpk/" "$MOD/pak01_dir.vpk"
 
-# Launch portal 2
-echo "Launching Portal 2..."
-steam -applaunch 620 -tempcontent -netconport 22333 +host_writeconfig _spplicetmp
+# Game loop
+echo "Waiting for keypress..."
+until read -s -n 1 -t 0.01; do
+    sleep 1
+
+    # Restart portal 2 if it's not running
+    if ! pgrep -x "portal2_linux" > /dev/null; then
+        echo "Portal 2 is not running, restarting..."
+        steam -applaunch 620 -tempcontent
+        sleep 2
+    fi
+
+done
+
+# Cleanup
+echo "Cleaning up..."
+rm -rf "$MOD"
+rm -f "$DIR/scripts/vscripts"
+pkill -9 -f "portal2_linux"

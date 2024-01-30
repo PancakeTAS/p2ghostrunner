@@ -23,9 +23,6 @@ IncludeScript("world/freeze");
     inst.init = function ():(inst) {
         // include map specific code
         switch (GetMapName()) {
-            case "sp_a1_intro1":
-                IncludeScript("world/maps/sp_a1_intro1");
-                break;
             case "sp_a2_triple_laser":
                 IncludeScript("world/maps/sp_a2_triple_laser");
                 break;
