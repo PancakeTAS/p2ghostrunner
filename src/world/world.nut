@@ -26,6 +26,24 @@ IncludeScript("world/freeze");
             case "sp_a2_triple_laser":
                 IncludeScript("world/maps/sp_a2_triple_laser");
                 break;
+            case "sp_a1_intro4":
+                IncludeScript("world/maps/sp_a1_intro4");
+                break;
+            case "sp_a1_intro5":
+                IncludeScript("world/maps/sp_a1_intro5");
+                break;
+            case "sp_a1_intro6":
+                IncludeScript("world/maps/sp_a1_intro6");
+                break;
+            case "sp_a1_intro7":
+                IncludeScript("world/maps/sp_a1_intro7");
+                break;
+            case "sp_a1_wakeup":
+                IncludeScript("world/maps/sp_a1_wakeup");
+                break;
+            case "sp_a2_intro":
+                IncludeScript("world/maps/sp_a2_intro");
+                break;
             default:
                 IncludeScript("world/maps/default");
                 break;
