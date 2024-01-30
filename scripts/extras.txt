@@ -1,0 +1,20 @@
+"Extras"
+{
+
+        "Normal"
+        {
+                "title"         "Normal Playthrough"
+                "subtitle"      "Just Portal 2 with GR Movement"
+                "command"         "exec normal"
+                "pic"           "vgui/chapters/chapter1"
+        }
+
+        "Debug"
+        {
+                "title"         "Triple Laser"
+                "subtitle"      "Testing map"
+                "command"         "exec debug"
+                "pic"           "vgui/extras/attract01"
+        }
+
+}
