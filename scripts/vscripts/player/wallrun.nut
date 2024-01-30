@@ -32,7 +32,7 @@ class WallrunController {
         this.prevPos = origin;
 
         // check wallrunning
-        if (movement.x > 0 && !onGround) {
+        if (movement.x > 0 && !onGround && !::contr.dash.isSlowdown) {
             local ray = ::wall();
             if (ray) {
                 local wallVec = ray.up * 350;

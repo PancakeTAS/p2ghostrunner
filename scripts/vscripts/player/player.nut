@@ -128,7 +128,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
             ::player.EmitSound("Ghostrunner.Jump");
         }
 
-        if (inst.wallrun.wall) {
+        if (inst.wallrun.wall && !inst.dash.isSlowdown) {
             inst.gravityVelocity = JUMP_FORCE;
             inst.airVelocity = ::forwardVec() * 125;
             inst.wallrun.timeoutPoint = ::player.GetOrigin();
