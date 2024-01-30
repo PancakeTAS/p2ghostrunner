@@ -32,6 +32,15 @@ function movementVec() {
 }
 
 /**
+ * Get the raw normalized movement vector based on the players controls
+ */
+function rawMovementVec() {
+    local vec = Vector(::forward ? 1 : (::back ? -1 : 0), ::moveleft ? -1 : (::moveright ? 1 : 0));
+    vec.Norm();
+    return vec;
+}
+
+/**
  * Clamp vector to max length
  */
 ::clamp_len <- function(vector, max) {

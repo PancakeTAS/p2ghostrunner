@@ -20,7 +20,7 @@ class DashController {
 
         // check if player should dash immediately
         if (::contr.onGround) {
-            local m = ::movementVec();
+            local m = ::rawMovementVec();
             if (m.Length() < 0.1)
                 return;
             
