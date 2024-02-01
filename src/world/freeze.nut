@@ -44,7 +44,7 @@ class Freeze {
         for (local i = 0; i < 4; i++) {
             local ent = null;
             while (ent = ppmod.get(freezables[i], ent)) {
-                if (ent.GetName() == "grapple")
+                if (ent.GetName().find("rapple")) // (grapple) i love squirrel
                     continue;
 
                 ppmod.keyval(ent, "MoveType", 4);

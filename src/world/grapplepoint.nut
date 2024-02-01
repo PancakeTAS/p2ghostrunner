@@ -13,17 +13,18 @@ class Grapple {
     /**
      * Initialize a grapple point
      */
-    constructor(position, range) {
+    constructor(position, range, rotation = Vector(0, 0, 0)) {
         this.position = position;
         this.range = range;
 
         local inst = this;
-        ppmod.create("ent_create_portal_weighted_sphere").then(function (ent):(inst, position) {
+        ppmod.create("ent_create_portal_weighted_sphere").then(function (ent):(inst, position, rotation) {
             inst.sphere = ent;
-            ppmod.keyval(ent, "targetname", "grapple");
+            ppmod.keyval(ent, "targetname", "grapple" + ::grapples.len());
             ppmod.keyval(ent, "MoveType", 0);
             ppmod.keyval(ent, "collisiongroup", 1);
             ent.SetOrigin(position);
+            ent.SetAngles(rotation.x, rotation.y, rotation.z);
         });
 
         ::grapples.append(this);

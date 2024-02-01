@@ -39,34 +39,60 @@ class Hint {
         local e = this.ent;
 
         local trigger = ppmod.trigger(position, size);
-        ppmod.addscript(trigger, "OnStartTouch", function ():(e) {
-            // disable stamina
-            ::renderStamina = false;
-            ::contr.stamina._staminaText.ent.Destroy();
-            ::contr.stamina._staminaText = null;
-
-            // enable instructor
-            SendToConsole("gameinstructor_enable 1");
-
-            // show hint later
-            ppmod.wait(function():(e) {
-                ppmod.fire(e, "ShowHint");
-
-                // hide hint later
-                ppmod.wait(function():(e) {
-                    ppmod.fire(e, "HideHint");
-
-                    // disable instructor and enable stamina later
-                    ppmod.wait(function() {
-                        SendToConsole("gameinstructor_enable 0");
-                        ::renderStamina = true;
-                    }, 0.5);
-
-                }, 3);
-
-            }, 0.1);
-
+        ppmod.addscript(trigger, "OnStartTouch", function ():(e, show) {
+            show(e);
         });
+    }
+
+    /**
+     * Create a look trigger for the hint
+     */
+    function createLookTrigger(position, size, target) {
+        local e = this.ent;
+
+        local trigger = ppmod.trigger(position, size, "trigger_look");
+        ppmod.keyval(trigger, "target", target);
+        ppmod.keyval(trigger, "LookTime", 0.5);
+        ppmod.keyval(trigger, "FieldOfView", "20");
+        ppmod.addscript(trigger, "OnStartTouch", function ():(e, show) {
+            show(e);
+        });
+    }
+
+    /**
+     * Trigger the hint
+     */
+    function show(e) {
+        // disable stamina
+        ::renderStamina = false;
+        local stamina = ::contr.stamina._staminaText;
+        if (stamina) {
+            if (stamina.ent)
+                stamina.ent.Destroy();
+            ::contr.stamina._staminaText = null;
+        }
+
+        // enable instructor
+        SendToConsole("gameinstructor_enable 1");
+
+        // show hint later
+        ppmod.wait(function():(e) {
+            ppmod.fire(e, "ShowHint");
+
+            // hide hint later
+            ppmod.wait(function():(e) {
+                ppmod.fire(e, "HideHint");
+
+                // disable instructor and enable stamina later
+                ppmod.wait(function() {
+                    SendToConsole("gameinstructor_enable 0");
+                    ::renderStamina = true;
+                }, 0.5);
+
+            }, 3);
+
+        }, 0.1);
+
     }
 
 }
