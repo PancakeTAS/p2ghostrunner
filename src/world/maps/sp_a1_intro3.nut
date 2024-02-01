@@ -24,17 +24,28 @@ class MapController {
             // trigger dash hint
             local pgunTrigger = ppmod.trigger(Vector(92, 1942, -251), Vector(128, 128, 128));
             ppmod.addscript(pgunTrigger, "OnStartTouch", function ():(pgunHint) {
-                // remove pptext
+                // prepare show hint
                 ::renderStamina = false;
                 ::contr.stamina._staminaText.ent.Destroy();
                 ::contr.stamina._staminaText = null;
+                SendToConsole("gameinstructor_enable 1");
 
-                ppmod.fire(pgunHint, "ShowHint");
+                // show hint
+                ppmod.wait(function():(pgunHint) {
+                    ppmod.fire(pgunHint, "ShowHint");
 
-                ppmod.wait(function ():(pgunHint) {
-                    ppmod.fire(pgunHint, "EndHint");
-                    ::renderStamina = true;
-                }, 5);
+                    ppmod.wait(function ():(pgunHint) {
+                        // prepare hide hint
+                        ppmod.fire(pgunHint, "EndHint");
+
+                        // hide hint
+                        ppmod.wait(function() {
+                            SendToConsole("gameinstructor_enable 0");
+                            ::renderStamina = true;
+                        }, 0.5);
+                    }, 5);
+                }, 0.2);
+                
             });
         }, 1);
     }
