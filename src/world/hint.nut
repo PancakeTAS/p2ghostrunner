@@ -13,6 +13,8 @@ class Hint {
         ppmod.keyval(this.ent, "hint_static", 1);
         ppmod.keyval(this.ent, "hint_caption", text);
         ppmod.keyval(this.ent, "hint_color", "255 255 255");
+
+        SendToConsole("gameinstructor_enable 1");
     }
 
     /**
@@ -72,26 +74,13 @@ class Hint {
             ::contr.stamina._staminaText = null;
         }
 
-        // enable instructor
-        SendToConsole("gameinstructor_enable 1");
+        ppmod.fire(e, "ShowHint");
 
-        // show hint later
+        // hide hint later
         ppmod.wait(function():(e) {
-            ppmod.fire(e, "ShowHint");
-
-            // hide hint later
-            ppmod.wait(function():(e) {
-                ppmod.fire(e, "HideHint");
-
-                // disable instructor and enable stamina later
-                ppmod.wait(function() {
-                    SendToConsole("gameinstructor_enable 0");
-                    ::renderStamina = true;
-                }, 0.5);
-
-            }, 3);
-
-        }, 0.1);
+            ppmod.fire(e, "HideHint");
+            ::renderStamina = true;
+        }, 3);
 
     }
 

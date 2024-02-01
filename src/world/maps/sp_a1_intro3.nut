@@ -21,6 +21,10 @@ class MapController {
             local grappleHint = Hint("Press e to grapple");
             grappleHint.setBinding("alt2");
             grappleHint.createLookTrigger(Vector(-1004.156, 2558.428, 56), Vector(450, 100, 200), grapple.sphere.GetName());
+
+            local wallrunHint = Hint("Jump on the wall to wallrun");
+            wallrunHint.setBinding("jump");
+            wallrunHint.createTrigger(Vector(-1341, 2861, -128), Vector(150, 75, 10));
         }, 1);
     }
 
