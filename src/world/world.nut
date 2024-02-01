@@ -1,4 +1,5 @@
 IncludeScript("world/grapplepoint");
+IncludeScript("world/hint");
 IncludeScript("world/freeze");
 
 /**
