@@ -12,6 +12,8 @@ const GROUND_ACCEL = 100; // acceleration applied to the player when on the grou
 const AIR_ACCEL = 75; // ... in the air
 const SLOWDOWN_ACCEL = 175; // ... when dashing
 
+::on_jump <- function() {};
+
 /**
  * Main player controller class
  */
@@ -138,6 +140,8 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
             inst.wallrun.wall = null;
             ::player.EmitSound("Ghostrunner.Jump");
         }
+
+        ::on_jump();
     }
 
     return inst;

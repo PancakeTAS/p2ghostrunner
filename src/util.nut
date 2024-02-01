@@ -127,6 +127,7 @@ function rawMovementVec() {
 ::init_fakecam <- function () {
     ::fakecam_roll <- 0.0;
     ::fakecam_offset <- 0.0;
+    ::fakecam_enable <- true;
     ::fakecam <- null;
 
     ppmod.create("prop_dynamic").then(function (e) {
@@ -151,6 +152,9 @@ function rawMovementVec() {
  * Set the player roll
  */
 ::set_roll <- function (roll) {
+    if (!::fakecam_enable)
+        return;
+
     ::fakecam_roll = roll;
     if (roll == 0)
         SendToConsole("cl_view 1");
@@ -162,6 +166,9 @@ function rawMovementVec() {
  * Set the player camera offset
  */
 ::set_offset <- function (offset) {
+    if (!::fakecam_enable)
+        return;
+
     ::fakecam_offset = offset;
     if (offset == 0)
         SendToConsole("cl_view 1");
