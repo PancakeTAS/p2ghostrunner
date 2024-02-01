@@ -35,6 +35,10 @@
 		"wave"	"ghostrunner/grapple/grapple_03.wav"
 		"wave"	"ghostrunner/hook/hook_01.wav"
 		"wave"	"ghostrunner/slowdown/slowdown.wav"
+
+		"wave"	"buttons/button_synth_positive_01.wav"
+		"wave"	"ambient/machines/synth_tick_tock_01.wav"
+		"wave"	"buttons/button_synth_negative_01.wav"
 	}
 }
 

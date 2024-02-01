@@ -35,13 +35,18 @@ class MapController {
                 }, 8);
 
             }, 0.2);
-        });
+        });     
 
         ppmod.button("prop_button", Vector(1136, 384, 658)).then(function (btn) {
-            btn.SetPermanent(true);
+            btn.SetDelay(2.0);
+            btn.SetTimer(true);
             btn.OnPressed(function () {
                 ppmod.fire("room_2_exit_door-proxy", "OnProxyRelay2");
+                ppmod.wait(function() {
+                    ppmod.fire("room_2_exit_door-proxy", "OnProxyRelay1");
+                }, 2.0);
             });
+
         });
     }
 
