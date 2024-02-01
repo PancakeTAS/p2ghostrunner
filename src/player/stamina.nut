@@ -4,6 +4,8 @@ const FULL_REGENERATION_TIMEOUT = 60.0; // 1 * 60.0; amount of ticks to wait bef
 const DASH_COST = 30; // stamina cost of dashing
 const SLOWDOWN_COST = 0.66666; // 40 / 60.0; stamina cost of slowdown
 
+::renderStamina <- true; // whether the stamina bar should be rendered
+
 /**
  * Stamina management class
  */
@@ -19,17 +21,19 @@ class Stamina {
      */
     function tick() {
         // update the stamina text
-        local text = " ";
-        if (stamina < MAX_STAMINA)
-            for (local i = 0; i < this.stamina / 2.5; i++)
-                text += "_";
+        if (::renderStamina) {
+            local text = " ";
+            if (stamina < MAX_STAMINA)
+                for (local i = 0; i < this.stamina / 2.5; i++)
+                    text += "_";
 
-        if (!this._staminaText)
-            this._staminaText = ppmod.text("STAMINA", -1, 0.99);
+            if (!this._staminaText)
+                this._staminaText = ppmod.text("STAMINA", -1, 0.99);
 
-        this._staminaText.SetText(text);
-        this._staminaText.SetColor("64 255 255")
-        this._staminaText.Display();
+            this._staminaText.SetText(text);
+            this._staminaText.SetColor("64 255 255")
+            this._staminaText.Display();
+        }
 
         // update the regen timeout
         if (this._regenTimeout-- > 0)
