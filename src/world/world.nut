@@ -71,7 +71,7 @@ IncludeScript("world/skip");
             for (local i = 0; i < 4; i++) {
                 local ent = null;
                 while (ent = ppmod.get(collidables[i], ent))
-                    ppmod.keyval(ent, "collisiongroup", 2);
+                    ent.collisionGroup = 2;
             }
         }, 1.0);
     }

@@ -135,7 +135,7 @@ function rawMovementVec() {
         ::fakecam = e;
         e.SetOrigin(::player.GetOrigin() + Vector(0, 0, 64));
         e.SetAngles(::eyes.GetAngles().x, ::eyes.GetAngles().y, 0);
-        ppmod.keyval(e, "rendermode", 10);
+        e.renderMode = 10;
     });
 
     ppmod.interval(function () {
@@ -144,8 +144,7 @@ function rawMovementVec() {
 
         ::fakecam.SetAbsOrigin(::player.GetOrigin() + Vector(0, 0, 64 + ::fakecam_offset));
         local angles = ::eyes.GetAngles();
-        local anglesString = angles.x + " " + angles.y + " " + ::fakecam_roll;
-        ppmod.keyval(::fakecam, "angles", anglesString);
+        ::fakecam.angles = angles.x + " " + angles.y + " " + ::fakecam_roll;
     });
 }
 

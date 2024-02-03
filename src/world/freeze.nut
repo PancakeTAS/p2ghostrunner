@@ -12,7 +12,7 @@ class Freeze {
         for (local i = 0; i < this.frozen.len(); i++) {
             local ent = this.frozen[i].entity;
             if (ent && typeof ent == "instance" && ent instanceof CBaseEntity && ent.IsValid())
-                ppmod.keyval(ent, "MoveType", 6);
+                ent.moveType = 6;
         }
         
         // love vphysics
@@ -47,7 +47,7 @@ class Freeze {
                 if (ent.GetName().find("rapple")) // (grapple) i love squirrel
                     continue;
 
-                ppmod.keyval(ent, "MoveType", 4);
+                ent.moveType = 4;
                 this.frozen.append({
                     entity = ent,
                     velocity = ent.GetVelocity() + Vector(0, 0, 0)

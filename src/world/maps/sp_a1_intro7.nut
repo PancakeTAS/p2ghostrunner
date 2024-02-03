@@ -13,7 +13,7 @@ class MapController {
         ppmod.create("linked_portal_door").then(function (e) {
             e.SetAngles(0, 0, 0);
             e.SetOrigin(Vector(393, 0, 1408));
-            ppmod.keyval(e, "targetname", "portal");
+            e.targetname = "portal";
             ppmod.fire(e, "SetPartner", "portal");
             ppmod.fire(e, "Open");
         });
@@ -22,7 +22,7 @@ class MapController {
         ppmod.create("linked_portal_door").then(function (e) {
             e.SetAngles(0, -180, -4);
             e.SetOrigin(Vector(-318, -702, 1297));
-            ppmod.keyval(e, "targetname", "portal");
+            e.targetname = "portal";
             ppmod.fire(e, "SetPartner", "portal");
             ppmod.fire(e, "Open");
         });

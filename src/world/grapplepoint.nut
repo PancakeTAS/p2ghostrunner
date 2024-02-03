@@ -20,9 +20,9 @@ class Grapple {
         local inst = this;
         ppmod.create("ent_create_portal_weighted_sphere").then(function (ent):(inst, position, rotation) {
             inst.sphere = ent;
-            ppmod.keyval(ent, "targetname", "grapple" + ::grapples.len());
-            ppmod.keyval(ent, "MoveType", 0);
-            ppmod.keyval(ent, "collisiongroup", 1);
+            ent.targetname = "grapple" + ::grapples.len();
+            ent.moveType = 0;
+            ent.collisionGroup = 1;
             ent.SetOrigin(position);
             ent.SetAngles(rotation.x, rotation.y, rotation.z);
         });

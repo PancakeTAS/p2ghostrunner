@@ -10,9 +10,9 @@ class Hint {
      */
     constructor(text) {
         this.ent = Entities.CreateByClassname("env_instructor_hint");
-        ppmod.keyval(this.ent, "hint_static", 1);
-        ppmod.keyval(this.ent, "hint_caption", text);
-        ppmod.keyval(this.ent, "hint_color", "255 255 255");
+        this.ent.hint_static = 1;
+        this.ent.hint_caption = text;
+        this.ent.hint_color = "255 255 255";
 
         SendToConsole("gameinstructor_enable 1");
     }
@@ -21,17 +21,17 @@ class Hint {
      * Set the target of the hint
      */
     function setTarget(target) {
-        ppmod.keyval(this.ent, "hint_target", target);
-        ppmod.keyval(this.ent, "hint_static", 0);
-        ppmod.keyval(this.ent, "hint_nooffscreen", 1);
+        this.ent.hint_target = target;
+        this.ent.hint_static = 0;
+        this.ent.hint_nooffscreen = 1;
     }
 
     /**
      * Set the binding of the hint
      */
     function setBinding(binding) {
-        ppmod.keyval(this.ent, "hint_binding", binding);
-        ppmod.keyval(this.ent, "hint_icon_onscreen", "use_binding");    
+        this.ent.hint_binding = binding;
+        this.ent.hint_icon_onscreen = "use_binding";
     }
 
     /**
@@ -53,9 +53,9 @@ class Hint {
         local e = this.ent;
 
         local trigger = ppmod.trigger(position, size, "trigger_look");
-        ppmod.keyval(trigger, "target", target);
-        ppmod.keyval(trigger, "LookTime", 0.5);
-        ppmod.keyval(trigger, "FieldOfView", "20");
+        trigger.target = target;
+        trigger.lookTime = 0.5;
+        trigger.fieldOfView = 20;
         ppmod.addscript(trigger, "OnStartTouch", function ():(e, show) {
             show(e);
         });
