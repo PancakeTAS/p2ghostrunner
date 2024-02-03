@@ -7,6 +7,8 @@ class MapController {
      * Initialize specific map
      */
     constructor() {
+        ::fakecam_enable = false;
+        
         // entry portal
         ppmod.create("linked_portal_door").then(function (e) {
             e.SetAngles(0, 0, 0);

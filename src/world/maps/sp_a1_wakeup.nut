@@ -7,6 +7,8 @@ class MapController {
      * Initialize specific map
      */
     constructor() {
+        ::fakecam_enable = false;
+
         ppmod.get(256).Destroy();
     }
 
