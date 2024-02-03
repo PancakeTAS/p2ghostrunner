@@ -26,7 +26,7 @@ class MapController {
         });
 
         // remove vphys clipbrush
-        ppmod.get(51).Destroy();
+        ppmod.get(Vector(688, -396, 210), 1, "func_clip_vphysics").Destroy();
     }
 
     /**

@@ -5,24 +5,26 @@ IncludeScript("world/world");
 IncludeScript("util");
 
 function removePortalGun() {
-    // remove portal gun
-    SendToConsole("ent_remove weapon_portalgun");
-    SendToConsole("ent_remove viewmodel");
+    local names = [
+        "weapon_portalgun",
+        "viewmodel",
+        "portalgun_button",
+        "portalgun",
+        "knockout-portalgun-spawn",
+        "player_near_portalgun"
+    ];
 
-    // remove portal gun prop
-    SendToConsole("ent_remove portalgun_button");
-    SendToConsole("ent_remove portalgun");
+    // remove portal gun entities
+    foreach (name in names) {
+        local ent = ppmod.get(name);
+        if (ent)
+            ent.Destroy();
+    }
 
-    // remove portal gun on underground
-    SendToConsole("ent_remove knockout-portalgun-spawn");
-
-    // remove portal gun on portal gun
-    local portalgun_trigger = Entities.FindByClassnameNearest("trigger_once", Vector(25.230, 1958.720, -299.0), 1.0)
+    // remove portal gun trigger on portal gun
+    local portalgun_trigger = ppmod.get(Vector(25.230, 1958.720, -299.0), 1.0, "trigger_once");
     if (portalgun_trigger)
         portalgun_trigger.Destroy();
-
-    // remove portal gun on incinerator
-    SendToConsole("ent_remove player_near_portalgun");
 }
 
 ppmod.onauto(function() {

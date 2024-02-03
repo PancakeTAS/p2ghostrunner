@@ -16,10 +16,9 @@ class MapController {
         ppmod.fire(ppmod.get("glass_pane_intact_model"), "Kill");
         ppmod.fire(ppmod.get("glass_pane_1_door_1_blocker"), "Kill");
         ppmod.fire(ppmod.get("glass_shard"), "Break");
-        ppmod.get(54).Destroy();
-        ppmod.get(69).Destroy();
-        ppmod.get(56).Destroy();
-        ppmod.get(84).Destroy();
+        ppmod.get(Vector(878, -528, 137), 1, "trigger_once").Destroy();
+        ppmod.get("section_2_trigger_portal_spawn_a2_rm3a").Destroy();
+        ppmod.get(Vector(884, -528, 4), 1, "trigger_once").Destroy();
     }
 
     /**
