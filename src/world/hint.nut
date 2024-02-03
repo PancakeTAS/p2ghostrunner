@@ -65,7 +65,7 @@ class Hint {
      * Trigger the hint
      */
     function show(e) {
-        if (!e.IsValid())
+        if (!e.IsValid()) // TODO: implement check
             return;
         
         SendToConsole("gameinstructor_enable 1");
@@ -81,12 +81,12 @@ class Hint {
 
         // show hint now
         ppmod.wait(function():(e) {
-            ppmod.fire(e, "ShowHint");
+            e.ShowHint();
         }, 0.1);
 
         // hide hint later
         ppmod.wait(function():(e) {
-            ppmod.fire(e, "HideHint");
+            e.HideHint();
             SendToConsole("gameinstructor_enable 0");
             ::renderStamina = true;
             e.Destroy();

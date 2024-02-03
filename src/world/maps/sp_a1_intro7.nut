@@ -14,8 +14,8 @@ class MapController {
             e.SetAngles(0, 0, 0);
             e.SetOrigin(Vector(393, 0, 1408));
             e.targetname = "portal";
-            ppmod.fire(e, "SetPartner", "portal");
-            ppmod.fire(e, "Open");
+            e.SetPartner("portal");
+            e.Open();
         });
 
         // exit portal
@@ -23,8 +23,8 @@ class MapController {
             e.SetAngles(0, -180, -4);
             e.SetOrigin(Vector(-318, -702, 1297));
             e.targetname = "portal";
-            ppmod.fire(e, "SetPartner", "portal");
-            ppmod.fire(e, "Open");
+            e.SetPartner("portal");
+            e.Open();
         });
 
         // trigger on exit portal
@@ -32,7 +32,7 @@ class MapController {
         local skip = this.skip;
         local skip_late = this.skip_late;
         ppmod.addscript(ent, "OnStartTouch", function ():(skip, skip_late) {
-            ppmod.fire(ppmod.get("door_0-testchamber_door"), "Close");
+            ppmod.fire("door_0-testchamber_door", "Close");
 
             Skip(5, skip, skip_late);
         });
@@ -42,8 +42,8 @@ class MapController {
      * Skip the intro cutscene (only works after ghost animation and before looking at the ceiling)
      */
     function skip() {
-        ppmod.fire(ppmod.get("bts_panel_door-lr_heavydoor_open"), "trigger");
-        ppmod.fire(ppmod.get("airlock_door-open_door"), "trigger");
+        ppmod.fire("bts_panel_door-lr_heavydoor_open", "trigger");
+        ppmod.fire("airlock_door-open_door", "trigger");
         ppmod.get("@sphere").Destroy();
         SendToConsole("snd_setmixer wheatleyVO mute 1");
     }

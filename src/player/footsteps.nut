@@ -10,6 +10,7 @@ class Footsteps {
      */
     constructor() {
         // wallrunning footsteps
+        // TODO: make more optimized
         ppmod.interval(function () {
             if (::contr.wallrun.wall)
                 ::player.EmitSound("Ghostrunner.StepDefault");

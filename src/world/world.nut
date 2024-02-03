@@ -61,6 +61,7 @@ IncludeScript("world/skip");
         inst.controller = MapController();
 
         // create lazy prop collision updater
+        // TODO: optimize
         ppmod.interval(function () {
             local collidables = [
                 "prop_weighted_cube",

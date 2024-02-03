@@ -14,10 +14,10 @@ class MapController {
             ppmod.fire("thats_the_spirit_relay", "Trigger");
             local ent;
             if (ent = ppmod.get("sphere_player_has_pressed_space_first"))
-                ppmod.fire(ent, "Trigger");
+                ent.Trigger();
             
             if (ent = ppmod.get("sphere_player_has_pressed_space_second"))
-                ppmod.fire(ent, "Trigger");
+                ent.Trigger();
         }
 
         // setup skip
@@ -29,8 +29,8 @@ class MapController {
      */
     function skip() {
         // stop intro cutscene
-        ppmod.fire(ppmod.get("camera_intro"), "teleporttoview");
-        ppmod.fire(ppmod.get("camera_intro"), "disable");
+        ppmod.fire("camera_intro", "teleporttoview");
+        ppmod.fire("camera_intro", "disable");
         ppmod.get("relay_intro_camera").Destroy();
         ppmod.get("good_morning_vcd").Destroy();
         ppmod.get("bend_at_the_knees_vcd").Destroy();

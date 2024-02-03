@@ -138,6 +138,7 @@ function rawMovementVec() {
         e.renderMode = 10;
     });
 
+    // TODO: optimize
     ppmod.interval(function () {
         if (!::fakecam)
             return;

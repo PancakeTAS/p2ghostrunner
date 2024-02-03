@@ -54,12 +54,12 @@ class Grapple {
                 break;
 
             if (!this.canGrapple)
-                ppmod.fire(this.sphere, "Skin", 1);
+                this.sphere.Skin(1);
             this.canGrapple = true;
             return;
         }
         if (this.canGrapple)
-            ppmod.fire(this.sphere, "Skin", 0);
+            this.sphere.Skin(0);
         this.canGrapple = false;
     }
 

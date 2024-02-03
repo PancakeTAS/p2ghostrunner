@@ -12,8 +12,8 @@ class MapController {
             e.SetAngles(0, -90, 0);
             e.SetOrigin(Vector(0, -765, 128));
             e.targetname = "portal";
-            ppmod.fire(e, "SetPartner", "portal");
-            ppmod.fire(e, "Open");
+            e.SetPartner("portal");
+            e.Open();
         });
 
         // exit portal
@@ -21,8 +21,8 @@ class MapController {
             e.SetAngles(0, 90, 0);
             e.SetOrigin(Vector(-384, -320, 128));
             e.targetname = "portal";
-            ppmod.fire(e, "SetPartner", "portal");
-            ppmod.fire(e, "Open");
+            e.SetPartner("portal");
+            e.Open();
         });
 
         // remove vphys clipbrush
