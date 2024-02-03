@@ -39,6 +39,7 @@
 		"wave"	"buttons/button_synth_positive_01.wav"
 		"wave"	"ambient/machines/synth_tick_tock_01.wav"
 		"wave"	"buttons/button_synth_negative_01.wav"
+		"wave"	"buttons/button_synth_negative_02.wav"	
 	}
 }
 
