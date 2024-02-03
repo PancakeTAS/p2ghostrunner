@@ -11,8 +11,6 @@ class MapController {
 
         // apple
         ::on_jump = function () {
-            printl("apple");
-
             ppmod.fire("thats_the_spirit_relay", "Trigger");
             local ent;
             if (ent = ppmod.get("sphere_player_has_pressed_space_first"))
