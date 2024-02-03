@@ -1,6 +1,7 @@
+IncludeScript("world/freeze");
 IncludeScript("world/grapplepoint");
 IncludeScript("world/hint");
-IncludeScript("world/freeze");
+IncludeScript("world/skip");
 
 /**
  * Main world controller class
