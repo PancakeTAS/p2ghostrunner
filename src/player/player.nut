@@ -126,6 +126,7 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
      */
     inst.jump = function():(inst) {
         if (inst.onGround && !inst.dash.isSlowdown) {
+            inst.onGround = false;
             inst.gravityVelocity = JUMP_FORCE;
             ::player.EmitSound("Ghostrunner.Jump");
         }
