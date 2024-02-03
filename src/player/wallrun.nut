@@ -38,7 +38,7 @@ class WallrunController {
                 local wallVec = ray.up * 350;
 
                 // check if either the timeout is over or the player is not wallrunning on the same wall
-                if ((this.timeout == 0 || !((this.timeoutDirection - wallVec).Length() < 1.0 || (this.timeoutDirection + wallVec).Length() < 1.0) || (this.timeoutPoint - ray.point).Length() >= 400.0) && !ray.ground) {
+                if ((this.timeout <= 0 || !((this.timeoutDirection - wallVec).Length() < 1.0 || (this.timeoutDirection + wallVec).Length() < 1.0) || (this.timeoutPoint - ray.point).Length() >= 400.0) && !ray.ground) {
                     ::set_roll(-10.0 * ray.side);
                     this.wall = wallVec;
                     return wallVec + ::leftVec() * ((ray.side == 1) ? 100 : -100);

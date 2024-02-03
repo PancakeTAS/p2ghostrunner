@@ -34,7 +34,7 @@ class GrappleController {
      */
     function onUsePress() {
         for (local i = 0; i < ::grapples.len(); i++) {
-            if (::grapples[i].canGrapple && this.cooldown == 0) {
+            if (::grapples[i].canGrapple && this.cooldown <= 0) {
                 this.cooldown = GRAPPLE_COOLDOWN;
                 ::player.EmitSound("Ghostrunner.Grapple");
 
