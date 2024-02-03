@@ -4,6 +4,7 @@
 class Hint {
 
     ent = null;
+    visible = false;
 
     /**
      * Initialize a hint
@@ -50,24 +51,26 @@ class Hint {
      * Create a look trigger for the hint
      */
     function createLookTrigger(position, size, target) {
-        local e = this.ent;
+        local inst = this;
 
         local trigger = ppmod.trigger(position, size, "trigger_look");
         trigger.target = target;
         trigger.lookTime = 0.5;
         trigger.fieldOfView = 20;
-        ppmod.addscript(trigger, "OnStartTouch", function ():(e, show) {
-            show(e);
+        ppmod.addscript(trigger, "OnStartTouch", function ():(inst) {
+            inst.show();
         });
     }
 
     /**
      * Trigger the hint
      */
-    function show(e) {
-        if (!e.IsValid()) // TODO: implement check
+    function show() {
+        local e = this.ent;
+        if (!e.IsValid() || this.visible)
             return;
         
+        this.visible = true;
         SendToConsole("gameinstructor_enable 1");
 
         // don't show stamina bar

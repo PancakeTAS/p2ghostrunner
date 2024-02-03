@@ -12,6 +12,7 @@ IncludeScript("world/skip");
 
         controller = null, // specific map controller
         freeze = Freeze(), // freeze time
+        collidableTicks = 0, // ticks since last collision group update
 
         // methods
         init = null,
@@ -59,22 +60,6 @@ IncludeScript("world/skip");
 
         // initialize map specific controller
         inst.controller = MapController();
-
-        // create lazy prop collision updater
-        // TODO: optimize
-        ppmod.interval(function () {
-            local collidables = [
-                "prop_weighted_cube",
-                "prop_physics",
-                "npc_security_camera",
-                "npc_portal_floor_turret"
-            ];
-            for (local i = 0; i < 4; i++) {
-                local ent = null;
-                while (ent = ppmod.get(collidables[i], ent))
-                    ent.collisionGroup = 2;
-            }
-        }, 1.0);
     }
 
     /**
@@ -84,6 +69,24 @@ IncludeScript("world/skip");
         // tick map specific controller
         if (inst.controller)
             inst.controller.tick();
+
+        // tick collision group updater
+        if (inst.collidableTicks++ >= 60) {
+            inst.collidableTicks = 0;
+            local collidables = [
+                "prop_weighted_cube",
+                "prop_physics",
+                "npc_security_camera",
+                "npc_portal_floor_turret"
+            ];
+            
+            for (local i = 0; i < 4; i++) {
+                local ent = null;
+                while (ent = ppmod.get(collidables[i], ent))
+                    ent.collisionGroup = 2;
+            }
+        }
+
     }
 
     return inst;

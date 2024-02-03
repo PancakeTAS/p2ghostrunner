@@ -4,23 +4,24 @@
 class Footsteps {
 
     step = 0; // step tick counter
-
-    /**
-     * Initialize footsteps
-     */
-    constructor() {
-        // wallrunning footsteps
-        // TODO: make more optimized
-        ppmod.interval(function () {
-            if (::contr.wallrun.wall)
-                ::player.EmitSound("Ghostrunner.StepDefault");
-        }, 0.26);
-    }
+    wallrunStep = 0; // wallrun step tick counter
 
     /**
      * Tick footsteps
      */
-    function tick(movement, onGround) {
+    function tick(movement, onGround, onWall) {
+        if (onWall) {
+            // increment wallrun step counter
+            if (this.wallrunStep++ >= 16) {
+                this.wallrunStep = 0;
+
+                // play wallrun footsteps
+                ::player.EmitSound("Ghostrunner.StepDefault");
+            }
+        } else {
+            this.wallrunStep = 15;
+        }
+
         // if player is not moving, reset step counter
         if (movement.Length() < 0.1 || !onGround) {
             this.step = 0;

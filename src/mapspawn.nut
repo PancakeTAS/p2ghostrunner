@@ -71,6 +71,9 @@ ppmod.onauto(function() {
             // update world controller
             ::wcontr.tick();
 
+            // update fake cam
+            ::update_fakecam();
+
             // check noclipping
             local isNoclipping = ::player.IsNoclipping();
             if (isNoclipping && !::wasNoclipping) {

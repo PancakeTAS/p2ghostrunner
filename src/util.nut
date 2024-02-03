@@ -137,16 +137,15 @@ function rawMovementVec() {
         e.SetAngles(::eyes.GetAngles().x, ::eyes.GetAngles().y, 0);
         e.renderMode = 10;
     });
+}
 
-    // TODO: optimize
-    ppmod.interval(function () {
-        if (!::fakecam)
-            return;
+::update_fakecam <- function() {
+    if (!::fakecam)
+        return;
 
-        ::fakecam.SetAbsOrigin(::player.GetOrigin() + Vector(0, 0, 64 + ::fakecam_offset));
-        local angles = ::eyes.GetAngles();
-        ::fakecam.angles = angles.x + " " + angles.y + " " + ::fakecam_roll;
-    });
+    ::fakecam.SetAbsOrigin(::player.GetOrigin() + Vector(0, 0, 64 + ::fakecam_offset));
+    local angles = ::eyes.GetAngles();
+    ::fakecam.angles = angles.x + " " + angles.y + " " + ::fakecam_roll;
 }
 
 /**

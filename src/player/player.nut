@@ -107,9 +107,9 @@ const SLOWDOWN_ACCEL = 175; // ... when dashing
         // tick modules
         inst.stamina.tick();
         velocity = inst.dash.tick(velocity);
-        inst.footsteps.tick(movement, onGround);
         velocity = inst.grapple.tick(velocity);
         local wall = inst.wallrun.tick(movement, gravityVelocity, onGround);
+        inst.footsteps.tick(movement, onGround, wall);
         if (wall) {
             velocity = wall;
             gravityVelocity = 0;
