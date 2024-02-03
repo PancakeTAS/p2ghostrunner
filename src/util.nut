@@ -128,6 +128,7 @@ function rawMovementVec() {
     ::fakecam_roll <- 0.0;
     ::fakecam_offset <- 0.0;
     ::fakecam_enable <- true;
+    ::fakecam_current <- false;
     ::fakecam <- null;
 
     ppmod.create("prop_dynamic").then(function (e) {
@@ -156,10 +157,12 @@ function rawMovementVec() {
         return;
 
     ::fakecam_roll = roll;
-    if (roll == 0)
+    if (roll == 0 && ::fakecam_current)
         SendToConsole("cl_view 1");
-    else
+    else if (roll != 0 && !::fakecam_current)
         SendToConsole("cl_view " + ::fakecam.entindex());
+
+    ::fakecam_current = (roll != 0);
 }
 
 /**
@@ -170,8 +173,10 @@ function rawMovementVec() {
         return;
 
     ::fakecam_offset = offset;
-    if (offset == 0)
+    if (offset == 0 && ::fakecam_current)
         SendToConsole("cl_view 1");
-    else
+    else if (offset != 0 && !::fakecam_current)
         SendToConsole("cl_view " + ::fakecam.entindex());
+
+    ::fakecam_current = (offset != 0);
 }
