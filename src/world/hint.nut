@@ -65,7 +65,12 @@ class Hint {
      * Trigger the hint
      */
     function show(e) {
-        // disable stamina
+        if (!e.IsValid())
+            return;
+        
+        SendToConsole("gameinstructor_enable 1");
+
+        // don't show stamina bar
         ::renderStamina = false;
         local stamina = ::contr.stamina._staminaText;
         if (stamina) {
@@ -74,12 +79,17 @@ class Hint {
             ::contr.stamina._staminaText = null;
         }
 
-        ppmod.fire(e, "ShowHint");
+        // show hint now
+        ppmod.wait(function():(e) {
+            ppmod.fire(e, "ShowHint");
+        }, 0.1);
 
         // hide hint later
         ppmod.wait(function():(e) {
             ppmod.fire(e, "HideHint");
+            SendToConsole("gameinstructor_enable 0");
             ::renderStamina = true;
+            e.Destroy();
         }, 3);
 
     }
