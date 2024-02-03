@@ -14,15 +14,15 @@ class MapController {
 
         // prepare hints
         ppmod.wait(function():(grapple) {
-            local dashHint = Hint("Press shift to dash");
+            local dashHint = Hint("Hold to enable sensory boost. Let go to dash");
             dashHint.setBinding("alt1");
             dashHint.createTrigger(Vector(92, 1942, -251), Vector(128, 128, 128));
 
-            local grappleHint = Hint("Press e to grapple");
+            local grappleHint = Hint("Look at the grapplepoint and tap grapple");
             grappleHint.setBinding("alt2");
             grappleHint.createLookTrigger(Vector(-1004.156, 2558.428, 56), Vector(450, 100, 200), grapple.sphere.GetName());
 
-            local wallrunHint = Hint("Jump on the wall to wallrun");
+            local wallrunHint = Hint("Jump towards the wall to wallrun");
             wallrunHint.setBinding("jump");
             wallrunHint.createTrigger(Vector(-1341, 2861, -128), Vector(150, 75, 10));
         }, 1);
