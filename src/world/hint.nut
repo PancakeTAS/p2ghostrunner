@@ -39,11 +39,11 @@ class Hint {
      * Create a trigger for the hint
      */
     function createTrigger(position, size) {
-        local e = this.ent;
+        local inst = this;
 
         local trigger = ppmod.trigger(position, size);
-        ppmod.addscript(trigger, "OnStartTouch", function ():(e, show) {
-            show(e);
+        ppmod.addscript(trigger, "OnStartTouch", function ():(inst) {
+            inst.show();
         });
     }
 
