@@ -80,7 +80,8 @@ IncludeScript("world/freeze");
      */
     inst.tick = function ():(inst) {
         // tick map specific controller
-        inst.controller.tick();
+        if (inst.controller)
+            inst.controller.tick();
     }
 
     return inst;
