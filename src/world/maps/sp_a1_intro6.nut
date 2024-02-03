@@ -25,10 +25,13 @@ class MapController {
                     ::contr.stamina._staminaText = null;
                 }
 
-                local text = ppmod.text("Thank you for volunteering in the advanced version!");
-                text.SetFade(1, 1, false);
-                text.SetColor("255 64 0")
-                text.Display(5);
+                // display text if player is close
+                if ((::player.GetOrigin() - ppmod.get("button_2-button").GetOrigin()).Length() < 400) {
+                    local text = ppmod.text("Thank you for volunteering in the advanced version!");
+                    text.SetFade(1, 1, false);
+                    text.SetColor("255 64 0")
+                    text.Display(5);
+                }
 
                 ppmod.wait(function () {
                     ::renderStamina = true;
