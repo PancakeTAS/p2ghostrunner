@@ -13,7 +13,7 @@ class GrappleController {
      */
     function tick(pVelocity) {
         if (this.cooldown > 0)
-            this.cooldown--;
+            this.cooldown -= 1 * (::contr.dash.isSlowdown ? SLOWDOWN_FACTOR : 1.0);
 
         // append fling velocity
         if (this.velocity.Length() / SLOWDOWN_FACTOR > 50.0 && ::contr.dash.isSlowdown) {

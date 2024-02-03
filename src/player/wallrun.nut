@@ -17,7 +17,7 @@ class WallrunController {
     function tick(movement, grav, onGround) {
         // decrease timeout
         if (this.timeout > 0)
-            this.timeout--;
+            this.timeout -= 1 * (::contr.dash.isSlowdown ? SLOWDOWN_FACTOR : 1.0);
 
         // check if wallrun failed
         local origin = ::player.GetOrigin();
