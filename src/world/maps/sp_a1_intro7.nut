@@ -27,12 +27,11 @@ class MapController {
 
         // trigger on exit portal
         local ent = ppmod.trigger(Vector(-418, -702, 1297), Vector(10, 100, 100));
-        local skip = this.skip;
-        local skip_late = this.skip_late;
-        ppmod.addscript(ent, "OnStartTouch", function ():(skip, skip_late) {
+        local inst = this;
+        ppmod.addscript(ent, "OnStartTouch", function ():(inst) {
             ppmod.fire("door_0-testchamber_door", "Close");
 
-            Skip(5, skip, skip_late);
+            Skip(5, inst.skip, inst.skip_late);
         });
     }
 

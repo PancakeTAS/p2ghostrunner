@@ -1,36 +1,27 @@
-// stamina values
-const MAX_STAMINA = 100;
-const DASH_COST = 30;
-const SENSORY_BOOST_COST = 0.66666; // 40.0 / 60.0
-// regen values
-const REGEN_STAMINA = 0.416666; // 25 / 60.0;
-const FULL_REGENERATION_TIMEOUT = 60.0; // 1 * 60.0
-
-::renderStamina <- true; // whether the stamina bar should be rendered
-// FIXME: this is a hack to make hints, etc. render properly
-
 /**
  * Stamina management class
  */
 class Stamina {
     
     /** Amount of stamina the player currently has */
-    stamina = MAX_STAMINA;
+    stamina = STAMINA_MAX;
     /** Whether the player can regenerate stamina */
     canRegen = true;
     /** Internal timeout in ticks until stamina regeneration applies again */
     _regenTimeout = 0;
     /** Internal text object for the stamina bar */
     _staminaText = null;
+    /** Internal variable for the stamina bar visibility */
+    _visibility = true;
 
     /**
      * Tick the stamina management class
      */
     function tick() {
         // update the stamina text
-        if (::renderStamina) {
+        if (this._visibility) {
             local text = " ";
-            if (this.stamina < MAX_STAMINA)
+            if (this.stamina < STAMINA_MAX)
                 for (local i = 0; i < this.stamina / 2.5; i++)
                     text += "_";
 
@@ -49,7 +40,7 @@ class Stamina {
         if (!this.canRegen)
             return;
 
-        this.stamina = min(MAX_STAMINA, this.stamina + REGEN_STAMINA);
+        this.stamina = min(STAMINA_MAX, this.stamina + STAMINA_REGEN);
     }
 
     /**
@@ -61,7 +52,18 @@ class Stamina {
         // set the regen timeout if necessary
         if (this.stamina <= 0) {
             this.stamina = 0;
-            this._regenTimeout = FULL_REGENERATION_TIMEOUT;
+            this._regenTimeout = STAMINA_FULL_REGEN_TIMEOUT;
+        }
+    }
+
+    /**
+     * Toggle stamina text
+     */
+    function toggleVisibility(visibility) {
+        this._visibility = visibility;
+        if (!visibility && this._staminaText) {
+            if (this._staminaText.ent.IsValid()) this._staminaText.ent.Destroy();
+            this._staminaText = null;
         }
     }
 

@@ -1,7 +1,3 @@
-// dash values
-const DASH_SPEED = 1000;
-const DASH_COOLDOWN = 30.0; // 0.5 * 60
-
 /**
  * Dash class
  */
@@ -49,7 +45,6 @@ class Dash {
             return;
 
         // dash the player
-        // FIXME: move to tick()?
         this.dash(::contr.physics.forward2d);
         ::player.EmitSound("Ghostrunner.Dash_Air_Charge");
     }
@@ -75,7 +70,6 @@ class Dash {
         if (this._cooldown > 0)
             this._cooldown--; // it's not possible to be in sensory boost and dash at the same time, so no need to decrease this timer
 
-        // FIXME: debate whether this should go to movement
         // consume stamina and check if player should dash
         if (::contr.movement.sensoryBoost) {
             ::contr.stamina.consume(SENSORY_BOOST_COST);

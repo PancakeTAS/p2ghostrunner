@@ -1,18 +1,3 @@
-// acceleration values
-const GROUND_ACCELERATION = 100;
-const AIR_ACCELERATION = 75;
-const SENSORY_BOOST_ACCELERATION = 175;
-// friction values
-const NORMAL_FRICTION = 0.85;
-const SLIDE_FRICTION = 0.97;
-// max velocity
-const BASE_VELOCITY_MAX = 275;
-// gravity
-const GRAVITY = 15;
-const JUMP_FORCE = 300;
-// multipliers
-const SENSORY_BOOST_FACTOR = 0.05;
-
 /**
  * Main movement controller class
  */
@@ -78,40 +63,34 @@ class Movement {
         // clamp base velocity to actual velocity
         local velocity = ::clamp_len(baseVelocity, BASE_VELOCITY_MAX);
         this._prevBaseVelocity = baseVelocity;
-
-        // FIXME: should base velocity have a wall check here?
         
         // calculate air strafing velocity
         if (::contr.physics.grounded) {
-
-            // FIXME: the last statement here needs to be double checked
-            // i'm not sure if dashVelocity can be anything other than 0
-            // note, if it can't, then dashVelocity should be private
-
             this._prevAirStrafeVelocity = (
                 ::contr.physics.forward2d * ::contr.inputs.movement.x * GROUND_ACCELERATION
                 + ::contr.physics.left2d * ::contr.inputs.movement.y * GROUND_ACCELERATION
                 + (::contr.inputs.crouched ? ::contr.dash.velocity * 0.5 : Vector(0, 0))
-            )
+            );
         } else {
             velocity += this._prevAirStrafeVelocity;
 
             // check if player hit a wall
-            // FIXME: should this be reset entirely, or multiplied by the walls forward vector?
             if (::check(velocity))
                 this._prevAirStrafeVelocity = Vector(0, 0);
         }
 
-        // apply gravity
-        if (::contr.physics.grounded) {
-            // FIXME: if the player is grounded how can gravity be above 0?
-            // ... i figured it out, it's because of jump(). even with the new input stuff
-            // that is still being called before this, so I need to delay it to here
-            if (this._gravity < 0)
-                this._gravity = -1;
+        // apply gravity including jump
+        if (::contr.inputs.jumped && !this.sensoryBoost && (::contr.physics.grounded || ::contr.wallrun.walljump())) {
+            this._gravity = JUMP_FORCE;
+            ::player.EmitSound("Ghostrunner.Jump");
+        } else if (::contr.physics.grounded) {
+            this._gravity = -1;
+        } else if (::contr.grapple.grappled && this.sensoryBoost) {
+            this._gravity -= GRAVITY * (SENSORY_BOOST_FACTOR / 60.0) / 2
+        } else if (::contr.grapple.grappled) {
+            this._gravity -= GRAVITY / 2;
         } else if (this.sensoryBoost) {
-            // FIXME: shouldn't there be parentheses around the latter
-            this._gravity -= GRAVITY * SENSORY_BOOST_FACTOR / 60.0; 
+            this._gravity -= GRAVITY * (SENSORY_BOOST_FACTOR / 60.0); 
         } else {
             this._gravity -= GRAVITY;
         }
@@ -125,40 +104,8 @@ class Movement {
      * Late tick player movement
      */
     function tick_end() {
-        // FIXME: can this be done in the tick function?
-        // or maybe even in wallrun.nut?
-        if (::contr.wallrun.wall) {
-            this.finalVelocity = ::contr.wallrun.wallVec;
-            this._gravity = 0;
-        }
-
         // apply the final velocity
         ::player.SetVelocity(this.finalVelocity);
-    }
-
-    /**
-     * Jump the player
-     */
-    function jump() {
-        // handle normal jump
-        if (::contr.physics.grounded && !this.sensoryBoost) {
-            this._gravity = JUMP_FORCE;
-            ::player.EmitSound("Ghostrunner.Jump");
-        }
-
-        if (::contr.wallrun.wall && !this.sensoryBoost) {
-            // FIXME: perhaps this should be a separate function
-            this._gravity = JUMP_FORCE;
-            this._prevAirStrafeVelocity = ::contr.physics.forward2d * 125;
-            ::contr.wallrun._cooldownPoint = ::contr.physics.origin;
-            ::contr.wallrun._cooldownDirection = ::contr.wallrun.wall;
-            ::contr.wallrun._cooldown = 90;
-            ::set_roll(0.0);
-            ::contr.wallrun.wall = null;
-            ::player.EmitSound("Ghostrunner.Jump");
-        }
-
-        // FIXME: implement jump event (outside of this)
     }
 
     /**
@@ -192,9 +139,9 @@ class Movement {
             return;
 
         // apply sensory boost to velocities
-        // FIXME: reapply the previous velocities (?)
         this.sensoryBoost = false;
-        this._prevAirStrafeVelocity = Vector(0, 0, 0);
+        this._prevAirStrafeVelocity /= SENSORY_BOOST_FACTOR;
+        ::contr.grapple.velocity /= SENSORY_BOOST_FACTOR
 
         // apply player effects
         SendToConsole("mat_vignette_enable 0");
@@ -205,6 +152,20 @@ class Movement {
 
         // apply world effects
         ::wcontr.freeze.unfreeze();
+    }
+
+    /**
+     * Override the player gravity
+     */
+    function overrideGravity(gravity) {
+        this._gravity = gravity;
+    }
+
+    /**
+     * Override the player air strafe velocity
+     */
+    function overrideAirStrafeVelocity(velocity) {
+        this._prevAirStrafeVelocity = velocity;
     }
 
 }

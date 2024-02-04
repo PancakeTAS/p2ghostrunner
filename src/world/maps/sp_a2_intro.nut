@@ -3,7 +3,7 @@
  */
 class MapController {
 
-    grapple = GrapplePoint(Vector(-769, 451, -10481.8), 1500);
+    grapple = null;
 
     /**
      * Initialize specific map
@@ -16,14 +16,14 @@ class MapController {
      * Late initialization once the player is loaded
      */
     function player_init() {
-    
+        this.grapple = GrapplePoint(Vector(-769, 451, -10481.8), 1500);
     }
 
     /**
      * Tick specific map
      */
     function tick() {
-        this.grapple.tick();
+        if (this.grapple) this.grapple.tick();
     }
 
 }

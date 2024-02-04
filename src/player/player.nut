@@ -1,14 +1,41 @@
+
+// acceleration values
+const GROUND_ACCELERATION = 100;
+const AIR_ACCELERATION = 75;
+// friction values
+const NORMAL_FRICTION = 0.85;
+const SLIDE_FRICTION = 0.97;
+// max velocity
+const BASE_VELOCITY_MAX = 275;
+// gravity
+const GRAVITY = 15;
+const JUMP_FORCE = 300;
+// sensory boost values
+const SENSORY_BOOST_FACTOR = 0.05;
+const SENSORY_BOOST_ACCELERATION = 175;
+const SENSORY_BOOST_COST = 0.66666; // 40.0 / 60.0
+// dash values
+const DASH_SPEED = 1000;
+const DASH_COST = 30;
+const DASH_COOLDOWN = 30.0; // 0.5 * 60
+// grapple values
+const GRAPPLE_COOLDOWN = 60;
+// wallrun values
+const WALLRUN_SPEED = 350;
+const WALLRUN_COOLDOWN = 60;
+// stamina values
+const STAMINA_MAX = 100;
+const STAMINA_REGEN = 0.416666; // 25 / 60.0;
+const STAMINA_FULL_REGEN_TIMEOUT = 60.0; // 1 * 60.0
+
 IncludeScript("player/interfaces/inputs");
 IncludeScript("player/interfaces/physics");
-// FIXME: order and constants
-IncludeScript("player/modules/stamina");
 IncludeScript("player/modules/dash");
-IncludeScript("player/movement");
-IncludeScript("player/modules/wallrun");
-IncludeScript("player/modules/grapple");
 IncludeScript("player/modules/footsteps");
-
-::on_jump <- function() {};
+IncludeScript("player/modules/grapple");
+IncludeScript("player/modules/stamina");
+IncludeScript("player/modules/wallrun");
+IncludeScript("player/movement");
 
 /**
  * Main player controller class
@@ -42,8 +69,8 @@ IncludeScript("player/modules/footsteps");
      */
     inst.init = function ():(inst) {
         // initialize interfaces
-        inst.inputs = Inputs();
         inst.physics = Physics();
+        inst.inputs = Inputs();
 
         // initialize movement
         inst.movement = Movement();
@@ -56,10 +83,6 @@ IncludeScript("player/modules/footsteps");
         inst.footsteps = Footsteps();
 
         // configure inputs
-        inst.inputs.jumpStart = function ():(inst) {
-            inst.movement.jump();
-        };
-
         inst.inputs.dashStart = function ():(inst) {
             inst.dash.startSensory();
         };
@@ -87,8 +110,8 @@ IncludeScript("player/modules/footsteps");
      */
     inst.tick = function ():(inst) {
         // tick interfaces
-        inst.inputs.tick();
         inst.physics.tick();
+        inst.inputs.tick();
 
         // tick movement
         inst.movement.tick();
@@ -102,6 +125,7 @@ IncludeScript("player/modules/footsteps");
 
         // end tick
         inst.movement.tick_end();
+        inst.inputs.tick_end();
         inst.physics.tick_end();
     }
 

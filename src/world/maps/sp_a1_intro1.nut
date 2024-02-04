@@ -9,9 +9,14 @@ class MapController {
     constructor() {
         // setup cutscene skip
         Skip(12, skip, skip_late);
+    }
 
-        // apple
-        ::on_jump = function () {
+    /**
+     * Late initialization once the player is loaded
+     */
+    function player_init() {
+        ::fakecam_enable = false;
+        ::contr.inputs.jumpStart = function () {
             ppmod.fire("thats_the_spirit_relay", "Trigger");
             local ent;
             if (ent = ppmod.get("sphere_player_has_pressed_space_first"))
@@ -20,13 +25,6 @@ class MapController {
             if (ent = ppmod.get("sphere_player_has_pressed_space_second"))
                 ent.Trigger();
         }
-    }
-
-    /**
-     * Late initialization once the player is loaded
-     */
-    function player_init() {
-        ::fakecam_enable = false;
     }
 
 

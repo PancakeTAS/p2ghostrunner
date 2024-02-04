@@ -12,7 +12,7 @@ class Skip {
      */
     constructor(duration, func1, func2) {
         // don't show stamina bar
-        ::renderStamina = false;
+        ::contr.stamina.toggleVisibility(false);
 
         // bind skip key
         this.skip_relay = func1;
@@ -46,11 +46,11 @@ class Skip {
         this.skip_relay();
 
         // call skip relay delay and show stamina bar
-        local relay2 = this.skip_relay_delay;
-        ppmod.wait(function ():(relay2) {
-            ::renderStamina = true;
-            if (relay2)
-                relay2();
+        local inst = this;
+        ppmod.wait(function ():(inst) {
+            ::contr.stamina.toggleVisibility(true);
+            if (inst.skip_relay_delay)
+                inst.skip_relay_delay();
         }, 0.1);
     }
 

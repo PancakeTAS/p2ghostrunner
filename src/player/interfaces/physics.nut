@@ -22,9 +22,9 @@ class Physics {
     /** Internal previous grounded state */
     _prevGrounded = false;
     /** Internal previous velocity */
-    _prevVelocity = Vector(0, 0, 0);
+    prevVelocity = Vector(0, 0, 0);
     /** Internal previous origin */
-    _prevOrigin = Vector(0, 0, 0);
+    prevOrigin = Vector(0, 0, 0);
 
     /**
      * Tick player physics
@@ -42,7 +42,7 @@ class Physics {
 
         // check ground state
         local engineVelocity = ::player.GetVelocity();
-        this.grounded = engineVelocity.z == 0 && this._prevVelocity.z < 0 && this._prevOrigin.z - this.origin.z < 0.1;
+        this.grounded = engineVelocity.z == 0 && this.prevVelocity.z < 0 && this.prevOrigin.z - this.origin.z < 0.1;
 
         // check for ground state change
         if (this.grounded != this._prevGrounded) {
@@ -59,8 +59,8 @@ class Physics {
      */
     function tick_end() {
         // update previous states
-        this._prevVelocity = ::contr.movement.finalVelocity;
-        this._prevOrigin = this.origin;
+        this.prevVelocity = ::contr.movement.finalVelocity;
+        this.prevOrigin = this.origin;
     }
 
 }

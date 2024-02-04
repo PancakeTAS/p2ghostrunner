@@ -16,17 +16,18 @@ class Freeze {
         }
         
         // love vphysics
-        ppmod.wait(function ():(frozen) {
-            for (local i = 0; i < frozen.len(); i++) {
-                local ent = frozen[i].entity;
-                if (ent && typeof ent == "instance" && ent instanceof CBaseEntity && ent.IsValid() && frozen[i].position && frozen[i].rotation && frozen[i].velocity) {
-                    ent.SetOrigin(frozen[i].position);
-                    ent.SetAngles(frozen[i].rotation.x, frozen[i].rotation.y, frozen[i].rotation.z);
-                    ent.SetVelocity(frozen[i].velocity);
+        local inst = this;
+        ppmod.wait(function ():(inst) {
+            foreach (entry in inst.frozen) {
+                local ent = entry.entity;
+                if (ent && typeof ent == "instance" && ent instanceof CBaseEntity && ent.IsValid() && entry.position && entry.rotation && entry.velocity) {
+                    ent.SetOrigin(entry.position);
+                    ent.SetAngles(entry.rotation.x, entry.rotation.y, entry.rotation.z);
+                    ent.SetVelocity(entry.velocity);
                 }
             }
-            ::wcontr.freeze.frozen.clear();
-        }, 0.02);
+            inst.frozen.clear();
+        }, 0.05);
 
     }
 

@@ -8,9 +8,9 @@ class MapController {
      */
     constructor() {
         // add skip to trigger
-        local skip = this.skip;
-        ppmod.addscript(ppmod.get("do_not_touch_anything_trigger"), "OnStartTouch", function ():(skip) {
-            Skip(5, skip, null);
+        local inst = this;
+        ppmod.addscript(ppmod.get("do_not_touch_anything_trigger"), "OnStartTouch", function ():(inst) {
+            Skip(5, inst.skip, null);
         });
     }
 

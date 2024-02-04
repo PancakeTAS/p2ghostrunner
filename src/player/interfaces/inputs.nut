@@ -11,6 +11,8 @@ class Inputs {
     dashing = false;
     /** Whether the player is currently holding down the using keybind */
     using = false;
+    /** Whether the player has jumped this tick */
+    jumped = false;
 
     /** Event function for when the player starts crouching */
     crouchStart = null;
@@ -33,8 +35,6 @@ class Inputs {
     _wasDashing = false;
     /** Internal state tracking for changes to the using keybind */
     _wasUsing = false;
-    /** Internal state tracking for whether the player has jumped this tick */
-    _jumped = false;
 
 
     /**
@@ -108,10 +108,14 @@ class Inputs {
         }
 
         // check for jump
-        if (this._jumped) {
-            if (this.jumpStart) this.jumpStart();
-            this._jumped = false;
-        }
+        if (this.jumped && this.jumpStart) this.jumpStart();
+    }
+
+    /**
+     * Late tick inputs
+     */
+    function tick_end() {
+        this.jumped = false;
     }
 
 }

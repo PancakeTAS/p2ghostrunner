@@ -74,26 +74,27 @@ class Hint {
         SendToConsole("gameinstructor_enable 1");
 
         // don't show stamina bar
-        ::renderStamina = false;
-        local stamina = ::contr.stamina._staminaText;
-        if (stamina) {
-            if (stamina.ent)
-                stamina.ent.Destroy();
-            ::contr.stamina._staminaText = null;
-        }
+        ::contr.stamina.toggleVisibility(false);
+
+        // set active hint
+        local inst = this;
+        ::latestHint <- inst;
 
         // show hint now
-        ppmod.wait(function():(e) {
-            e.ShowHint();
+        ppmod.wait(function():(inst) {
+            inst.ent.ShowHint();
         }, 0.1);
 
         // hide hint later
-        ppmod.wait(function():(e) {
-            e.HideHint();
-            SendToConsole("gameinstructor_enable 0");
-            ::renderStamina = true;
-            e.Destroy();
-        }, 3);
+        ppmod.wait(function():(inst) {
+            inst.ent.HideHint();            
+            inst.ent.Destroy();
+
+            if (::latestHint == inst) {
+                SendToConsole("gameinstructor_enable 0");
+                ::contr.stamina.toggleVisibility(true);
+            }
+        }, 5);
 
     }
 

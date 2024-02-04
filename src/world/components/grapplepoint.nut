@@ -18,12 +18,12 @@ class GrapplePoint {
         this.range = range;
 
         local inst = this;
-        ppmod.create("ent_create_portal_weighted_sphere").then(function (ent):(inst, position, rotation) {
+        ppmod.create("ent_create_portal_weighted_sphere").then(function (ent):(inst, rotation) {
             inst.sphere = ent;
             ent.targetname = "grapple" + ::grapples.len();
             ent.moveType = 0;
             ent.collisionGroup = 1;
-            ent.SetOrigin(position);
+            ent.SetOrigin(inst.position);
             ent.SetAngles(rotation.x, rotation.y, rotation.z);
         });
 
@@ -31,10 +31,9 @@ class GrapplePoint {
     }
 
     /**
-     * Tick the grapple point
+     * Tick the grapple point. Player must be initialized
      */
     function tick() {
-        // FIXME: null stuff
 
         for (;;) {
             // check if user is in range
@@ -60,6 +59,7 @@ class GrapplePoint {
             this.canGrapple = true;
             return;
         }
+        
         if (this.canGrapple)
             this.sphere.Skin(0);
         this.canGrapple = false;
