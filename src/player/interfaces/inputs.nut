@@ -53,6 +53,7 @@ class Inputs {
         }
         
         // bind special keybinds
+        SendToConsole("bind ctrl +break");
         SendToConsole("bind shift +alt1");
         SendToConsole("bind e +alt2");
     }
@@ -71,8 +72,10 @@ class Inputs {
         if (this.crouched != this._wasCrouched) {
             if (this.crouched) {
                 if (this.crouchStart) this.crouchStart();
+                SendToConsole("+duck");
             } else {
                 if (this.crouchEnd) this.crouchEnd();
+                SendToConsole("-duck");
             }
             
             this._wasCrouched = this.crouched;

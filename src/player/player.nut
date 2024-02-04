@@ -95,9 +95,8 @@ IncludeScript("player/movement");
         };
 
         inst.inputs.crouchStart = function ():(inst) {
-            // FIXME: would be nice to actually scale the players hitbox
             ::player.EmitSound("Ghostrunner.Crouch_Down");
-            ::set_offset(-16.0);
+            ::set_offset(-36.0);
         };
         inst.inputs.crouchEnd = function ():(inst) {
             ::player.EmitSound("Ghostrunner.Crouch_Up");
