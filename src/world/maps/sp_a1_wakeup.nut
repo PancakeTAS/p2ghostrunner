@@ -7,13 +7,18 @@ class MapController {
      * Initialize specific map
      */
     constructor() {
-        ::fakecam_enable = false;
-
         // add skip to trigger
         local skip = this.skip;
         ppmod.addscript(ppmod.get("do_not_touch_anything_trigger"), "OnStartTouch", function ():(skip) {
             Skip(5, skip, null);
         });
+    }
+
+    /**
+     * Late initialization once the player is loaded
+     */
+    function player_init() {
+        ::fakecam_enable = false;
     }
 
     /**

@@ -1,5 +1,5 @@
 /**
- * Freeze instance
+ * Freeze
  */
 class Freeze {
 
@@ -54,7 +54,7 @@ class Freeze {
                     position = ent.GetOrigin() + Vector(0, 0, 0),
                     rotation = ent.GetAngles() + Vector(0, 0, 0)
                 });
-                ent.SetVelocity(ent.GetVelocity() * SLOWDOWN_FACTOR * 60);
+                ent.SetVelocity(ent.GetVelocity() * SENSORY_BOOST_FACTOR * 60);
             }
         }
     }

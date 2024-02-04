@@ -34,7 +34,7 @@
 		"wave"	"ghostrunner/grapple/grapple_02.wav"
 		"wave"	"ghostrunner/grapple/grapple_03.wav"
 		"wave"	"ghostrunner/hook/hook_01.wav"
-		"wave"	"ghostrunner/slowdown/slowdown.wav"
+		"wave"	"ghostrunner/sensoryboost/sensoryboost.wav"
 
 		"wave"	"buttons/button_synth_positive_01.wav"
 		"wave"	"ambient/machines/synth_tick_tock_01.wav"
@@ -162,8 +162,8 @@
 	"wave"	"ghostrunner/hook/hook_01.wav"
 }
 
-"Ghostrunner.Slowdown" {
-	"wave"	"ghostrunner/slowdown/slowdown.wav"
+"Ghostrunner.SensoryBoost" {
+	"wave"	"ghostrunner/sensoryboost/sensoryboost.wav"
 }
 
 // ========================

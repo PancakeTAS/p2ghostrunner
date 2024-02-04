@@ -1,20 +1,27 @@
-const MAX_STAMINA = 100; // max stamina a player can have
-const REGEN_STAMINA = 0.416666; // 25 / 60.0; amount of stamina regenerated per tick
-const FULL_REGENERATION_TIMEOUT = 60.0; // 1 * 60.0; amount of ticks to wait before regenerating stamina after it has been fully depleted
-const DASH_COST = 30; // stamina cost of dashing
-const SLOWDOWN_COST = 0.66666; // 40 / 60.0; stamina cost of slowdown
+// stamina values
+const MAX_STAMINA = 100;
+const DASH_COST = 30;
+const SENSORY_BOOST_COST = 0.66666; // 40.0 / 60.0
+// regen values
+const REGEN_STAMINA = 0.416666; // 25 / 60.0;
+const FULL_REGENERATION_TIMEOUT = 60.0; // 1 * 60.0
 
 ::renderStamina <- true; // whether the stamina bar should be rendered
+// FIXME: this is a hack to make hints, etc. render properly
 
 /**
  * Stamina management class
  */
 class Stamina {
-
+    
+    /** Amount of stamina the player currently has */
     stamina = MAX_STAMINA;
+    /** Whether the player can regenerate stamina */
     canRegen = true;
+    /** Internal timeout in ticks until stamina regeneration applies again */
     _regenTimeout = 0;
-    _staminaText = null; // ppmod.text object
+    /** Internal text object for the stamina bar */
+    _staminaText = null;
 
     /**
      * Tick the stamina management class
@@ -23,7 +30,7 @@ class Stamina {
         // update the stamina text
         if (::renderStamina) {
             local text = " ";
-            if (stamina < MAX_STAMINA)
+            if (this.stamina < MAX_STAMINA)
                 for (local i = 0; i < this.stamina / 2.5; i++)
                     text += "_";
 
@@ -35,15 +42,13 @@ class Stamina {
             this._staminaText.Display();
         }
 
-        // update the regen timeout
+        // regenerate stamina
         if (this._regenTimeout-- > 0)
             return;
 
-        // check if regeneration is disabled
         if (!this.canRegen)
             return;
 
-        // regen stamina
         this.stamina = min(MAX_STAMINA, this.stamina + REGEN_STAMINA);
     }
 

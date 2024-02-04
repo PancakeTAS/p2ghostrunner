@@ -1,7 +1,8 @@
-IncludeScript("world/freeze");
-IncludeScript("world/grapplepoint");
-IncludeScript("world/hint");
-IncludeScript("world/skip");
+IncludeScript("world/behavior/entitymgmt");
+IncludeScript("world/behavior/freeze");
+IncludeScript("world/components/grapplepoint");
+IncludeScript("world/components/hint");
+IncludeScript("world/components/skip");
 
 /**
  * Main world controller class
@@ -11,11 +12,12 @@ IncludeScript("world/skip");
     local inst = {
 
         controller = null, // specific map controller
-        freeze = Freeze(), // freeze time
-        collidableTicks = 0, // ticks since last collision group update
+        freeze = null,
+        entitymgmt = null,
 
         // methods
         init = null,
+        player_init = null,
         tick = null
 
     };
@@ -24,69 +26,42 @@ IncludeScript("world/skip");
      * Initialize the world controller
      */
     inst.init = function ():(inst) {
-        // include map specific code
-        switch (GetMapName()) {
-            case "sp_a2_triple_laser":
-                IncludeScript("world/maps/sp_a2_triple_laser");
+        // include custom controller
+        local maps = [
+            "sp_a2_triple_laser",
+            "sp_a1_intro1", "sp_a1_intro3", "sp_a1_intro4", "sp_a1_intro5", "sp_a1_intro6", "sp_a1_intro7",
+            "sp_a1_wakeup", "sp_a2_intro"
+        ];
+
+        // load current map module
+        local map = GetMapName();
+        foreach (m in maps) {
+            if (map == m) {
+                IncludeScript("world/maps/" + map);
+                inst.controller = MapController();
                 break;
-            case "sp_a1_intro1":
-                IncludeScript("world/maps/sp_a1_intro1");
-                break;
-            case "sp_a1_intro3":
-                IncludeScript("world/maps/sp_a1_intro3");
-                break;
-            case "sp_a1_intro4":
-                IncludeScript("world/maps/sp_a1_intro4");
-                break;
-            case "sp_a1_intro5":
-                IncludeScript("world/maps/sp_a1_intro5");
-                break;
-            case "sp_a1_intro6":
-                IncludeScript("world/maps/sp_a1_intro6");
-                break;
-            case "sp_a1_intro7":
-                IncludeScript("world/maps/sp_a1_intro7");
-                break;
-            case "sp_a1_wakeup":
-                IncludeScript("world/maps/sp_a1_wakeup");
-                break;
-            case "sp_a2_intro":
-                IncludeScript("world/maps/sp_a2_intro");
-                break;
-            default:
-                IncludeScript("world/maps/default");
-                break;
+            }
         }
 
-        // initialize map specific controller
-        inst.controller = MapController();
+        // initialize modules
+        inst.freeze = Freeze();
+        inst.entitymgmt = EntityManagement();
+    }
+
+    /**
+     * Late initialize the world controller after the player has been initialized
+     */
+    inst.player_init = function():(inst) {
+        if (inst.controller) inst.controller.player_init();
     }
 
     /**
      * Tick the world controller
      */
     inst.tick = function ():(inst) {
-        // tick map specific controller
-        if (inst.controller)
-            inst.controller.tick();
-
-        // tick collision group updater
-        if (inst.collidableTicks++ >= 60) {
-            inst.collidableTicks = 0;
-            local collidables = [
-                "prop_weighted_cube",
-                "prop_physics",
-                "npc_security_camera",
-                "npc_portal_floor_turret"
-            ];
-            
-            for (local i = 0; i < 4; i++) {
-                local ent = null;
-                while (ent = ppmod.get(collidables[i], ent))
-                    ent.collisionGroup = 2;
-            }
-        }
-
+        // tick modules
+        if (inst.controller) inst.controller.tick();
+        if (inst.entitymgmt) inst.entitymgmt.tick();
     }
 
     return inst;

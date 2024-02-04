@@ -13,12 +13,6 @@ class Skip {
     constructor(duration, func1, func2) {
         // don't show stamina bar
         ::renderStamina = false;
-        local stamina = ::contr.stamina._staminaText;
-        if (stamina) {
-            if (stamina.ent)
-                stamina.ent.Destroy();
-            ::contr.stamina._staminaText = null;
-        }
 
         // bind skip key
         this.skip_relay = func1;

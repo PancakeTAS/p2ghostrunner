@@ -7,8 +7,6 @@ class MapController {
      * Initialize specific map
      */
     constructor() {
-        ::fakecam_enable = false;
-        
         // entry portal
         ppmod.create("linked_portal_door").then(function (e) {
             e.SetAngles(0, 0, 0);
@@ -36,6 +34,13 @@ class MapController {
 
             Skip(5, skip, skip_late);
         });
+    }
+
+    /**
+     * Late initialization once the player is loaded
+     */
+    function player_init() {
+        ::fakecam_enable = false;
     }
 
     /**

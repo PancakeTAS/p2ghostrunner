@@ -1,9 +1,9 @@
 ::grapples <- array(0);
 
 /**
- * Grapple instance
+ * Grapple point instance
  */
-class Grapple {
+class GrapplePoint {
 
     position = null;
     range = null;
@@ -34,6 +34,8 @@ class Grapple {
      * Tick the grapple point
      */
     function tick() {
+        // FIXME: null stuff
+
         for (;;) {
             // check if user is in range
             local distance = (::player.GetOrigin() - this.position).Length();

@@ -58,7 +58,7 @@
 	"Player_Weapons_Loud"	"weapon"			"Player"	""				"140"		""			"60"		"0"		"0"		"100"	"40"
 	"Player_Weapons"		"weapon"			"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
 	"Player"				"player/"			"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
-	"SensoryBoost"			"slowdown/"		"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
+	"SensoryBoost"			"sensoryboost/"		"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
 	"Ghostrunner"			"ghostrunner"		"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
 
 

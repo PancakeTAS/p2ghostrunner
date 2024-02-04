@@ -7,9 +7,6 @@ class MapController {
      * Initialize specific map
      */
     constructor() {
-        // move cube in second room
-        ppmod.get(Vector(261.750, -236.750, 146.219), 15, "prop_weighted_cube").SetOrigin(Vector(312.5, -314.0, 146.0));
-    
         // trigger glass
         ppmod.fire("glass_pane_1_door_1", "Open");
         ppmod.fire("glass_pane_fractured_model", "Enable");
@@ -19,6 +16,14 @@ class MapController {
         ppmod.get(Vector(878, -528, 137), 1, "trigger_once").Destroy();
         ppmod.get("section_2_trigger_portal_spawn_a2_rm3a").Destroy();
         ppmod.get(Vector(884, -528, 4), 1, "trigger_once").Destroy();
+    }
+
+    /**
+     * Late initialization once the player is loaded
+     */
+    function player_init() {
+        // move cube in second room (cube spawns late)
+        ppmod.get(Vector(261.748, -236.784, 146.256), 5, "prop_weighted_cube").SetOrigin(Vector(312.5, -314.0, 146.0));
     }
 
     /**

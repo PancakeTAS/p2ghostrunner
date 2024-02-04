@@ -1,45 +1,3 @@
-::pplayer <- null;
-::player <- null;
-::contr <- null;
-::eyes <- null;
-::wcontr <- null;
-
-/**
- * Get the normalized x,y player forward vector
- */
-::forwardVec <- function() {
-    local vec = ::eyes.GetForwardVector() * Vector(1, 1, 0);
-    vec.Norm();
-    return vec;
-}
-
-/**
-  * Get the noramlized x,y player left vector
-  */
-::leftVec <- function() {
-    local vec = ::eyes.GetLeftVector() * Vector(1, 1, 0);
-    vec.Norm();
-    return vec;
-}
-
-/**
- * Get the normalized movement vector based on the players controls
- */
-function movementVec() {
-    local vec = ::contr.isCrouched ? Vector(0, 0) : Vector(::forward ? 1 : (::back ? -1 : 0), ::moveleft ? -1 : (::moveright ? 1 : 0));
-    vec.Norm();
-    return vec;
-}
-
-/**
- * Get the raw normalized movement vector based on the players controls
- */
-function rawMovementVec() {
-    local vec = Vector(::forward ? 1 : (::back ? -1 : 0), ::moveleft ? -1 : (::moveright ? 1 : 0));
-    vec.Norm();
-    return vec;
-}
-
 /**
  * Clamp vector to max length
  */
@@ -76,8 +34,8 @@ function rawMovementVec() {
  */
 ::wall <- function () {
     local origin = ::player.GetOrigin() + Vector(0, 0, 16);
-    local forward = ::forwardVec() * 8;
-    local left = ::leftVec() * 32;
+    local forward = ::contr.physics.forward2d * 8;
+    local left = ::contr.physics.left2d * 32;
 
     // check right wall
     local r1 = ppmod.ray(origin - forward, origin - forward + left);

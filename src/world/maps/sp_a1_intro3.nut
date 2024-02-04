@@ -3,7 +3,7 @@
  */
 class MapController {
 
-    grapple = Grapple(Vector(-1004.156, 2558.428, 56), 450, Vector(0, 0, 15));
+    grapple = GrapplePoint(Vector(-1004.156, 2558.428, 56), 450, Vector(0, 0, 15));
 
     /**
      * Initialize specific map
@@ -26,6 +26,13 @@ class MapController {
             wallrunHint.setBinding("jump");
             wallrunHint.createTrigger(Vector(-1341, 2861, -128), Vector(150, 75, 10));
         }, 1);
+    }
+
+    /**
+     * Late initialization once the player is loaded
+     */
+    function player_init() {
+        
     }
 
     /**

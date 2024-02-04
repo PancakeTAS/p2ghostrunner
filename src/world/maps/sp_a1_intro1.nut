@@ -7,7 +7,8 @@ class MapController {
      * Initialize specific map
      */
     constructor() {
-        ::fakecam_enable = false;
+        // setup cutscene skip
+        Skip(12, skip, skip_late);
 
         // apple
         ::on_jump = function () {
@@ -19,10 +20,15 @@ class MapController {
             if (ent = ppmod.get("sphere_player_has_pressed_space_second"))
                 ent.Trigger();
         }
-
-        // setup skip
-        Skip(12, skip, skip_late);
     }
+
+    /**
+     * Late initialization once the player is loaded
+     */
+    function player_init() {
+        ::fakecam_enable = false;
+    }
+
 
     /**
      * Skip the intro cutscene (only works after ghost animation and before looking at the ceiling)

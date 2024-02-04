@@ -30,6 +30,13 @@ class MapController {
     }
 
     /**
+     * Late initialization once the player is loaded
+     */
+    function player_init() {
+        
+    }
+
+    /**
      * Tick specific map
      */
     function tick() {

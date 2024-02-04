@@ -4,93 +4,74 @@ IncludeScript("player/player");
 IncludeScript("world/world");
 IncludeScript("util");
 
-function removePortalGun() {
-    local names = [
-        "weapon_portalgun",
-        "viewmodel",
-        "portalgun_button",
-        "portalgun",
-        "knockout-portalgun-spawn",
-        "player_near_portalgun"
-    ];
+::contr <- null;
+::wcontr <- null;
 
-    // remove portal gun entities
-    foreach (name in names) {
-        local ent = ppmod.get(name);
-        if (ent)
-            ent.Destroy();
-    }
+/**
+ * Called when the player is initialized
+ */
+local init_player = function(pplayer) {
 
-    // remove portal gun trigger on portal gun
-    local portalgun_trigger = ppmod.get(Vector(25.230, 1958.720, -299.0), 1.0, "trigger_once");
-    if (portalgun_trigger)
-        portalgun_trigger.Destroy();
+    // set global player variables
+    ::pplayer <- pplayer;
+    ::player <- pplayer.ent;
+    ::eyes <- pplayer.eyes;
+    ::init_fakecam();
+
+    // initialize controllers
+    ::wasNoclipping <- !player.IsNoclipping();
+    ::contr = PlayerController();
+    ::contr.init();
+    ::wcontr.player_init();
+
 }
 
-ppmod.onauto(function() {
-
-    // remove portal gun
-    SendToConsole("sv_cheats 1");
-    removePortalGun();
+/*
+ * Called when the server is initialized
+ */
+local init = function():(init_player) {
 
     // fix stuff
-    SendToConsole("bind shift +alt1");
-    SendToConsole("bind e +alt2");
+    SendToConsole("sv_cheats 1");
     SendToConsole("hud_saytext_time 0");
 
-    // initialize player controller with ppmod.player
-    ppmod.player(player).then(function (pplayer) {
+    // initialize world controller
+    ::wcontr = WorldController();
+    ::wcontr.init();
 
-        // set global player variables
-        ::pplayer = pplayer;
-        ::player = pplayer.ent;
-        ::eyes = pplayer.eyes;
+    // initialize player later
+    ppmod.player(GetPlayer()).then(init_player);
 
-        // initialize world controller
-        ::wcontr = WorldController();
+};
 
-        // register inputs
-        foreach(_, global in ["forward", "moveleft", "back", "moveright"]) {
-            getroottable()[global] <- false;
-            ::pplayer.input("+" + global, function():(global) {
-                getroottable()[global] = true
-            });
-            ::pplayer.input("-" + global, function():(global) {
-                getroottable()[global] = false
-            });
-        }
+/**
+ * Called every tick at 60 tps
+ */
+local tick = function() {
+    // update player
+    if (::contr) {
+        // update fake cam
+        ::update_fakecam();
 
-        // initialize player controller
-        ::init_fakecam();
-        ::contr = PlayerController();
+        // check noclipping
+        local isNoclipping = ::player.IsNoclipping();
+        if (isNoclipping && !::wasNoclipping)
+            ::set_speed(175);
+        else if (!isNoclipping && ::wasNoclipping)
+            ::set_speed(0);
+        ::wasNoclipping = isNoclipping;
 
-        // create intervals for player and world controller
-        ::wasNoclipping <- true;
-        ppmod.interval(function () {
+        // update player
+        if (!isNoclipping)
+            ::contr.tick();
+    }
 
-            // update world controller
-            ::wcontr.tick();
+    // update world
+    if (::wcontr) {
+        ::wcontr.tick();
+    }
+};
 
-            // update fake cam
-            ::update_fakecam();
-
-            // check noclipping
-            local isNoclipping = ::player.IsNoclipping();
-            if (isNoclipping && !::wasNoclipping) {
-                ::set_speed(175);
-            } else if (!isNoclipping && ::wasNoclipping) {
-                ::set_speed(0);
-            }
-            ::wasNoclipping = isNoclipping;
-
-            // update player controller
-            if (!isNoclipping)
-                ::contr.tick();
-
-        });
-
-        ::wcontr.init();
-
-    });
-
-});
+// setup main and tick
+ppmod.onauto(init);
+ppmod.interval(tick);
