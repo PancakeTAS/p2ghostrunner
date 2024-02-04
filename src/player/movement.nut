@@ -29,21 +29,15 @@ class Movement {
                 this._sensoryBoostDirection = (::contr.inputs.movement.y > 0) ? SENSORY_BOOST_ACCELERATION : -SENSORY_BOOST_ACCELERATION; // not technically acceleration, but called this for consistency in naming
         
             baseVelocity = ::contr.physics.left2d * this._sensoryBoostDirection;
-        } else if (::contr.physics.grounded && ::contr.inputs.crouched) {
+        } else if (::contr.physics.grounded && ::contr.inputs.crouched && this._prevBaseVelocity.Length() > 100) {
             // sliding movement
-
-            // FIXME: this code doesn't make any sense, because
-            // from the pre-refactor code movement.x + movement.y
-            // are always 0 when crouched, so they shouldn't
-            // be used here. That said, you are supposed to be able to
-            // walk while being crouched, as long as you're not sliding.
-            // For now I'll hotfix this with comments
-
+            baseVelocity = this._prevBaseVelocity * SLIDE_FRICTION;
+        } else if (::contr.physics.grounded && ::contr.inputs.crouched) {
+            // crouched movement
             baseVelocity = (
-                this._prevBaseVelocity
-                //+ ::contr.physics.forward2d * ::contr.inputs.movement.x * GROUND_ACCELERATION
-                //+ ::contr.physics.left2d * ::contr.inputs.movement.y * GROUND_ACCELERATION
-            ) * SLIDE_FRICTION;
+                  ::contr.physics.forward2d * ::contr.inputs.movement.x * CROUCH_ACCELERATION
+                + ::contr.physics.left2d * ::contr.inputs.movement.y * CROUCH_ACCELERATION
+            );
         } else if (::contr.physics.grounded) {
             // grounded movement
             baseVelocity = (

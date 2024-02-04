@@ -1,5 +1,6 @@
 
 // acceleration values
+const CROUCH_ACCELERATION = 100;
 const GROUND_ACCELERATION = 100;
 const AIR_ACCELERATION = 75;
 // friction values
@@ -96,7 +97,10 @@ IncludeScript("player/movement");
 
         inst.inputs.crouchStart = function ():(inst) {
             ::player.EmitSound("Ghostrunner.Crouch_Down");
-            ::set_offset(-36.0);
+            // set offset if sliding
+            // TODO: grab sliding sound effect
+            if (inst.movement.finalVelocity.Length() > 100)
+                ::set_offset(-36.0);
         };
         inst.inputs.crouchEnd = function ():(inst) {
             ::player.EmitSound("Ghostrunner.Crouch_Up");
