@@ -6,7 +6,7 @@
 //
 // ========================
 
-"PortalPlayer.Woosh" {
+"Tile.StepLeft" {
 	"volume" "0.0"
 	"rndwave" {
 		"wave"	"ghostrunner/crouch_down/crouch_down_01.wav"
@@ -35,6 +35,8 @@
 		"wave"	"ghostrunner/grapple/grapple_03.wav"
 		"wave"	"ghostrunner/hook/hook_01.wav"
 		"wave"	"ghostrunner/sensoryboost/sensoryboost.wav"
+		"wave"	"ghostrunner/slideloop/slideloop.wav"
+		"wave"	"ghostrunner/wind_passing/wind_passing_01.wav"
 
 		"wave"	"buttons/button_synth_positive_01.wav"
 		"wave"	"ambient/machines/synth_tick_tock_01.wav"
@@ -51,7 +53,6 @@
 //
 // ========================
 
-"PortalPlayer.WooshWooshyWoosh" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "Player.SlowTime_Stop" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "JumpLand.Tile" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "JumpLand.MetalGrate" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
@@ -61,7 +62,6 @@
 "BaseEntity.EnterWater" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "BaseEntity.ExitWater" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "Lightbridge.ElectricStep" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
-"Tile.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "Tile.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "Water.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "Water.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
@@ -164,6 +164,42 @@
 
 "Ghostrunner.SensoryBoost" {
 	"wave"	"ghostrunner/sensoryboost/sensoryboost.wav"
+}
+
+"Ghostrunner.SlideLoop" {
+	"wave"	"ghostrunner/slideloop/slideloop.wav"
+}
+
+// ========================
+//
+//
+//  EDITED PORTAL 2 SOUNDS
+//
+//
+// ========================
+
+"PortalPlayer.Woosh" {
+	"wave"			"ghostrunner/wind_passing/wind_passing_01.wav"
+}
+
+"PortalPlayer.WooshWooshyWoosh" {
+	"wave"			"ghostrunner/wind_passing/wind_passing_01.wav"
+
+	"soundentry_version" "2"
+
+	"operator_stacks" {
+		"update_stack" {
+			"import_stack" "p2_update_default"
+
+			"volume_apply_occlusion" {
+				"input2" "1.0"
+			}
+
+			"volume_apply_falloff" {
+				"input2" "1.0"
+			}
+		}
+	}
 }
 
 // ========================

@@ -34,6 +34,7 @@ class Movement {
             baseVelocity = this._prevBaseVelocity * SLIDE_FRICTION;
         } else if (::contr.physics.grounded && ::contr.inputs.crouched) {
             // crouched movement
+            SendToConsole("snd_setmixer SlideLoop MUTE 1");
             baseVelocity = (
                   ::contr.physics.forward2d * ::contr.inputs.movement.x * CROUCH_ACCELERATION
                 + ::contr.physics.left2d * ::contr.inputs.movement.y * CROUCH_ACCELERATION

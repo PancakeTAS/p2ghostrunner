@@ -59,6 +59,7 @@
 	"Player_Weapons"		"weapon"			"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
 	"Player"				"player/"			"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
 	"SensoryBoost"			"sensoryboost/"		"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
+	"SlideLoop"				"slideloop/"		"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
 	"Ghostrunner"			"ghostrunner"		"Player"	""				""			""			"60"		"0"		"0"		"100"	"40"
 
 
@@ -156,7 +157,8 @@
 		"Player_Weapons"			"0.6" "1.0" "1.0" "0.0" "0.0"
 		"Player"					"0.6" "1.0" "1.0" "0.0" "0.0"
 		"Ghostrunner"				"1.2" "1.0" "1.0" "0.0" "0.0"
-		"SensoryBoost"			"2.0" "1.0" "1.0" "0.0" "0.0"
+		"SensoryBoost"				"2.0" "1.0" "1.0" "0.0" "0.0"
+		"SlideLoop"					"0.5" "1.0" "1.0" "0.0" "0.0"
 
 
 		"turrets"				"0.6" "1.05" "1.0" "0.0" "0.0"
@@ -243,6 +245,7 @@
 		"Player"					"0.0" "1.0" "1.0" "0.0" "0.0"
 		"Ghostrunner"				"0.0" "1.0" "1.0" "0.0" "0.0"
 		"SensoryBoost"				"0.0" "1.0" "1.0" "0.0" "0.0"
+		"SlideLoop"					"0.0" "1.0" "1.0" "0.0" "0.0"
 
 
 		"turrets"				"0.0" "1.05" "1.0" "0.0" "0.0"

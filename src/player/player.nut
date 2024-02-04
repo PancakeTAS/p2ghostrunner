@@ -97,14 +97,17 @@ IncludeScript("player/movement");
 
         inst.inputs.crouchStart = function ():(inst) {
             ::player.EmitSound("Ghostrunner.Crouch_Down");
-            // set offset if sliding
-            // TODO: grab sliding sound effect
-            if (inst.movement.finalVelocity.Length() > 100)
+            // enter sliding state
+            if (inst.movement.finalVelocity.Length() > 100) {
                 ::set_offset(-36.0);
+                SendToConsole("snd_setmixer SlideLoop MUTE 0");
+                ::player.EmitSound("Ghostrunner.SlideLoop");
+            }
         };
         inst.inputs.crouchEnd = function ():(inst) {
             ::player.EmitSound("Ghostrunner.Crouch_Up");
             ::set_offset(0.0);
+            SendToConsole("snd_setmixer SlideLoop MUTE 1");
         };
     }
 
