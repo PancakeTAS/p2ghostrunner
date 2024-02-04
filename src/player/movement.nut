@@ -32,7 +32,8 @@ class Movement {
         } else if (::contr.physics.grounded && ::contr.inputs.crouched && this._prevBaseVelocity.Length() > 100) {
             // sliding movement
             baseVelocity = this._prevBaseVelocity * SLIDE_FRICTION;
-        } else if (::contr.physics.grounded && ::contr.inputs.crouched) {
+        } else if (::contr.physics.grounded &&
+         ::contr.inputs.crouched) {
             // crouched movement
             SendToConsole("snd_setmixer SlideLoop MUTE 1");
             baseVelocity = (

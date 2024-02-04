@@ -18,9 +18,9 @@ class Inputs {
     crouchStart = null;
     /** Event function for when the player stops crouching */
     crouchEnd = null;
-    /* Event function for when the player starts dashing */
+    /** Event function for when the player starts dashing */
     dashStart = null;
-    /* Event function for when the player stops dashing */
+    /** Event function for when the player stops dashing */
     dashEnd = null;
     /** Event function for when the player starts using (trigger engine use on return true) */
     useStart = null;
@@ -36,19 +36,27 @@ class Inputs {
     /** Internal state tracking for changes to the using keybind */
     _wasUsing = false;
 
+    /** Internal game_ui entity */
+    _gameui = null;
 
     /**
      * Register directional keys to ppmod.input and bind special keybinds
      */
     constructor() {
-        // register inputs
+        // create input firing entity
+        this._gameui = Entities.CreateByClassname("game_ui");
+        this._gameui.targetname = "p2ghostrunner-inputs";
+        this._gameui.FieldOfView = -1;
+        ppmod.fire(this._gameui, "Activate", "", 0.0, ::player, null);
+
+        // bind directional keys
         foreach(_, global in ["forward", "moveleft", "back", "moveright"]) {
             getroottable()[global] <- false;
-            pplayer.input("+" + global, function():(global) {
-                getroottable()[global] = true
+            ppmod.addscript(this._gameui, "pressed" + global, function():(global) {
+                getroottable()[global] = true;
             });
-            pplayer.input("-" + global, function():(global) {
-                getroottable()[global] = false
+            ppmod.addscript(this._gameui, "unpressed" + global, function():(global) {
+                getroottable()[global] = false;
             });
         }
         

@@ -37,20 +37,20 @@ class GrapplePoint {
 
         for (;;) {
             // check if user is in range
-            local distance = (::player.GetOrigin() - this.position).Length();
+            local distance = (::contr.physics.origin - this.position).Length();
             if (distance > this.range)
                 break;
 
             // check if user is looking at the grapple point
             local forward = ::eyes.GetForwardVector();
-            local direction = this.position - ::player.GetOrigin();
+            local direction = this.position - ::contr.physics.origin;
             direction.Norm();
             local dot = forward.Dot(direction);
             if (dot < 0.9)
                 break;
 
             // check if any objects obstruct the grapple point
-            local trace = ppmod.ray(::player.GetOrigin(), this.position - Vector(0, 0, 20.25));
+            local trace = ppmod.ray(::contr.physics.origin, this.position - Vector(0, 0, 20.25));
             if (trace.fraction < 0.9)
                 break;
 
@@ -69,7 +69,7 @@ class GrapplePoint {
      * Grapple to the point
      */
     function use() {
-        return this.position - ::player.GetOrigin();
+        return this.position - ::contr.physics.origin;
     }
 
 }

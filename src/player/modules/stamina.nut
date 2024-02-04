@@ -11,6 +11,8 @@ class Stamina {
     _regenTimeout = 0;
     /** Internal text object for the stamina bar */
     _staminaText = null;
+    /** Internal variable for storing the previous text */
+    _prevText = "";
     /** Internal variable for the stamina bar visibility */
     _visibility = true;
 
@@ -25,12 +27,19 @@ class Stamina {
                 for (local i = 0; i < this.stamina / 2.5; i++)
                     text += "_";
 
-            if (!this._staminaText)
-                this._staminaText = ppmod.text("STAMINA", -1, 0.99);
+            if (text != this._prevText) {
+                if (!this._staminaText) {
+                    this._staminaText = ppmod.text("STAMINA", -1, 0.99);
+                    this._staminaText.ent.targetname = "p2ghostrunner-stamina";
+                }
 
-            this._staminaText.SetText(text);
-            this._staminaText.SetColor("64 255 255")
-            this._staminaText.Display();
+                this._staminaText.SetText(text);
+                this._staminaText.SetFade(0, 0, false);
+                this._staminaText.SetColor("64 255 255")
+                this._staminaText.Display(FrameTime() * 6);
+                this._prevText = text;
+            }
+
         }
 
         // regenerate stamina

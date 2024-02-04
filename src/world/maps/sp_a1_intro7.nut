@@ -25,6 +25,9 @@ class MapController {
             e.Open();
         });
 
+        // fix wheatley by disabling custom camera 
+        ::contr.camera.enabled = false;
+
         // trigger on exit portal
         local ent = ppmod.trigger(Vector(-418, -702, 1297), Vector(10, 100, 100));
         local inst = this;
@@ -33,13 +36,6 @@ class MapController {
 
             Skip(5, inst.skip, inst.skip_late);
         });
-    }
-
-    /**
-     * Late initialization once the player is loaded
-     */
-    function player_init() {
-        ::fakecam_enable = false;
     }
 
     /**

@@ -12,15 +12,11 @@ class MapController {
         ppmod.addscript(ppmod.get("do_not_touch_anything_trigger"), "OnStartTouch", function ():(inst) {
             Skip(5, inst.skip, null);
         });
-    }
 
-    /**
-     * Late initialization once the player is loaded
-     */
-    function player_init() {
-        ::fakecam_enable = false;
+        // fix wheatley by disabling custom camera
+        ::contr.camera.enabled = false;
     }
-
+    
     /**
      * Skip the intro cutscene (only works after ghost animation and before looking at the ceiling)
      */

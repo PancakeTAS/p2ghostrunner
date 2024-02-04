@@ -58,7 +58,7 @@ class Wallrun {
 
             // wallrun
             if (!this.wall || (this.wall - wallVelocity).Length() > 0.1) // update camera only if wall changes
-                ::set_roll(-10.0 * ray.side);
+                ::contr.camera.setRoll(-10.0 * ray.side);
             this.wall = wallVelocity;
             ::contr.movement.finalVelocity = wallVelocity + ::contr.physics.left2d * ((ray.side == 1) ? 100 : -100);
             ::contr.movement.overrideGravity(0);
@@ -68,7 +68,7 @@ class Wallrun {
 
         // cancel wallrun if not possible
         if (this.wall)
-            ::set_roll(0.0);
+            ::contr.camera.setRoll(0.0);
         this.wall = null;
     }
 
@@ -85,7 +85,7 @@ class Wallrun {
         this._cooldownDirection = this.wall;
         this._cooldownPoint = ::contr.physics.origin;
         this._cooldown = WALLRUN_COOLDOWN;
-        ::set_roll(0.0);
+        ::contr.camera.setRoll(0.0);
         this.wall = null;
         
         return true;

@@ -9,13 +9,11 @@ class MapController {
     constructor() {
         // setup cutscene skip
         Skip(12, skip, skip_late);
-    }
 
-    /**
-     * Late initialization once the player is loaded
-     */
-    function player_init() {
-        ::fakecam_enable = false;
+        // fix intro cutscene breaking with custom camera
+        ::contr.camera.enabled = false;
+
+        // apple
         ::contr.inputs.jumpStart = function () {
             ppmod.fire("thats_the_spirit_relay", "Trigger");
             local ent;
@@ -26,7 +24,6 @@ class MapController {
                 ent.Trigger();
         }
     }
-
 
     /**
      * Skip the intro cutscene (only works after ghost animation and before looking at the ceiling)

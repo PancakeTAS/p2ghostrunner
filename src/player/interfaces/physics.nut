@@ -38,7 +38,7 @@ class Physics {
 
         // update player origin and angles
         this.origin = ::player.GetOrigin();
-        this.angles = ::player.GetAngles();
+        this.angles = ::eyes.GetAngles();
 
         // check ground state
         local engineVelocity = ::player.GetVelocity();

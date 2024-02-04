@@ -3,7 +3,7 @@
  */
 class MapController {
 
-    grapple = null;
+    grapple = GrapplePoint(Vector(7831, -5619, 273), 500);
 
     /**
      * Initialize triple laser
@@ -14,17 +14,10 @@ class MapController {
     }
 
     /**
-     * Late initialization once the player is loaded
-     */
-    function player_init() {
-        this.grapple = GrapplePoint(Vector(7831, -5619, 273), 500);
-    }
-
-    /**
      * Tick triple laser
      */
     function tick() {
-        if (this.grapple) this.grapple.tick();
+        this.grapple.tick();
     }
 
 }

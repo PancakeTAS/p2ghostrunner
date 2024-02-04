@@ -17,7 +17,6 @@ IncludeScript("world/components/skip");
 
         // methods
         init = null,
-        player_init = null,
         tick = null
 
     };
@@ -46,13 +45,6 @@ IncludeScript("world/components/skip");
         // initialize modules
         inst.freeze = Freeze();
         inst.entitymgmt = EntityManagement();
-    }
-
-    /**
-     * Late initialize the world controller after the player has been initialized
-     */
-    inst.player_init = function():(inst) {
-        if (inst.controller) inst.controller.player_init();
     }
 
     /**

@@ -8,39 +8,50 @@ IncludeScript("util");
 ::wcontr <- null;
 
 /**
- * Called when the player is initialized
+ * Called on mapspawn including loads
  */
-local init_player = function(pplayer) {
+local reload = function() {
+    if (!::player)
+        return;
 
-    // set global player variables
-    ::pplayer <- pplayer;
-    ::player <- pplayer.ent;
-    ::eyes <- pplayer.eyes;
-    ::init_fakecam();
+    local name = ::player.GetName();
+    local newName = UniqueString("grplayer");
+    ::player.targetname = newName;
+    ::eyes.SetMeasureTarget(newName);
 
-    // initialize controllers
-    ::wasNoclipping <- !player.IsNoclipping();
-    ::contr = PlayerController();
-    ::contr.init();
-    ::wcontr.player_init();
+    ppmod.wait(function ():(name) {
+        ::player.targetname = name;
+    }, FrameTime());
+};
 
-}
-
-/*
+/**
  * Called when the server is initialized
  */
-local init = function():(init_player) {
+local init = function():(reload) {
 
     // fix stuff
     SendToConsole("sv_cheats 1");
     SendToConsole("hud_saytext_time 0");
 
-    // initialize world controller
+    // initialize player
+    local name = UniqueString("grplayer_eyes");
+    ::player <- GetPlayer();
+    ::eyes <- Entities.CreateByClassname("logic_measure_movement");
+    ::eyes.measureType = 1;
+    ::eyes.targetname = name;
+    ::eyes.targetReference = name;
+    ::eyes.target = name;
+    ::eyes.SetAngles(0, 0, 90);
+    ::eyes.SetMeasureReference(name);
+    ::eyes.Enable();
+    reload();
+
+    // initialize controllers
+    ::wasNoclipping <- !::player.IsNoclipping();
+    ::contr = PlayerController();
+    ::contr.init();
     ::wcontr = WorldController();
     ::wcontr.init();
-
-    // initialize player later
-    ppmod.player(GetPlayer()).then(init_player);
 
 };
 
@@ -50,9 +61,6 @@ local init = function():(init_player) {
 local tick = function() {
     // update player
     if (::contr) {
-        // update fake cam
-        ::update_fakecam();
-
         // check noclipping
         local isNoclipping = ::player.IsNoclipping();
         if (isNoclipping && !::wasNoclipping)
@@ -73,5 +81,6 @@ local tick = function() {
 };
 
 // setup main and tick
-ppmod.onauto(init);
-ppmod.interval(tick);
+local auto = ppmod.onauto(init);
+ppmod.addscript(auto, "OnMapSpawn", reload);
+ppmod.interval(tick, 0.0, "p2ghostrunner-tick");

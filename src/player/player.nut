@@ -29,6 +29,7 @@ const STAMINA_MAX = 100;
 const STAMINA_REGEN = 0.416666; // 25 / 60.0;
 const STAMINA_FULL_REGEN_TIMEOUT = 60.0; // 1 * 60.0
 
+IncludeScript("player/interfaces/camera");
 IncludeScript("player/interfaces/inputs");
 IncludeScript("player/interfaces/physics");
 IncludeScript("player/modules/dash");
@@ -47,6 +48,7 @@ IncludeScript("player/movement");
         
         // interfaces
         inputs = null,
+        camera = null,
         physics = null,
 
         // movement
@@ -71,6 +73,7 @@ IncludeScript("player/movement");
     inst.init = function ():(inst) {
         // initialize interfaces
         inst.physics = Physics();
+        inst.camera = Camera();
         inst.inputs = Inputs();
 
         // initialize movement
@@ -99,14 +102,14 @@ IncludeScript("player/movement");
             ::player.EmitSound("Ghostrunner.Crouch_Down");
             // enter sliding state
             if (inst.movement.finalVelocity.Length() > 100) {
-                ::set_offset(-36.0);
+                inst.camera.setOffset(-36.0);
                 SendToConsole("snd_setmixer SlideLoop MUTE 0");
                 ::player.EmitSound("Ghostrunner.SlideLoop");
             }
         };
         inst.inputs.crouchEnd = function ():(inst) {
             ::player.EmitSound("Ghostrunner.Crouch_Up");
-            ::set_offset(0.0);
+            inst.camera.setOffset(0.0);
             SendToConsole("snd_setmixer SlideLoop MUTE 1");
         };
     }
@@ -117,6 +120,7 @@ IncludeScript("player/movement");
     inst.tick = function ():(inst) {
         // tick interfaces
         inst.physics.tick();
+        inst.camera.tick();
         inst.inputs.tick();
 
         // tick movement

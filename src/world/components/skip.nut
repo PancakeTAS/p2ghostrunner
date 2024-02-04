@@ -3,7 +3,7 @@
  */
 class Skip {
 
-    text = ppmod.text("Press E to skip the cutscene", -1, 0.7);
+    text = null;
     skip_relay = null;
     skip_relay_delay = null;
 
@@ -11,6 +11,7 @@ class Skip {
      * Display the skip text
      */
     constructor(duration, func1, func2) {
+
         // don't show stamina bar
         ::contr.stamina.toggleVisibility(false);
 
@@ -21,6 +22,7 @@ class Skip {
         SendToConsole("bind e \"script ::active_skip.skip();\"");
 
         // display skip text
+        this.text = ppmod.text("Press E to skip the cutscene", -1, 0.7);
         this.text.SetFade(1, 1, false);
         this.text.SetColor("255 255 255");
         this.text.Display(duration);

@@ -16,14 +16,11 @@ class MapController {
         ppmod.get(Vector(878, -528, 137), 1, "trigger_once").Destroy();
         ppmod.get("section_2_trigger_portal_spawn_a2_rm3a").Destroy();
         ppmod.get(Vector(884, -528, 4), 1, "trigger_once").Destroy();
-    }
 
-    /**
-     * Late initialization once the player is loaded
-     */
-    function player_init() {
         // move cube in second room (cube spawns late)
-        ppmod.get(Vector(261.748, -236.784, 146.256), 5, "prop_weighted_cube").SetOrigin(Vector(312.5, -314.0, 146.0));
+        ppmod.wait(function() {
+            ppmod.get(Vector(261.748, -236.784, 146.256), 5, "prop_weighted_cube").SetOrigin(Vector(312.5, -314.0, 146.0));
+        }, 1);
     }
 
     /**

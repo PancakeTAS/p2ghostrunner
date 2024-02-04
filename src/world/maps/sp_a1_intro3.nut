@@ -3,7 +3,7 @@
  */
 class MapController {
 
-    grapple = null;
+    grapple = GrapplePoint(Vector(-1004.156, 2558.428, 56), 450, Vector(0, 0, 15));
 
     /**
      * Initialize specific map
@@ -11,13 +11,6 @@ class MapController {
     constructor() {
         // remove existing hints
         SendToConsole("ent_remove_all env_instructor_hint");
-    }
-
-    /**
-     * Late initialization once the player is loaded
-     */
-    function player_init() {
-        this.grapple = GrapplePoint(Vector(-1004.156, 2558.428, 56), 450, Vector(0, 0, 15));
 
         // prepare hints
         local inst = this;
@@ -40,7 +33,7 @@ class MapController {
      * Tick specific map
      */
     function tick() {
-        if (this.grapple) this.grapple.tick();
+        this.grapple.tick();
     }
 
 }
