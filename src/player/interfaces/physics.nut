@@ -67,7 +67,7 @@ class Physics {
     /**
     * Check for collisions with a wall
     */
-    function getWall() {
+    function getWall(groundLength = 50) {
         local origin = this.origin + Vector(0, 0, 16);
         local forward = this.forward2d * 8;
         local left = this.left2d * 32;
@@ -82,7 +82,7 @@ class Physics {
                 point = r1.point,
                 up = delta,
                 side = 1,
-                ground = ppmod.ray(r1.point, r1.point - Vector(0, 0, 50)).fraction < 1
+                ground = ppmod.ray(r1.point, r1.point - Vector(0, 0, groundLength)).fraction < 1
             };
         }
 
@@ -96,7 +96,7 @@ class Physics {
                 point = r1.point,
                 up = delta,
                 side = -1,
-                ground = ppmod.ray(r1.point, r1.point - Vector(0, 0, 50)).fraction < 1
+                ground = ppmod.ray(r1.point, r1.point - Vector(0, 0, groundLength)).fraction < 1
             };
         }
 
