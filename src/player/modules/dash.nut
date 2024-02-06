@@ -59,7 +59,7 @@ class Dash {
             this.velocity *= ::contr.inputs.crouched ? 0.95 : 0.9;
 
             // check if player hit a wall
-            if (::check(this.velocity))
+            if (::contr.physics.checkCollision(this.velocity))
                 this.velocity = Vector(0, 0, 0);
         } else {
             // reset player effects if dash is not active

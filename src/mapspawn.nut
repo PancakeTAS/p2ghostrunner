@@ -2,7 +2,6 @@ if (!("Entities" in this)) return;
 IncludeScript("ppmod4");
 IncludeScript("player/player");
 IncludeScript("world/world");
-IncludeScript("util");
 
 ::contr <- null;
 ::wcontr <- null;
@@ -63,10 +62,16 @@ local tick = function() {
     if (::contr) {
         // check noclipping
         local isNoclipping = ::player.IsNoclipping();
-        if (isNoclipping && !::wasNoclipping)
-            ::set_speed(175);
-        else if (!isNoclipping && ::wasNoclipping)
-            ::set_speed(0);
+        if (isNoclipping && !::wasNoclipping) {
+            SendToConsole("cl_forwardspeed 175");
+            SendToConsole("cl_sidespeed 175");
+            SendToConsole("cl_backspeed 175");
+        } else if (!isNoclipping && ::wasNoclipping) {
+            SendToConsole("cl_forwardspeed 0");
+            SendToConsole("cl_sidespeed 0");
+            SendToConsole("cl_backspeed 0");
+
+        }
         ::wasNoclipping = isNoclipping;
 
         // update player

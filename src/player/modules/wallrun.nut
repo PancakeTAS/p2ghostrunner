@@ -37,7 +37,7 @@ class Wallrun {
                 break;
 
             // find nearby wall
-            local ray = ::wall();
+            local ray = ::contr.physics.getWall();
             if (!ray)
                 break;
             

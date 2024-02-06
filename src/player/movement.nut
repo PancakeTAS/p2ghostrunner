@@ -57,7 +57,12 @@ class Movement {
         }
 
         // clamp base velocity to actual velocity
-        local velocity = ::clamp_len(baseVelocity, BASE_VELOCITY_MAX);
+        local velocity = baseVelocity * 1;
+        if (velocity.Length() > BASE_VELOCITY_MAX) {
+            velocity.Norm();
+            velocity *= BASE_VELOCITY_MAX;
+        }
+
         this._prevBaseVelocity = baseVelocity;
         
         // calculate air strafing velocity
@@ -71,7 +76,7 @@ class Movement {
             velocity += this._prevAirStrafeVelocity;
 
             // check if player hit a wall
-            if (::check(velocity))
+            if (::contr.physics.checkCollision(velocity))
                 this._prevAirStrafeVelocity = Vector(0, 0);
         }
 
