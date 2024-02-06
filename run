@@ -60,18 +60,25 @@ ln -s "$DIR/src" "$DIR/scripts/vscripts"
 echo "Creating the package..."
 vpk -cv 1 -c "$DIR/vpk/" "$MOD/pak01_dir.vpk"
 
-# Game loop
-echo "Waiting for keypress..."
-until read -s -n 1 -t 0.01; do
+# Launch the game
+echo "Launching portal 2..."
+steam -applaunch 620 -tempcontent -netconport 5433
+until pgrep -x "portal2_linux" > /dev/null; do
     sleep 1
+done
 
-    # Restart portal 2 if it's not running
-    if ! pgrep -x "portal2_linux" > /dev/null; then
-        echo "Portal 2 is not running, restarting..."
-        steam -applaunch 620 -tempcontent
-        sleep 2
-    fi
+echo
+echo "Press any key to connect to the netconport..."
+read -n 1 -s
 
+# Connect to the netconport
+echo "Connecting to netconport..."
+telnet 0.0.0.0 $(ss -n -lt -p src 0.0.0.0 dst 0.0.0.0 | grep portal2_linux | awk -F '  +' '{print $3}' | cut -d':' -f2)
+
+# Wait for the game to close
+echo "Waiting for portal 2 to close..."
+until ! pgrep -x "portal2_linux" > /dev/null; do
+    sleep 1
 done
 
 # Cleanup
