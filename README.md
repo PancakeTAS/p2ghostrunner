@@ -15,7 +15,8 @@ Within spplice, click `+` in the top right. Select the p2ghostrunner.sppkg file 
 Once again if done correctly, you will now be able to select ghostrunner in the mod selection screen.
 
 > [!TIP]
-> You can download the latest **epochtal** spplice package in the [releases](https://github.com/PancakeTAS/Ghostrunner-Remake/releases) section or using the spplice repository
+> You can download the latest **epochtal** spplice package in the [releases](https://github.com/PancakeTAS/Ghostrunner-Remake/releases) section or using the spplice repository.
+> In the releases section you will also find my playthrough of the map
 
 ## Libraries
 Uses [ppmod4](https://github.com/p2r3/ppmod/tree/main) written by p2r3
