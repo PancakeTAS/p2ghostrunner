@@ -10,20 +10,15 @@ class EntityManagement {
      */
     constructor() {
         // remove portal gun entities
-        local names = [
+        foreach (name in [
             "weapon_portalgun",
             "viewmodel",
             "portalgun_button",
             "portalgun",
             "knockout-portalgun-spawn",
             "player_near_portalgun"
-        ];
-
-        foreach (name in names) {
-            local ent = ppmod.get(name);
-            if (ent)
-                ent.Destroy();
-        }
+        ])
+            ppmod.fire(name, "Kill");
 
         // remove portal gun trigger on portal gun
         local portalgun_trigger = ppmod.get(Vector(25.230, 1958.720, -299.0), 1.0, "trigger_once");
@@ -40,18 +35,13 @@ class EntityManagement {
             this.collidableTicks = 0;
 
             // remove player collision with entities
-            local collidables = [
+            foreach (prop in [
                 "prop_weighted_cube",
                 "prop_physics",
                 "npc_security_camera",
                 "npc_portal_floor_turret"
-            ];
-            
-            for (local i = 0; i < 4; i++) {
-                local ent = null;
-                while (ent = ppmod.get(collidables[i], ent))
-                    ent.collisionGroup = 2;
-            }
+            ])
+                ppmod.keyval(prop, "CollisionGroup", 2);
         }
     }
 

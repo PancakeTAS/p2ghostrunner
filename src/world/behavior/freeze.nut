@@ -35,28 +35,26 @@ class Freeze {
      * Freeze all entities
      */
     function freeze() {
-        local freezables = [
+        local inst = this;
+        foreach (prop in [
             "prop_weighted_cube",
             "prop_physics",
             "npc_security_camera",
             "npc_portal_floor_turret"
-        ];
-
-        for (local i = 0; i < 4; i++) {
-            local ent = null;
-            while (ent = ppmod.get(freezables[i], ent)) {
+        ]) {
+            ppmod.getall(prop, function (ent):(inst) {
                 if (ent.GetName().find("rapple")) // (grapple) i love squirrel
-                    continue;
+                    return;
 
                 ent.moveType = 4;
-                this.frozen.append({
+                inst.frozen.append({
                     entity = ent,
                     velocity = ent.GetVelocity() + Vector(0, 0, 0)
                     position = ent.GetOrigin() + Vector(0, 0, 0),
                     rotation = ent.GetAngles() + Vector(0, 0, 0)
                 });
                 ent.SetVelocity(ent.GetVelocity() * SENSORY_BOOST_FACTOR * 60);
-            }
+            });
         }
     }
 

@@ -31,7 +31,7 @@ class MapController {
         // trigger on exit portal
         local ent = ppmod.trigger(Vector(-418, -702, 1297), Vector(10, 100, 100));
         local inst = this;
-        ppmod.addscript(ent, "OnStartTouch", function ():(inst) {
+        ent.AddScript("OnStartTouch", function ():(inst) {
             ppmod.fire("door_0-testchamber_door", "Close");
 
             Skip(5, inst.skip, inst.skip_late);
@@ -44,7 +44,7 @@ class MapController {
     function skip() {
         ppmod.fire("bts_panel_door-lr_heavydoor_open", "trigger");
         ppmod.fire("airlock_door-open_door", "trigger");
-        ppmod.get("@sphere").Destroy();
+        ppmod.fire("@sphere", "Kill");
         SendToConsole("snd_setmixer wheatleyVO mute 1");
     }
 

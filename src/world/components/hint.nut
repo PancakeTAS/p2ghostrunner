@@ -42,7 +42,7 @@ class Hint {
         local inst = this;
 
         local trigger = ppmod.trigger(position, size);
-        ppmod.addscript(trigger, "OnStartTouch", function ():(inst) {
+        trigger.AddScript("OnStartTouch", function ():(inst) {
             inst.show();
         });
     }
@@ -57,7 +57,7 @@ class Hint {
         trigger.target = target;
         trigger.lookTime = 0.5;
         trigger.fieldOfView = 20;
-        ppmod.addscript(trigger, "OnStartTouch", function ():(inst) {
+        trigger.AddScript("OnStartTouch", function ():(inst) {
             inst.show();
         });
     }

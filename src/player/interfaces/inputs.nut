@@ -47,7 +47,7 @@ class Inputs {
         this._gameui = Entities.CreateByClassname("game_ui");
         this._gameui.targetname = "p2ghostrunner-inputs";
         this._gameui.FieldOfView = -1;
-        ppmod.fire(this._gameui, "Activate", "", 0.0, ::player, null);
+        this._gameui.Activate("", 0.0, ::player, null);
 
         // bind directional keys
         foreach(_, global in ["forward", "moveleft", "back", "moveright"]) {

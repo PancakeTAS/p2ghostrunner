@@ -16,12 +16,8 @@ class MapController {
         // apple
         ::contr.inputs.jumpStart = function () {
             ppmod.fire("thats_the_spirit_relay", "Trigger");
-            local ent;
-            if (ent = ppmod.get("sphere_player_has_pressed_space_first"))
-                ent.Trigger();
-            
-            if (ent = ppmod.get("sphere_player_has_pressed_space_second"))
-                ent.Trigger();
+            ppmod.fire("sphere_player_has_pressed_space_first", "Trigger");
+            ppmod.fire("sphere_player_has_pressed_space_second", "Trigger");
         }
     }
 
@@ -32,12 +28,12 @@ class MapController {
         // stop intro cutscene
         ppmod.fire("camera_intro", "teleporttoview");
         ppmod.fire("camera_intro", "disable");
-        ppmod.get("relay_intro_camera").Destroy();
-        ppmod.get("good_morning_vcd").Destroy();
-        ppmod.get("bend_at_the_knees_vcd").Destroy();
-        ppmod.get("look_at_ceiling_target").Destroy();
-        ppmod.get("stare_at_ceiling_aisc").Destroy();
-        ppmod.get("hint_press_to_crouch").Destroy();
+        ppmod.fire("relay_intro_camera", "Kill");
+        ppmod.fire("good_morning_vcd", "Kill");
+        ppmod.fire("bend_at_the_knees_vcd", "Kill");
+        ppmod.fire("look_at_ceiling_target", "Kill");
+        ppmod.fire("stare_at_ceiling_aisc", "Kill");
+        ppmod.fire("hint_press_to_crouch", "Kill");
         SendToConsole("fadeout 0");
         SendToConsole("stopsound");
         SendToConsole("stopsoundscape");
@@ -49,7 +45,7 @@ class MapController {
      */
     function skip_late() {
         // prevent vault cutscene
-        ppmod.get("enter_chamber_trigger").Destroy();
+        ppmod.fire("enter_chamber_trigger", "Kill");
 
         // prepare player
         SendToConsole("fadein 5");
@@ -57,9 +53,9 @@ class MapController {
         ::player.SetAngles(0, 0, 0);
 
         // fix valve moments
-        ppmod.get("camera_1").Destroy();
-        ppmod.get("camera_proxy").Destroy();
-        ppmod.get("camera_intro").Destroy();
+        ppmod.fire("camera_1", "Kill");
+        ppmod.fire("camera_proxy", "Kill");
+        ppmod.fire("camera_intro", "Kill");
 
         // manually start the game
         local relay = ppmod.get("open_portal_relay");

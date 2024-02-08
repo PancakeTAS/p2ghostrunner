@@ -87,5 +87,5 @@ local tick = function() {
 
 // setup main and tick
 local auto = ppmod.onauto(init);
-ppmod.addscript(auto, "OnMapSpawn", reload);
+auto.AddScript("OnMapSpawn", reload);
 ppmod.interval(tick, 0.0, "p2ghostrunner-tick");

@@ -37,9 +37,8 @@ class Camera {
         if (!this.enabled || !this._camera)
             return;
 
-        local angles = ::contr.physics.angles;
         this._camera.SetAbsOrigin(::contr.physics.origin + Vector(0, 0, 64 + this._offset));
-        this._camera.angles = angles.x + " " + angles.y + " " + this._roll;
+        this._camera.angles = (::contr.physics.angles * Vector(1, 1, 0) + Vector(0, 0, this._roll)).ToKVString();
     }
 
     /**
