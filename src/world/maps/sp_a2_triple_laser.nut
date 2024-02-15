@@ -4,13 +4,17 @@
 class MapController {
 
     grapple = GrapplePoint(Vector(7831, -5619, 273), 500);
+    pistol = PistolNPC(Vector(7983, -5849, 0));
 
     /**
      * Initialize triple laser
      */
     constructor() {
         printl("========== TRIPLE LASER INIT ==========");
-
+    
+        ppmod.wait(function ():(pistol) {
+            pistol.kill();
+        }, 10.0);
     }
 
     /**
@@ -18,6 +22,7 @@ class MapController {
      */
     function tick() {
         this.grapple.tick();
+        this.pistol.tick();
     }
 
 }

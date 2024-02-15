@@ -3,6 +3,7 @@ IncludeScript("world/behavior/freeze");
 IncludeScript("world/components/grapplepoint");
 IncludeScript("world/components/hint");
 IncludeScript("world/components/skip");
+IncludeScript("world/entities/npc_pistol");
 
 /**
  * Main world controller class
