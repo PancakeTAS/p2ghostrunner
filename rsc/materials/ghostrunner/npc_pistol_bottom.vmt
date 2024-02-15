@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "ghostrunner/npc_pistol_bottom_diffuse"
+	"$bumpmap" "ghostrunner/npc_pistol_bottom_normal"
+	"$model" "1"
+}
