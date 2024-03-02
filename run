@@ -14,6 +14,7 @@ if [[ $1 == "package" ]]; then
     mkdir _package
     mkdir -p _package/scripts/vscripts
     cp -r src/* _package/scripts/vscripts/
+    cp -r rsc/* _package/
     cp -r configs _package/cfg
     cp -r scripts/* _package/scripts/
     vpk -cv 1 -c vpk/ _package/pak01_dir.vpk

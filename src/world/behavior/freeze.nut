@@ -9,12 +9,12 @@ class Freeze {
      * Unfreeze all entities
      */
     function unfreeze() {
-        for (local i = 0; i < this.frozen.len(); i++) {
+        /*for (local i = 0; i < this.frozen.len(); i++) {
             local ent = this.frozen[i].entity;
             if (ent && typeof ent == "instance" && ent instanceof CBaseEntity && ent.IsValid())
                 ent.moveType = 6;
         }
-        
+
         // love vphysics
         local inst = this;
         ppmod.wait(function ():(inst) {
@@ -27,7 +27,7 @@ class Freeze {
                 }
             }
             inst.frozen.clear();
-        }, 0.05);
+        }, 0.05);*/
 
     }
 
@@ -35,7 +35,7 @@ class Freeze {
      * Freeze all entities
      */
     function freeze() {
-        local inst = this;
+        /*local inst = this;
         foreach (prop in [
             "prop_weighted_cube",
             "prop_physics",
@@ -55,7 +55,7 @@ class Freeze {
                 });
                 ent.SetVelocity(ent.GetVelocity() * SENSORY_BOOST_FACTOR * 60);
             });
-        }
+        }*/
     }
 
 }
