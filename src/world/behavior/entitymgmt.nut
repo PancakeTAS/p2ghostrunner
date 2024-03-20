@@ -26,6 +26,7 @@ class EntityManagement {
             portalgun_trigger.Destroy();
 
         // disable faith plates
+        // TODO: fix this
         ppmod.fire("trigger_catapult", "Disable");
     }
 

@@ -30,7 +30,7 @@ IncludeScript("world/entities/npc_pistol");
         local maps = [
             "sp_a2_triple_laser",
             "sp_a1_intro1", "sp_a1_intro3", "sp_a1_intro4", "sp_a1_intro5", "sp_a1_intro6", "sp_a1_intro7",
-            "sp_a1_wakeup", "sp_a2_intro"
+            "sp_a1_wakeup", "sp_a2_intro", "sp_a2_laser_stairs", "sp_a2_dual_lasers"
         ];
 
         // load current map module

@@ -7,6 +7,9 @@ class MapController {
      * Initialize specific map
      */
     constructor() {
+        // disable game instructor
+        SendToConsole("gameinstructor_enable 0");
+
         // trigger glass
         ppmod.fire("glass_pane_1_door_1", "Open");
         ppmod.fire("glass_pane_fractured_model", "Enable");
