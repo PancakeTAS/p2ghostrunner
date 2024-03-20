@@ -18,6 +18,17 @@ Once again if done correctly, you will now be able to select ghostrunner in the 
 > You can download the latest **epochtal** spplice package in the [releases](https://github.com/PancakeTAS/Ghostrunner-Remake/releases) section or using the spplice repository.
 > In the releases section you will also find my playthrough of the map
 
+## Known issues
+> [!WARNING]
+> Read this before playing the mod!
+
+- After changing the speaker configuration, run `snd_updateaudiocache` in the console (otherwise custom sounds will not play)
+- After changing the screen resolution, restart the game (otherwise the ingame text will have the wrong size)
+- Do not abuse corner walljumps to gain infinite height (I don't know how to fix them)
+- It is not recommended to use the scroll wheel for jumping (you *will* break the physics)
+
+Report issues in the GR thread of the [PortalRunner Community Discord](https://discord.gg/kbhq2qck5k)
+
 ## Libraries
 Uses [ppmod4](https://github.com/p2r3/ppmod/tree/main) written by p2r3
 and [vpp](https://github.com/0xNULLderef/vpp) (no longer in use) written by 0xNULLderef.
