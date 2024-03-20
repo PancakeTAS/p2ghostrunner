@@ -24,6 +24,9 @@ class EntityManagement {
         local portalgun_trigger = ppmod.get(Vector(25.230, 1958.720, -299.0), 1.0, "trigger_once");
         if (portalgun_trigger)
             portalgun_trigger.Destroy();
+
+        // disable faith plates
+        ppmod.fire("trigger_catapult", "Disable");
     }
 
     /**
