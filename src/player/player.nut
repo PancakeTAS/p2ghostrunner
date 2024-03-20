@@ -45,7 +45,7 @@ IncludeScript("player/movement");
 ::PlayerController <- function () {
 
     local inst = {
-        
+
         // interfaces
         inputs = null,
         camera = null,
@@ -111,6 +111,9 @@ IncludeScript("player/movement");
             ::player.EmitSound("Ghostrunner.Crouch_Up");
             inst.camera.setOffset(0.0);
             SendToConsole("snd_setmixer SlideLoop MUTE 1");
+            ppmod.wait(function () {
+                SendToConsole("snd_setmixer SlideLoop MUTE 0");
+            }, 0.5);
         };
     }
 
