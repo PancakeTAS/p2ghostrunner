@@ -26,14 +26,17 @@ class MapController {
         });
 
         // remove vphys clipbrush
+        /*
+        NOTE: reimplement in another mode
         ppmod.get(Vector(688, -396, 210), 1, "func_clip_vphysics").Destroy();
+        */
     }
 
     /**
      * Tick specific map
      */
     function tick() {
-        
+
     }
 
 }

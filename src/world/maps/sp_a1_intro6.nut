@@ -8,7 +8,11 @@ class MapController {
      */
     constructor() {
         // move cube
-        ppmod.get(Vector(256, 191.938, 18.188), 1, "prop_weighted_cube").SetOrigin(Vector(28.5, -67, -365.781));
+        /*
+        NOTE: reimplement in another mode
+        ppmod.get(Vector(256, 191.938, 18.188), 1, "prop_weighted_cube").SetOrigin(Vector(28.5 -67, -365.781));
+        */
+       ppmod.get(Vector(256, 191.938, 18.188), 1, "prop_weighted_cube").SetOrigin(Vector(-16, -495, 322));
     }
 
     /**

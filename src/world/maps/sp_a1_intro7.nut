@@ -8,6 +8,8 @@ class MapController {
      */
     constructor() {
         // entry portal
+        /*
+        NOTE: reimplement in another mode
         ppmod.create("linked_portal_door").then(function (e) {
             e.SetAngles(0, 0, 0);
             e.SetOrigin(Vector(393, 0, 1408));
@@ -23,13 +25,17 @@ class MapController {
             e.targetname = "portal";
             e.SetPartner("portal");
             e.Open();
-        });
+        });*/
 
-        // fix wheatley by disabling custom camera 
+        // fix wheatley by disabling custom camera
         ::contr.camera.enabled = false;
 
         // trigger on exit portal
+        /*
+        NOTE: reimplement in another mode
         local ent = ppmod.trigger(Vector(-418, -702, 1297), Vector(10, 100, 100));
+        */
+        local ent = ppmod.trigger(Vector(-800, -702, 1297), Vector(400, 200, 20));
         local inst = this;
         ent.AddScript("OnStartTouch", function ():(inst) {
             ppmod.fire("door_0-testchamber_door", "Close");
@@ -39,7 +45,7 @@ class MapController {
     }
 
     /**
-     * Skip the intro cutscene (only works after ghost animation and before looking at the ceiling)
+     * Skip the cutscene
      */
     function skip() {
         ppmod.fire("bts_panel_door-lr_heavydoor_open", "trigger");
@@ -49,7 +55,7 @@ class MapController {
     }
 
     /**
-     * Skip the intro cutscene (only works after ghost animation and before looking at the ceiling)
+     * Skip the cutscene
      */
     function skip_late() {
         SendToConsole("snd_setmixer wheatleyVO mute 0");

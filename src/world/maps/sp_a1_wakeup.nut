@@ -16,9 +16,9 @@ class MapController {
         // fix wheatley by disabling custom camera
         ::contr.camera.enabled = false;
     }
-    
+
     /**
-     * Skip the intro cutscene (only works after ghost animation and before looking at the ceiling)
+     * Skip the intro cutscene
      */
     function skip() {
         ::player.SetOrigin(Vector(6156, 3465, 904));

@@ -4,7 +4,7 @@
         "Normal"
         {
                 "title"         "Normal Playthrough"
-                "subtitle"      "Just Portal 2 with GR Movement"
+                "subtitle"      "P2 + GR Movement, made possible"
                 "command"         "exec normal"
                 "pic"           "vgui/chapters/chapter1"
         }
@@ -15,6 +15,14 @@
                 "subtitle"      "Testing map"
                 "command"         "exec debug"
                 "pic"           "vgui/extras/attract01"
+        }
+
+        "Continue"
+        {
+                "title"         "Continue"
+                "subtitle"      "Load latest quicksave"
+                "command"         "exec continue"
+                "pic"           "vgui/chapters/chapter2"
         }
 
 }
