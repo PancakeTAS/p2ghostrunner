@@ -6,7 +6,7 @@
 //
 // ========================
 
-"Tile.StepLeft" {
+"General.BurningFlesh" {
 	"volume" "0.0"
 	"rndwave" {
 		"wave"	"ghostrunner/crouch_down/crouch_down_01.wav"
@@ -41,7 +41,7 @@
 		"wave"	"buttons/button_synth_positive_01.wav"
 		"wave"	"ambient/machines/synth_tick_tock_01.wav"
 		"wave"	"buttons/button_synth_negative_01.wav"
-		"wave"	"buttons/button_synth_negative_02.wav"	
+		"wave"	"buttons/button_synth_negative_02.wav"
 	}
 }
 
@@ -217,14 +217,6 @@
 	"wave"		"error.wav"
 }
 
-"General.BurningFlesh"
-{
-	"channel"		"CHAN_WEAPON"
-	"soundlevel"		"SNDLVL_NORM"
-	"volume"		"0.45"
-	"wave"		"npc/headcrab/headcrab_burning_loop2.wav"
-}
-
 "General.BurningObject"
 {
 	"channel"		"CHAN_WEAPON"
@@ -392,7 +384,7 @@
 	"channel"		"CHAN_STATIC"
 	"soundlevel"		"SNDLVL_GUNFIRE"
 	"wave"		"props/explosions/a4_semi_distant_explosion_01.wav"
-	
+
 	"soundentry_version" "2"
 
 	"operator_stacks"
@@ -400,7 +392,7 @@
 		"update_stack"
 		{
 			"import_stack" "p2_update_default"
-			
+
 			"mixer"
 			{
 				"mixgroup" "xLoud"
@@ -414,7 +406,7 @@
 	"channel"		"CHAN_STATIC"
 	"soundlevel"		"SNDLVL_GUNFIRE"
 	"wave"		"props/explosions/a4_semi_distant_explosion_02.wav"
-		
+
 	"soundentry_version" "2"
 
 	"operator_stacks"
@@ -422,7 +414,7 @@
 		"update_stack"
 		{
 			"import_stack" "p2_update_default"
-			
+
 			"mixer"
 			{
 				"mixgroup" "xLoud"
@@ -464,8 +456,7 @@
 	{
 		"start_stack"
 		{
-			"import_stack" 	"P2_null_start" //don't try to play wave			
+			"import_stack" 	"P2_null_start" //don't try to play wave
 		}
 	}
 }
-
