@@ -26,10 +26,9 @@ IncludeScript("world/entities/npc_pistol");
     inst.init = function ():(inst) {
         // include custom controller
         local maps = [
-            "sp_a2_triple_laser",
             "sp_a1_intro1", "sp_a1_intro3", "sp_a1_intro4", "sp_a1_intro5", "sp_a1_intro6", "sp_a1_intro7",
-            "sp_a1_wakeup", "sp_a2_intro", "sp_a2_laser_stairs", "sp_a2_dual_lasers", "sp_a2_fizzler_intro",
-            "sp_a2_sphere_peek", "sp_a2_laser_relays", "sp_a2_column_blocker"
+            "sp_a1_wakeup", "sp_a2_intro", "sp_a2_laser_stairs", "sp_a2_laser_relays", "sp_a2_column_blocker",
+            "sp_a2_triple_laser"
         ];
 
         // load current map module
