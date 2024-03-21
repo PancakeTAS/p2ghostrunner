@@ -1,5 +1,4 @@
 IncludeScript("world/behavior/entitymgmt");
-IncludeScript("world/behavior/freeze");
 IncludeScript("world/components/grapplepoint");
 IncludeScript("world/components/hint");
 IncludeScript("world/components/skip");
@@ -13,7 +12,6 @@ IncludeScript("world/entities/npc_pistol");
     local inst = {
 
         controller = null, // specific map controller
-        freeze = null,
         entitymgmt = null,
 
         // methods
@@ -45,7 +43,6 @@ IncludeScript("world/entities/npc_pistol");
         }
 
         // initialize modules
-        inst.freeze = Freeze();
         inst.entitymgmt = EntityManagement();
     }
 

@@ -27,7 +27,7 @@ class Movement {
             // sensory boost movement
             if (::contr.inputs.movement.y != 0)
                 this._sensoryBoostDirection = (::contr.inputs.movement.y > 0) ? SENSORY_BOOST_ACCELERATION : -SENSORY_BOOST_ACCELERATION; // not technically acceleration, but called this for consistency in naming
-        
+
             baseVelocity = ::contr.physics.left2d * this._sensoryBoostDirection;
         } else if (::contr.physics.grounded && ::contr.inputs.crouched && this._prevBaseVelocity.Length() > 100) {
             // sliding movement
@@ -64,7 +64,7 @@ class Movement {
         }
 
         this._prevBaseVelocity = baseVelocity;
-        
+
         // calculate air strafing velocity
         if (::contr.physics.grounded) {
             this._prevAirStrafeVelocity = (
@@ -91,7 +91,7 @@ class Movement {
         } else if (::contr.grapple.grappled) {
             this._gravity -= GRAVITY / 2;
         } else if (this.sensoryBoost) {
-            this._gravity -= GRAVITY * (SENSORY_BOOST_FACTOR / 60.0); 
+            this._gravity -= GRAVITY * (SENSORY_BOOST_FACTOR / 60.0);
         } else {
             this._gravity -= GRAVITY;
         }
@@ -129,7 +129,7 @@ class Movement {
         ::contr.stamina.canRegen = false;
 
         // apply world effects
-        ::wcontr.freeze.freeze();
+        SendToConsole("phys_timescale " + SENSORY_BOOST_FACTOR);
     }
 
     /**
@@ -152,7 +152,7 @@ class Movement {
         }, 0.5);
 
         // apply world effects
-        ::wcontr.freeze.unfreeze();
+        SendToConsole("phys_timescale 1.0");
     }
 
     /**

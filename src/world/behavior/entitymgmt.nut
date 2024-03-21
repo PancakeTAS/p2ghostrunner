@@ -47,7 +47,7 @@ class EntityManagement {
                 "prop_weighted_cube",
                 "prop_physics",
                 "npc_security_camera",
-                "npc_portal_floor_turret"
+                "npc_portal_turret_floor"
             ])
                 ppmod.keyval(prop, "CollisionGroup", 2);
         }
