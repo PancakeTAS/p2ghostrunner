@@ -26,8 +26,6 @@ Once again if done correctly, you will now be able to select ghostrunner in the 
 - After changing the screen resolution, restart the game (otherwise the ingame text will have the wrong size)
 - Do not abuse corner walljumps to gain infinite height (I don't know how to fix them)
 - It is not recommended to use the scroll wheel for jumping (you *will* break the physics)
-- If you use "Continue" in the main menu after having updated the mod, the mod will most likely break
-- Maps with lasers are not implemented as intended yet
 
 Report issues in the GR thread of the [PortalRunner Community Discord](https://discord.gg/kbhq2qck5k)
 
