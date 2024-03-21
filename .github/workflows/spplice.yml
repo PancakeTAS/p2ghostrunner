@@ -8,6 +8,8 @@ jobs:
       # checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: true
       # install dependencies
       - name: Setup python
         uses: actions/setup-python@v5
