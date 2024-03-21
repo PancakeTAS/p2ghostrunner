@@ -37,6 +37,20 @@
 		"wave"	"ghostrunner/sensoryboost/sensoryboost.wav"
 		"wave"	"ghostrunner/slideloop/slideloop.wav"
 		"wave"	"ghostrunner/wind_passing/wind_passing_01.wav"
+		"wave"	"ghostrunner/shuriken_hit/shuriken_hit_01.wav"
+		"wave"	"ghostrunner/shuriken_hit/shuriken_hit_02.wav"
+		"wave"	"ghostrunner/shuriken_hit/shuriken_hit_03.wav"
+		"wave"	"ghostrunner/shuriken_hit/shuriken_hit_04.wav"
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_01.wav"
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_02.wav"
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_03.wav"
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_04.wav"
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_05.wav"
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_01.wav"
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_02.wav"
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_03.wav"
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_04.wav"
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_05.wav"
 
 		"wave"	"buttons/button_synth_positive_01.wav"
 		"wave"	"ambient/machines/synth_tick_tock_01.wav"
@@ -168,6 +182,35 @@
 
 "Ghostrunner.SlideLoop" {
 	"wave"	"ghostrunner/slideloop/slideloop.wav"
+}
+
+"Ghostrunner.ShurikenHit" {
+	"rndwave" {
+		"wave"	"ghostrunner/shuriken_hit/shuriken_hit_01.wav"
+		"wave"	"ghostrunner/shuriken_hit/shuriken_hit_02.wav"
+		"wave"	"ghostrunner/shuriken_hit/shuriken_hit_03.wav"
+		"wave"	"ghostrunner/shuriken_hit/shuriken_hit_04.wav"
+	}
+}
+
+"Ghostrunner.ShurikenMiss" {
+	"rndwave" {
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_01.wav"
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_02.wav"
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_03.wav"
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_04.wav"
+		"wave"	"ghostrunner/shuriken_miss/shuriken_miss_05.wav"
+	}
+}
+
+"Ghostrunner.ShurikenThrow" {
+	"rndwave" {
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_01.wav"
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_02.wav"
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_03.wav"
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_04.wav"
+		"wave"	"ghostrunner/shuriken_throw/shuriken_throw_05.wav"
+	}
 }
 
 // ========================

@@ -13,6 +13,8 @@ class Inputs {
     using = false;
     /** Whether the player has jumped this tick */
     jumped = false;
+    /** Whether the player has shot a shuriken this tick */
+    shuriken = false;
 
     /** Event function for when the player starts crouching */
     crouchStart = null;
@@ -28,6 +30,8 @@ class Inputs {
     useEnd = null;
     /** Event function for when the player jumped */
     jumpStart = null;
+    /** Event function for when the player shot a shuriken */
+    shurikenStart = null;
 
     /** Internal state tracking for changes to the crouching keybind */
     _wasCrouched = false;
@@ -59,11 +63,12 @@ class Inputs {
                 getroottable()[global] = false;
             });
         }
-        
+
         // bind special keybinds
         SendToConsole("bind ctrl +break");
         SendToConsole("bind shift +alt1");
         SendToConsole("bind e +alt2");
+        SendToConsole("bind q \"script ::contr.inputs.shuriken = true;\"");
     }
 
     /**
@@ -85,7 +90,7 @@ class Inputs {
                 if (this.crouchEnd) this.crouchEnd();
                 SendToConsole("-duck");
             }
-            
+
             this._wasCrouched = this.crouched;
         }
 
@@ -96,7 +101,7 @@ class Inputs {
             } else {
                 if (this.dashEnd) this.dashEnd();
             }
-            
+
             this._wasDashing = this.dashing;
         }
 
@@ -114,12 +119,15 @@ class Inputs {
 
                 SendToConsole("-use");
             }
-            
+
             this._wasUsing = this.using;
         }
 
         // check for jump
         if (this.jumped && this.jumpStart) this.jumpStart();
+
+        // check for shuriken
+        if (this.shuriken && this.shurikenStart) this.shurikenStart();
     }
 
     /**
@@ -127,6 +135,7 @@ class Inputs {
      */
     function tick_end() {
         this.jumped = false;
+        this.shuriken = false;
     }
 
 }

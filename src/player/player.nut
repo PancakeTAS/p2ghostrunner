@@ -21,6 +21,10 @@ const DASH_COST = 30;
 const DASH_COOLDOWN = 30.0; // 0.5 * 60
 // grapple values
 const GRAPPLE_COOLDOWN = 60;
+// shuriken values
+const SHURIKEN_COOLDOWN = 60;
+const SHURIKEN_RANGE = 1000;
+const SHURIKEN_DURATION = 5;
 // wallrun values
 const WALLRUN_SPEED = 350;
 const WALLRUN_COOLDOWN = 60;
@@ -35,6 +39,7 @@ IncludeScript("player/interfaces/physics");
 IncludeScript("player/modules/dash");
 IncludeScript("player/modules/footsteps");
 IncludeScript("player/modules/grapple");
+IncludeScript("player/modules/shuriken");
 IncludeScript("player/modules/stamina");
 IncludeScript("player/modules/wallrun");
 IncludeScript("player/movement");
@@ -58,6 +63,7 @@ IncludeScript("player/movement");
         stamina = null,
         dash = null,
         grapple = null,
+        shuriken = null,
         wallrun = null,
         footsteps = null,
 
@@ -83,6 +89,7 @@ IncludeScript("player/movement");
         inst.stamina = Stamina();
         inst.dash = Dash();
         inst.grapple = Grapple();
+        inst.shuriken = Shuriken();
         inst.wallrun = Wallrun();
         inst.footsteps = Footsteps();
 
@@ -96,6 +103,10 @@ IncludeScript("player/movement");
 
         inst.inputs.useStart = function ():(inst) {
             return inst.grapple.grapple();
+        };
+
+        inst.inputs.shurikenStart = function ():(inst) {
+            inst.shuriken.shuriken();
         };
 
         inst.inputs.crouchStart = function ():(inst) {
@@ -133,6 +144,7 @@ IncludeScript("player/movement");
         inst.stamina.tick();
         inst.dash.tick();
         inst.grapple.tick();
+        inst.shuriken.tick();
         inst.wallrun.tick();
         inst.footsteps.tick();
 
