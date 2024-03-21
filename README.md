@@ -28,7 +28,6 @@ Once again if done correctly, you will now be able to select ghostrunner in the 
 - It is not recommended to use the scroll wheel for jumping (you *will* break the physics)
 - Cubes with a velocity will break when using sensory boost
 - If you use "Continue" in the main menu after having updated the mod, the mod will most likely break
-- Faithplates are not working yet
 - Maps with lasers are not implemented as intended yet
 
 Report issues in the GR thread of the [PortalRunner Community Discord](https://discord.gg/kbhq2qck5k)

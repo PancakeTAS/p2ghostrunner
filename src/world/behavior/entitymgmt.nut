@@ -25,9 +25,13 @@ class EntityManagement {
         if (portalgun_trigger)
             portalgun_trigger.Destroy();
 
-        // disable faith plates
-        // TODO: fix this
-        ppmod.fire("trigger_catapult", "Disable");
+        // fix faith plates for the player
+        ppmod.getall("trigger_catapult", function (e) {
+            ppmod.addscript(e, "OnCatapulted", function(activator, caller) {
+                if (activator == ::player)
+                    ::contr.movement.overrideGravity(::contr.movement.sensoryBoost ? (350 * SENSORY_BOOST_FACTOR) : 350);
+            }, 0, -1, true);
+        });
     }
 
     /**
