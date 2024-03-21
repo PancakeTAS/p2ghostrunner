@@ -31,10 +31,8 @@ class Physics {
      */
     function tick() {
         // update directional vectors
-        this.forward2d = ::eyes.GetForwardVector() * Vector(1, 1, 0);
-        this.forward2d.Norm();
-        this.left2d = ::eyes.GetLeftVector() * Vector(1, 1, 0);
-        this.left2d.Norm();
+        this.forward2d = (::eyes.GetForwardVector() * Vector(1, 1, 0)).Normalize2D();
+        this.left2d = (::eyes.GetLeftVector() * Vector(1, 1, 0)).Normalize2D();
 
         // update player origin and angles
         this.origin = ::player.GetOrigin();
@@ -76,8 +74,7 @@ class Physics {
         local r1 = ppmod.ray(origin - forward, origin - forward + left);
         local r2 = ppmod.ray(origin + forward, origin + forward + left);
         if (r1.fraction < 1 && r2.fraction < 1) {
-            local delta = r2.point - r1.point;
-            delta.Norm();
+            local delta = (r2.point - r1.point).Normalize();
             return {
                 point = r1.point,
                 up = delta,
@@ -90,8 +87,7 @@ class Physics {
         r1 = ppmod.ray(origin - forward, origin - forward - left);
         r2 = ppmod.ray(origin + forward, origin + forward - left);
         if (r1.fraction < 1 && r2.fraction < 1) {
-            local delta = r2.point - r1.point;
-            delta.Norm();
+            local delta = (r2.point - r1.point).Normalize();
             return {
                 point = r1.point,
                 up = delta,

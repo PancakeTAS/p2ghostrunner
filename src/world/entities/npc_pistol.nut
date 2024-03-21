@@ -41,8 +41,7 @@ class PistolNPC {
         local distance = (::contr.physics.origin - this.ent.GetOrigin()).Length();
         if (distance < RANGE) {
             // face the player
-            local dir = (::contr.physics.origin - this.ent.GetOrigin());
-            dir.Norm();
+            local dir = (::contr.physics.origin - this.ent.GetOrigin()).Normalize();
             this.ent.angles = Vector(90, 0, atan2(dir.x, dir.y) * 60 - 90).ToKVString();
 
             // update shoot timer

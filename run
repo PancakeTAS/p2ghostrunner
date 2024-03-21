@@ -4,6 +4,9 @@ PORTAL2="$(eval echo ~$USER)/.local/share/Steam/steamapps/common/Portal 2"
 MOD="$PORTAL2/portal2_tempcontent"
 DIR="$(pwd)"
 
+# Update ppmod
+cp -r ppmod/ppmod4.nut src/ppmod4.nut
+
 # Build a package instead
 if [[ $1 == "package" ]]; then
     echo Cleaning up previous package...

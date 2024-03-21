@@ -43,8 +43,7 @@ class GrapplePoint {
 
             // check if user is looking at the grapple point
             local forward = ::eyes.GetForwardVector();
-            local direction = this.position - ::contr.physics.origin;
-            direction.Norm();
+            local direction = (this.position - ::contr.physics.origin).Normalize();
             local dot = forward.Dot(direction);
             if (dot < 0.9)
                 break;
@@ -59,7 +58,7 @@ class GrapplePoint {
             this.canGrapple = true;
             return;
         }
-        
+
         if (this.canGrapple)
             this.sphere.Skin(0);
         this.canGrapple = false;
