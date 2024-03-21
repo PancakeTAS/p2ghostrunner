@@ -68,7 +68,7 @@ class Inputs {
         SendToConsole("bind ctrl +break");
         SendToConsole("bind shift +alt1");
         SendToConsole("bind e +alt2");
-        SendToConsole("bind q \"script ::contr.inputs.shuriken = true;\"");
+        SendToConsole("bind q inv_next");
     }
 
     /**
