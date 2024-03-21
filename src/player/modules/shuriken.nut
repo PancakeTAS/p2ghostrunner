@@ -43,6 +43,10 @@ class Shuriken {
      * Use the shuriken
      */
     function shuriken() {
+        // check if shuriken is force-disabled
+        if (GetMapName().find("_a1_"))
+            return;
+
         // return engine use if cooldown is active
         if (this._cooldown > 0)
             return;
