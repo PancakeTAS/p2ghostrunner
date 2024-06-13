@@ -5,8 +5,6 @@ class Shuriken {
 
     /** Internal cooldown in ticks for shuriken */
     _cooldown = 0;
-    /** Internal portal gun entity */
-    _portalGun = null;
     /** Internal state for keeping track of currently activated shuriken */
     _active = null;
 
@@ -14,19 +12,7 @@ class Shuriken {
      * Shuriken constructor
      */
     constructor() {
-        // create portal gun
-        local inst = this;
-        ppmod.create("ent_create weapon_portalgun").then(function (e):(inst) {
-            inst._portalGun = e;
-            e.SetOrigin(::eyes.GetOrigin() + ::eyes.GetForwardVector() * 16.0);
-            e.SetForwardVector(::eyes.GetForwardVector());
-            e.SetMoveParent(::player);
-            e.RenderMode = 10;
-            e.SpawnFlags = 2;
-            e.CanFirePortal1 = false;
-            e.CanFirePortal2 = false;
-        });
-
+        // mute portalgun
         SendToConsole("snd_setmixer Portalgun MUTE 1");
     }
 
@@ -63,10 +49,25 @@ class Shuriken {
 
         // shoot portal
         local result = ppmod.ray(::eyes.GetOrigin(), ::eyes.GetOrigin() + ::eyes.GetForwardVector() * SHURIKEN_RANGE, "prop_laser_catcher", false);
-        if (result.fraction < 1.0)
-            this._portalGun.FirePortal2();
-        else
-            this._portalGun.FirePortal1();
+        ppmod.create("ent_create weapon_portalgun").then(function (e):(result) {
+            e.SetOrigin(::eyes.GetOrigin() + ::eyes.GetForwardVector() * 16.0);
+            e.SetForwardVector(::eyes.GetForwardVector());
+            e.SetMoveParent(::player);
+            e.RenderMode = 10;
+            e.SpawnFlags = 2;
+            e.CanFirePortal1 = false;
+            e.CanFirePortal2 = false;
+
+            if (result.fraction < 1.0)
+                e.FirePortal2();
+            else
+                e.FirePortal1();
+
+            // weird source jank
+            ppmod.wait(function():(e) {
+                SendToConsole("ent_remove_all weapon_portalgun");
+            }, 0.2);
+        });
 
         // remove all portals
         local inst = this;

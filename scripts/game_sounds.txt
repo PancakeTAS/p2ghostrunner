@@ -99,6 +99,8 @@
 "GlassFragments.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "Lightbridge.StepLeft" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 "Lightbridge.StepRight" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Weapon_Portalgun.powerup" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
+"Portal.PortalgunActivate" { "volume" "0.0" "wave" "test/silence_1sec_donotignore.wav" }
 
 // ========================
 //
