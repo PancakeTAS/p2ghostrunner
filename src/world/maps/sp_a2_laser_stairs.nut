@@ -17,6 +17,13 @@ class MapController {
     }
 
     /**
+     * Reload specific map
+     */
+    function reload() {
+
+    }
+
+    /**
      * Tick specific map
      */
     function tick() {

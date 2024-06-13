@@ -18,6 +18,13 @@ class MapController {
     }
 
     /**
+     * Reload specific map
+     */
+    function reload() {
+
+    }
+
+    /**
      * Tick triple laser
      */
     function tick() {

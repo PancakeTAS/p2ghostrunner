@@ -7,6 +7,25 @@ class MapController {
      * Initialize specific map
      */
     constructor() {
+        reload();
+
+        // remove vphys clipbrush
+        /*
+        NOTE: reimplement in another mode
+        ppmod.get(Vector(688, -396, 210), 1, "func_clip_vphysics").Destroy();
+        */
+    }
+
+    /**
+     * Reload specific map
+     */
+    function reload() {
+        // remove previous portals
+        local ent = ppmod.get(Vector(0, -765, 128), 1, "linked_portal_door");
+        if (ent) ent.Destroy();
+        ent = ppmod.get(Vector(-384, -320, 128), 1, "linked_portal_door");
+        if (ent) ent.Destroy();
+
         // entry portal
         ppmod.create("linked_portal_door").then(function (e) {
             e.SetAngles(0, -90, 0);
@@ -24,12 +43,6 @@ class MapController {
             e.SetPartner("portal");
             e.Open();
         });
-
-        // remove vphys clipbrush
-        /*
-        NOTE: reimplement in another mode
-        ppmod.get(Vector(688, -396, 210), 1, "func_clip_vphysics").Destroy();
-        */
     }
 
     /**

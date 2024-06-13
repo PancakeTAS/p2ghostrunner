@@ -21,6 +21,9 @@ local reload = function() {
     ppmod.wait(function ():(name) {
         ::player.targetname = name;
     }, FrameTime());
+
+    // reload world controller (does not call on init)
+    if (::wcontr) ::wcontr.reload();
 };
 
 /**

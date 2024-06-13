@@ -7,6 +7,18 @@ class MapController {
      * Initialize specific map
      */
     constructor() {
+        reload();
+    }
+
+    /**
+     * Reload specific map
+     */
+    function reload() {
+        // remove previous portals
+        local ent = ppmod.get(Vector(2962, -4928, 6719), 1, "linked_portal_door");
+        if (ent) ent.Destroy();
+        ent = ppmod.get(Vector(2188, -5241, 6720), 1, "linked_portal_door");
+        if (ent) ent.Destroy();
 
         // entry portal
         ppmod.create("linked_portal_door").then(function (e) {
@@ -25,7 +37,6 @@ class MapController {
             e.SetPartner("portal");
             e.Open();
         });
-
     }
 
     /**

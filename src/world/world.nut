@@ -16,6 +16,7 @@ IncludeScript("world/entities/npc_pistol");
 
         // methods
         init = null,
+        reload = null,
         tick = null
 
     };
@@ -43,6 +44,14 @@ IncludeScript("world/entities/npc_pistol");
 
         // initialize modules
         inst.entitymgmt = EntityManagement();
+    }
+
+    /**
+     * Reload the world controller on saveload
+     */
+    inst.reload = function ():(inst) {
+        // reload moduels
+        if (inst.controller) inst.controller.reload();
     }
 
     /**
